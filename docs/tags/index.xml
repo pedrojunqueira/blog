@@ -12,11 +12,20 @@
     
     
     <item>
-      <title>untagged</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/untagged/</link>
+      <title>datascience</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/datascience/</link>
       <pubDate>Sat, 11 Apr 2020 23:29:13 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/blog/tags/untagged/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/datascience/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/python/</link>
+      <pubDate>Sat, 11 Apr 2020 23:29:13 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/python/</guid>
       <description></description>
     </item>
     

@@ -5,7 +5,8 @@ draft: false
 toc: false
 images:
 tags:
-  - untagged
+  - python
+  - datascience
 ---
 This is my first posts
 
@@ -15,3 +16,5 @@ import pandas as pd
 
 ```
 Some text here
+
+{{< tweet 877500564405444608 >}}
