@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/about/</loc>
+    <lastmod>2020-04-11T23:33:34+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/</loc>
+    <lastmod>2020-04-11T23:33:34+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/best-podcasts/</loc>
+    <lastmod>2020-04-11T23:29:13+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
+    <lastmod>2020-04-11T23:29:13+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
+    <lastmod>2020-04-11T23:29:13+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/untagged/</loc>
+    <lastmod>2020-04-11T23:29:13+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/categories/</loc>
+  </url>
+  
+</urlset>

@@ -1,6 +1,7 @@
 baseURL = "https://pedrojunqueira.github.io/blog"
 languageCode = "en-us"
 title = "Pedro Junqueira Site"
+publishDir  = 'docs'
 
 theme = "hello-friend-ng"
 
