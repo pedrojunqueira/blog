@@ -6,30 +6,30 @@
     <description>Recent content on Pedro Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>pedro junqueira</copyright>
     <lastBuildDate>Sat, 11 Apr 2020 23:33:34 +0930</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>About</title>
+      <title>About me</title>
       <link>https://pedrojunqueira.github.io/blog/about/</link>
       <pubDate>Sat, 11 Apr 2020 23:33:34 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/about/</guid>
-      <description>I am Pedro Junqueira Full Stack Data Scientist</description>
+      <description>I am Pedro Junqueira Full Stack Data Scientist
+I have been a data analyst and a business analyst for couple of decades, however have not left excel spreadsheets, until around 2014 where I have been focused more on the Data Science Space, which involve more and more computer science and I rarely solve my clients problem using excel nowadays.
+Since I started working on the IT side of data I realized that it is not enough only to know statists, EDA and Machine learning to thrive, because if you really want to solve the data problems that organizations face, the rabbit hole is much deeper.</description>
     </item>
     
     <item>
-      <title>Best Podcasts</title>
+      <title>Best Data Science Podcasts</title>
       <link>https://pedrojunqueira.github.io/blog/posts/best-podcasts/</link>
       <pubDate>Sat, 11 Apr 2020 23:29:13 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/posts/best-podcasts/</guid>
-      <description>This is my first posts
-# add some code import pandas as pd Some text here
-Hugo 0.24 Released: Big archetype update + @Netlify _redirects etc. file supporthttps://t.co/X94FmYDEZJ #gohugo #golang @spf13 @bepsays
-&amp;mdash; GoHugo.io (@GoHugoIO) June 21, 2017  </description>
+      <description>If I am not doing an Udemy course, testing a tutorial or doing any online course in any break I get to learn as much as I can about Python, Computer Science, Software Engineering, Statistics and Data Science, I am listening to a podcast. I usually do this when I am commuting either riding my bike, on the bus or driving. A good time to listen to a podcast is when I need a break from absorbing too much content by following a course.</description>
     </item>
     
   </channel>

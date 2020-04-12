@@ -30,7 +30,7 @@ theme = "hello-friend-ng"
     title = "Pedro Junqueira"
     subtitle = "Data Scientist"
     keywords = ""
-    copyright = ""
+    copyright = "pedro junqueira"
     readOtherPosts = "Read other posts"
 
     [languages.en.params.logo]
