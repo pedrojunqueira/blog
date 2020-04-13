@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>python on Pedro Junqueira</title>
-    <link>https://pedrojunqueira.github.io/blog/tags/python/</link>
-    <description>Recent content in python on Pedro Junqueira</description>
+    <title>spark on Pedro Junqueira</title>
+    <link>https://pedrojunqueira.github.io/blog/tags/spark/</link>
+    <description>Recent content in spark on Pedro Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
     <lastBuildDate>Mon, 13 Apr 2020 21:35:16 +0930</lastBuildDate>
     
-	<atom:link href="https://pedrojunqueira.github.io/blog/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pedrojunqueira.github.io/blog/tags/spark/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,15 +21,6 @@
       <description>Python is a magical language. It is just import from * and then the magic start happening&amp;hellip;
 However, not always all run smoothly. Sometimes all that you want is to run code but as part of coding debugging is a constant battle until you get your code running as you wish.
 Besides the debugging, you need to set up your development environment that can be very very tedious. Sometime you just want to code and get your job done and you may spend hours and hours just setting up the environnement, importing packages, creating VMs, exporting environment variables, running shell scrips, going 10x to stack overflow and still struggle to make things work fine, then finally you can start writing some code.</description>
-    </item>
-    
-    <item>
-      <title>Best Data Science Podcasts</title>
-      <link>https://pedrojunqueira.github.io/blog/posts/best-podcasts/</link>
-      <pubDate>Sat, 11 Apr 2020 23:29:13 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/posts/best-podcasts/</guid>
-      <description>If I am not doing an Udemy course, testing a tutorial or doing any online course in any break I get to learn as much as I can about Python, Computer Science, Software Engineering, Statistics and Data Science, I am listening to a podcast. I usually do this when I am commuting either riding my bike, on the bus or driving. A good time to listen to a podcast is when I need a break from absorbing too much content by following a course.</description>
     </item>
     
   </channel>
