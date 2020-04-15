@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Mon, 13 Apr 2020 21:35:16 +0930</lastBuildDate>
+    <lastBuildDate>Tue, 14 Apr 2020 07:10:33 +0930</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>golang</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/golang/</link>
+      <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/hugo/</link>
+      <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>markdown</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/markdown/</link>
+      <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/markdown/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>docker</title>

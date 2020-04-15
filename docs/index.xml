@@ -13,6 +13,16 @@
     
     
     <item>
+      <title>Why I started a blog using Hugo?</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/why-started-hugo/</link>
+      <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/why-started-hugo/</guid>
+      <description>This is the second attempt I started a blog and this time is different.
+I once had a blog that was not about data science but I was able to write over 150 blog posts and I had a decent readership and people following it and even launched a paid e-book that gave me some money. Not enough for me to do it full time but it was very encouraging and it kept me motivated to keep me writing.</description>
+    </item>
+    
+    <item>
       <title>How to get a PySpark environment running on Jupyter</title>
       <link>https://pedrojunqueira.github.io/blog/posts/data-science-on-docker/</link>
       <pubDate>Mon, 13 Apr 2020 21:35:16 +0930</pubDate>
