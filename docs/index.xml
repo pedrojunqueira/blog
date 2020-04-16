@@ -13,6 +13,16 @@
     
     
     <item>
+      <title>How: to navigate on AWS S3 bucket using CLI</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/how-to-s3-cli/</link>
+      <pubDate>Thu, 16 Apr 2020 05:50:27 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/how-to-s3-cli/</guid>
+      <description>Using the command line interface (CLI) can be very intimidating and make one completely lost if you always dealt with graphical drag and drop, click and point interface.
+I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then cls for clear the screen and dir to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then.</description>
+    </item>
+    
+    <item>
       <title>Why I started a blog using Hugo?</title>
       <link>https://pedrojunqueira.github.io/blog/posts/why-started-hugo/</link>
       <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
