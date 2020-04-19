@@ -13,6 +13,17 @@
     
     
     <item>
+      <title>Understanding Docker volumes with a practical example</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/understand-docker-volume/</link>
+      <pubDate>Fri, 17 Apr 2020 06:55:35 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/understand-docker-volume/</guid>
+      <description>Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
+This post is not a What is Docker one or an introduction.
+You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for.</description>
+    </item>
+    
+    <item>
       <title>How: to navigate on AWS S3 bucket using CLI</title>
       <link>https://pedrojunqueira.github.io/blog/posts/how-to-s3-cli/</link>
       <pubDate>Thu, 16 Apr 2020 05:50:27 +0930</pubDate>

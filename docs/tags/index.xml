@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Thu, 16 Apr 2020 05:50:27 +0930</lastBuildDate>
+    <lastBuildDate>Fri, 17 Apr 2020 06:55:35 +0930</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>docker</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/docker/</link>
+      <pubDate>Fri, 17 Apr 2020 06:55:35 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postgresql</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/postgresql/</link>
+      <pubDate>Fri, 17 Apr 2020 06:55:35 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sql</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/sql/</link>
+      <pubDate>Fri, 17 Apr 2020 06:55:35 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/sql/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>aws</title>
@@ -81,15 +108,6 @@
       <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/markdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/docker/</link>
-      <pubDate>Mon, 13 Apr 2020 21:35:16 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/docker/</guid>
       <description></description>
     </item>
     

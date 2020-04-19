@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Mon, 13 Apr 2020 21:35:16 +0930</lastBuildDate>
+    <lastBuildDate>Fri, 17 Apr 2020 06:55:35 +0930</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Understanding Docker volumes with a practical example</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/understand-docker-volume/</link>
+      <pubDate>Fri, 17 Apr 2020 06:55:35 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/understand-docker-volume/</guid>
+      <description>Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
+This post is not a What is Docker one or an introduction.
+You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for.</description>
+    </item>
     
     <item>
       <title>How to get a PySpark environment running on Jupyter</title>

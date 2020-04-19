@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/docker/</loc>
+    <lastmod>2020-04-17T06:55:35+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/postgresql/</loc>
+    <lastmod>2020-04-17T06:55:35+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
+    <lastmod>2020-04-17T06:55:35+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/sql/</loc>
+    <lastmod>2020-04-17T06:55:35+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
+    <lastmod>2020-04-17T06:55:35+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/understand-docker-volume/</loc>
+    <lastmod>2020-04-17T06:55:35+09:30</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/aws/</loc>
     <lastmod>2020-04-16T05:50:27+09:30</lastmod>
   </url>
@@ -28,17 +58,7 @@
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
-    <lastmod>2020-04-16T05:50:27+09:30</lastmod>
-  </url>
-  
-  <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/s3/</loc>
-    <lastmod>2020-04-16T05:50:27+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
     <lastmod>2020-04-16T05:50:27+09:30</lastmod>
   </url>
   
@@ -60,11 +80,6 @@
   <url>
     <loc>https://pedrojunqueira.github.io/blog/posts/why-started-hugo/</loc>
     <lastmod>2020-04-14T07:10:33+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/docker/</loc>
-    <lastmod>2020-04-13T21:35:16+09:30</lastmod>
   </url>
   
   <url>
