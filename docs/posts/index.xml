@@ -6,8 +6,47 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>pedro junqueira</copyright>
-        <lastBuildDate>Fri, 12 Jun 2020 05:56:21 +0930</lastBuildDate>
+        <lastBuildDate>Fri, 10 Jul 2020 06:02:26 +0930</lastBuildDate>
         <atom:link href="https://pedrojunqueira.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Kubernetes Cheat Sheet</title>
+            <link>https://pedrojunqueira.github.io/blog/posts/kubernetes-cheat-sheet/</link>
+            <pubDate>Fri, 10 Jul 2020 06:02:26 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/blog/posts/kubernetes-cheat-sheet/</guid>
+            <description>This is the most handy Kubernetes kubectl commands Pods List all pods
+kubectl get pods
+Create a pod from CLI
+kubectl run nginx image=nginx
+Describe the pod details
+kubectl describe pod &amp;lt;name&amp;gt;
+Get pods listed with more details e.g. which nodes are running
+kubectl get pods -o wide
+Open a vim editor to edit the pod yaml definition file
+kubeclt edit pod &amp;lt;podname&amp;gt;
+Create/Reconfigure a pod based on a manifest file</description>
+            <content type="html"><![CDATA[<h2 id="this-is-the-most-handy-kubernetes-kubectl-commands">This is the most handy Kubernetes kubectl commands</h2>
+<h3 id="pods">Pods</h3>
+<p>List all pods</p>
+<p><code>kubectl get pods</code></p>
+<p>Create a pod from CLI</p>
+<p><code>kubectl run nginx image=nginx</code></p>
+<p>Describe the pod details</p>
+<p><code>kubectl describe pod &lt;name&gt;</code></p>
+<p>Get pods listed with more details e.g. which nodes are running</p>
+<p><code>kubectl get pods -o wide</code></p>
+<p>Open a vim editor to edit the pod yaml definition file</p>
+<p><code>kubeclt edit pod &lt;podname&gt;</code></p>
+<p>Create/Reconfigure a pod based on a manifest file</p>
+<p><code>kubectl apply -f manifest.yaml</code></p>
+<p>Display the contents of a running pod yaml file</p>
+<p><code>kubectl get pod &lt;pod-name&gt; -o yaml</code></p>
+<p>Create a definition file from an existing one</p>
+<p><code>kubectl get pod &lt;pod-name&gt; -o yaml &gt; pod-definition.yaml</code></p>
+<h3 id="replica-sets">Replica Sets</h3>
+]]></content>
+        </item>
         
         <item>
             <title>Data driven business vs. Business model driven by data</title>
