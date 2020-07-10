@@ -21,7 +21,7 @@
       <description>This is the most handy Kubernetes kubectl commands Pods List all pods
 kubectl get pods
 Create a pod from CLI
-kubectl run nginx image=nginx
+kubectl run nginx --image=nginx
 Describe the pod details
 kubectl describe pod &amp;lt;name&amp;gt;
 Get pods listed with more details e.g. which nodes are running

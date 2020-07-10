@@ -18,7 +18,7 @@
             <description>This is the most handy Kubernetes kubectl commands Pods List all pods
 kubectl get pods
 Create a pod from CLI
-kubectl run nginx image=nginx
+kubectl run nginx --image=nginx
 Describe the pod details
 kubectl describe pod &amp;lt;name&amp;gt;
 Get pods listed with more details e.g. which nodes are running
@@ -31,7 +31,7 @@ Create/Reconfigure a pod based on a manifest file</description>
 <p>List all pods</p>
 <p><code>kubectl get pods</code></p>
 <p>Create a pod from CLI</p>
-<p><code>kubectl run nginx image=nginx</code></p>
+<p><code>kubectl run nginx --image=nginx</code></p>
 <p>Describe the pod details</p>
 <p><code>kubectl describe pod &lt;name&gt;</code></p>
 <p>Get pods listed with more details e.g. which nodes are running</p>
@@ -44,7 +44,49 @@ Create/Reconfigure a pod based on a manifest file</description>
 <p><code>kubectl get pod &lt;pod-name&gt; -o yaml</code></p>
 <p>Create a definition file from an existing one</p>
 <p><code>kubectl get pod &lt;pod-name&gt; -o yaml &gt; pod-definition.yaml</code></p>
+<h2 id="creating-objects-imperatively">Creating objects imperatively</h2>
+<p><code>kubectl run nginx --image=nginx</code></p>
+<p>With Labels</p>
+<p><code>kubectl run redis --image=redis:alpine -l tier=db</code></p>
+<p>Create a service</p>
+<p><code>kubectl expose pod redis --port 6370 --name redis-service -l tier=db</code></p>
+<p>Deployment</p>
+<p><code>kubectl create deployment webapp --image=kodekloud/webapp-color</code></p>
+<p>Scale deployement</p>
+<p><code>kubectl scale deployment/webapp --replicas=3</code></p>
+<p>Create a pod and expose a port</p>
+<p><code>kubectl run custom-nginx --image=nginx --port=8080</code></p>
+<p>Create a namespace</p>
+<p><code>kubectl create ns &lt;name&gt;</code></p>
+<p>Pipe deployment to YAML file</p>
+<p><code>kubectl create deployment redis-deploy --namespace=dev-ns --image redis --dry-run=client -o yaml &gt; deploy.yaml</code></p>
 <h3 id="replica-sets">Replica Sets</h3>
+<p><code>kubectl get replicasets</code></p>
+<p>use the same commands as pod for describe, edit, delete and also apply manifests</p>
+<h3 id="deployments">Deployments</h3>
+<p><code>kubectl create -f deployment.yml</code></p>
+<p>a deployment automatically creates a replicaset</p>
+<p>to see all objects running in the cluster write</p>
+<p><code>kubectl get all</code></p>
+<h3 id="output-format">Output format</h3>
+<p>the kubectl output can be specified with the <code>-o</code> argument other than receiving text only</p>
+<p>Json</p>
+<p><code>-o json</code></p>
+<p>Just the name</p>
+<p><code>-o name</code></p>
+<p>text with a few extra detail</p>
+<p><code>-o wide</code></p>
+<p>Yaml</p>
+<p><code>-o yaml</code></p>
+<h2 id="namespaces">Namespaces</h2>
+<p>Create a name space</p>
+<p><code>kubectl create namespace &lt;name&gt;</code></p>
+<p>get resources in a particular namespace</p>
+<p><code>kubectl get pods --namespace &lt;namespace name&gt;</code></p>
+<p>Change namespace context to list resources on the set namespace</p>
+<p><code>kubectl config set-context $(kubectl config current-context) --namespace=dev</code></p>
+<p>get resources in all namespaces</p>
+<p><code>kubectl get pods --all-namespaces</code></p>
 ]]></content>
         </item>
         

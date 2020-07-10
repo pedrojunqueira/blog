@@ -8,7 +8,7 @@
 <meta name="description" content="This is the most handy Kubernetes kubectl commands Pods List all pods
 kubectl get pods
 Create a pod from CLI
-kubectl run nginx image=nginx
+kubectl run nginx --image=nginx
 Describe the pod details
 kubectl describe pod &amp;lt;name&amp;gt;
 Get pods listed with more details e.g. which nodes are running
@@ -44,7 +44,7 @@ Create/Reconfigure a pod based on a manifest file" />
 <meta itemprop="description" content="This is the most handy Kubernetes kubectl commands Pods List all pods
 kubectl get pods
 Create a pod from CLI
-kubectl run nginx image=nginx
+kubectl run nginx --image=nginx
 Describe the pod details
 kubectl describe pod &lt;name&gt;
 Get pods listed with more details e.g. which nodes are running
@@ -54,7 +54,7 @@ kubeclt edit pod &lt;podname&gt;
 Create/Reconfigure a pod based on a manifest file">
 <meta itemprop="datePublished" content="2020-07-10T06:02:26&#43;09:30" />
 <meta itemprop="dateModified" content="2020-07-10T06:02:26&#43;09:30" />
-<meta itemprop="wordCount" content="108">
+<meta itemprop="wordCount" content="307">
 <meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
 
 
@@ -63,7 +63,7 @@ Create/Reconfigure a pod based on a manifest file">
 <meta property="og:description" content="This is the most handy Kubernetes kubectl commands Pods List all pods
 kubectl get pods
 Create a pod from CLI
-kubectl run nginx image=nginx
+kubectl run nginx --image=nginx
 Describe the pod details
 kubectl describe pod &lt;name&gt;
 Get pods listed with more details e.g. which nodes are running
@@ -83,7 +83,7 @@ Create/Reconfigure a pod based on a manifest file" />
 <meta name="twitter:description" content="This is the most handy Kubernetes kubectl commands Pods List all pods
 kubectl get pods
 Create a pod from CLI
-kubectl run nginx image=nginx
+kubectl run nginx --image=nginx
 Describe the pod details
 kubectl describe pod &lt;name&gt;
 Get pods listed with more details e.g. which nodes are running
@@ -157,7 +157,7 @@ Create/Reconfigure a pod based on a manifest file"/>
     <main class="post">
 
         <div class="post-info">
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>One minute
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>2 minutes
 
             
 
@@ -177,7 +177,7 @@ Create/Reconfigure a pod based on a manifest file"/>
 <p>List all pods</p>
 <p><code>kubectl get pods</code></p>
 <p>Create a pod from CLI</p>
-<p><code>kubectl run nginx image=nginx</code></p>
+<p><code>kubectl run nginx --image=nginx</code></p>
 <p>Describe the pod details</p>
 <p><code>kubectl describe pod &lt;name&gt;</code></p>
 <p>Get pods listed with more details e.g. which nodes are running</p>
@@ -190,7 +190,49 @@ Create/Reconfigure a pod based on a manifest file"/>
 <p><code>kubectl get pod &lt;pod-name&gt; -o yaml</code></p>
 <p>Create a definition file from an existing one</p>
 <p><code>kubectl get pod &lt;pod-name&gt; -o yaml &gt; pod-definition.yaml</code></p>
+<h2 id="creating-objects-imperatively">Creating objects imperatively</h2>
+<p><code>kubectl run nginx --image=nginx</code></p>
+<p>With Labels</p>
+<p><code>kubectl run redis --image=redis:alpine -l tier=db</code></p>
+<p>Create a service</p>
+<p><code>kubectl expose pod redis --port 6370 --name redis-service -l tier=db</code></p>
+<p>Deployment</p>
+<p><code>kubectl create deployment webapp --image=kodekloud/webapp-color</code></p>
+<p>Scale deployement</p>
+<p><code>kubectl scale deployment/webapp --replicas=3</code></p>
+<p>Create a pod and expose a port</p>
+<p><code>kubectl run custom-nginx --image=nginx --port=8080</code></p>
+<p>Create a namespace</p>
+<p><code>kubectl create ns &lt;name&gt;</code></p>
+<p>Pipe deployment to YAML file</p>
+<p><code>kubectl create deployment redis-deploy --namespace=dev-ns --image redis --dry-run=client -o yaml &gt; deploy.yaml</code></p>
 <h3 id="replica-sets">Replica Sets</h3>
+<p><code>kubectl get replicasets</code></p>
+<p>use the same commands as pod for describe, edit, delete and also apply manifests</p>
+<h3 id="deployments">Deployments</h3>
+<p><code>kubectl create -f deployment.yml</code></p>
+<p>a deployment automatically creates a replicaset</p>
+<p>to see all objects running in the cluster write</p>
+<p><code>kubectl get all</code></p>
+<h3 id="output-format">Output format</h3>
+<p>the kubectl output can be specified with the <code>-o</code> argument other than receiving text only</p>
+<p>Json</p>
+<p><code>-o json</code></p>
+<p>Just the name</p>
+<p><code>-o name</code></p>
+<p>text with a few extra detail</p>
+<p><code>-o wide</code></p>
+<p>Yaml</p>
+<p><code>-o yaml</code></p>
+<h2 id="namespaces">Namespaces</h2>
+<p>Create a name space</p>
+<p><code>kubectl create namespace &lt;name&gt;</code></p>
+<p>get resources in a particular namespace</p>
+<p><code>kubectl get pods --namespace &lt;namespace name&gt;</code></p>
+<p>Change namespace context to list resources on the set namespace</p>
+<p><code>kubectl config set-context $(kubectl config current-context) --namespace=dev</code></p>
+<p>get resources in all namespaces</p>
+<p><code>kubectl get pods --all-namespaces</code></p>
 
             </div>
         </article>
@@ -202,7 +244,7 @@ Create/Reconfigure a pod based on a manifest file"/>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://pedrojunqueira.github.io/blog/tags/kubernetes">kubernetes</a></span><span class="tag"><a href="https://pedrojunqueira.github.io/blog/tags/containers">containers</a></span><span class="tag"><a href="https://pedrojunqueira.github.io/blog/tags/devops">DevOps</a></span>
                 </p>
 
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>108 Words</p>
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>307 Words</p>
 
             <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-07-10 06:02 &#43;0930</p>
         </div>
