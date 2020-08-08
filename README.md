@@ -1,7 +1,7 @@
 # blog https://pedrojunqueira.github.io/blog
 
-## New Title
+## About
 
-:
+This is the git repository of Pedro Junqueira blog
 
  

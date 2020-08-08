@@ -1,28 +1,36 @@
 ---
-title: "Openshift"
+title: "Basic CLI commands for Openshift-Minishift"
 date: 2020-07-02T20:56:05+09:30
 draft: false
 toc: false
 images:
 tags:
-  - untagged
+  - openshift
+  - minishift
+  - kubernetes
+  - DevOps
+  - CLI
 ---
 
-Important Openshift command lines
+## Here is a post with the absolute basic commands that I always forget
+
+### Getting the export Path of oc CLI tool
 
 `minishift oc-env`
 
 `export PATH="/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH"`
 
+### Logging in 
+
 to log in
 
 `oc login -u <user> -p <password>`
 
-deploy an application from git
+### Deploy an application from git
 
 `oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp`
 
-log in as sys:admin
+## login as sys:admin
 
 `oc login -u system:admin`
 

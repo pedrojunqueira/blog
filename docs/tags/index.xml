@@ -40,11 +40,29 @@
     </item>
     
     <item>
-      <title>untagged</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/untagged/</link>
+      <title>cli</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/cli/</link>
       <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/blog/tags/untagged/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/cli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>minishift</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/minishift/</link>
+      <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/minishift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>openshift</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/openshift/</link>
+      <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/openshift/</guid>
       <description></description>
     </item>
     
@@ -99,15 +117,6 @@
       <pubDate>Thu, 16 Apr 2020 05:50:27 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/bash/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cli</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/cli/</link>
-      <pubDate>Thu, 16 Apr 2020 05:50:27 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/cli/</guid>
       <description></description>
     </item>
     

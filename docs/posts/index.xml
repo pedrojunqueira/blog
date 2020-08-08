@@ -95,33 +95,31 @@ Create/Reconfigure a pod based on a manifest file</description>
         </item>
         
         <item>
-            <title>Openshift</title>
-            <link>https://pedrojunqueira.github.io/blog/posts/openshift/</link>
+            <title>Basic CLI commands for Openshift-Minishift</title>
+            <link>https://pedrojunqueira.github.io/blog/posts/minishift_basic_cli/</link>
             <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
             
-            <guid>https://pedrojunqueira.github.io/blog/posts/openshift/</guid>
-            <description>Important Openshift command lines
-minishift oc-env
+            <guid>https://pedrojunqueira.github.io/blog/posts/minishift_basic_cli/</guid>
+            <description>Here is a post with the absolute basic commands that I always forget Getting the export Path of oc CLI tool minishift oc-env
 export PATH=&amp;quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&amp;quot;
-to log in
+Logging in to log in
 oc login -u &amp;lt;user&amp;gt; -p &amp;lt;password&amp;gt;
-deploy an application from git
-oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp
-log in as sys:admin
-oc login -u system:admin
+Deploy an application from git oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp
+login as sys:admin oc login -u system:admin
 get users
 oc get users
 make an user called administrator a system admin
-oc adm policy add-cluster-role-to-user cluster-admin administrator
-now the administrator user is adm and see all the projects</description>
-            <content type="html"><![CDATA[<p>Important Openshift command lines</p>
+oc adm policy add-cluster-role-to-user cluster-admin administrator</description>
+            <content type="html"><![CDATA[<h2 id="here-is-a-post-with-the-absolute-basic-commands-that-i-always-forget">Here is a post with the absolute basic commands that I always forget</h2>
+<h3 id="getting-the-export-path-of-oc-cli-tool">Getting the export Path of oc CLI tool</h3>
 <p><code>minishift oc-env</code></p>
 <p><code>export PATH=&quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&quot;</code></p>
+<h3 id="logging-in">Logging in</h3>
 <p>to log in</p>
 <p><code>oc login -u &lt;user&gt; -p &lt;password&gt;</code></p>
-<p>deploy an application from git</p>
+<h3 id="deploy-an-application-from-git">Deploy an application from git</h3>
 <p><code>oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp</code></p>
-<p>log in as sys:admin</p>
+<h2 id="login-as-sysadmin">login as sys:admin</h2>
 <p><code>oc login -u system:admin</code></p>
 <p>get users</p>
 <p><code>oc get users</code></p>

@@ -38,12 +38,22 @@
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/blog/posts/openshift/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/minishift_basic_cli/</loc>
     <lastmod>2020-07-02T20:56:05+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/untagged/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/cli/</loc>
+    <lastmod>2020-07-02T20:56:05+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/minishift/</loc>
+    <lastmod>2020-07-02T20:56:05+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/openshift/</loc>
     <lastmod>2020-07-02T20:56:05+09:30</lastmod>
   </url>
   
@@ -84,11 +94,6 @@
   
   <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/bash/</loc>
-    <lastmod>2020-04-16T05:50:27+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/cli/</loc>
     <lastmod>2020-04-16T05:50:27+09:30</lastmod>
   </url>
   
