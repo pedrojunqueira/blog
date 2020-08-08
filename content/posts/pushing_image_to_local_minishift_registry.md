@@ -1,5 +1,5 @@
 ---
-title: "Pushing_image_to_local_minishift_registry"
+title: "Pushing image to local minishift registry"
 date: 2020-08-09T07:52:24+09:30
 draft: false
 toc: false

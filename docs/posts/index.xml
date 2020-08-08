@@ -10,7 +10,7 @@
         <atom:link href="https://pedrojunqueira.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>Pushing_image_to_local_minishift_registry</title>
+            <title>Pushing image to local minishift registry</title>
             <link>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</link>
             <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
             
@@ -640,7 +640,7 @@ Besides the debugging, you need to set up your development environment that can 
         </item>
         
         <item>
-            <title>How_to_create_new_post_hugo</title>
+            <title>How to create new post in hugo</title>
             <link>https://pedrojunqueira.github.io/blog/posts/how_to_create_new_post_hugo/</link>
             <pubDate>Thu, 09 Apr 2020 07:53:52 +0930</pubDate>
             
