@@ -1,7 +1,7 @@
 ---
 title: "How_to_create_new_post_hugo"
 date: 2020-04-09T07:53:52+09:30
-draft: true
+draft: false
 toc: false
 images:
 tags:

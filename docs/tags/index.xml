@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Fri, 10 Jul 2020 06:02:26 +0930</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2020 07:52:24 +0930</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DevOps</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/devops/</link>
+      <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/docker/</link>
+      <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/kubernetes/</link>
+      <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>openshift</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/openshift/</link>
+      <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/openshift/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>containers</title>
@@ -18,24 +54,6 @@
       <pubDate>Fri, 10 Jul 2020 06:02:26 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/containers/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DevOps</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/devops/</link>
-      <pubDate>Fri, 10 Jul 2020 06:02:26 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/kubernetes/</link>
-      <pubDate>Fri, 10 Jul 2020 06:02:26 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/kubernetes/</guid>
       <description></description>
     </item>
     
@@ -58,29 +76,11 @@
     </item>
     
     <item>
-      <title>openshift</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/openshift/</link>
-      <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/openshift/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>strategy</title>
       <link>https://pedrojunqueira.github.io/blog/tags/strategy/</link>
       <pubDate>Fri, 12 Jun 2020 05:56:21 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/strategy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/docker/</link>
-      <pubDate>Fri, 17 Apr 2020 06:55:35 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/docker/</guid>
       <description></description>
     </item>
     
@@ -148,7 +148,7 @@
     </item>
     
     <item>
-      <title>hugo</title>
+      <title>Hugo</title>
       <link>https://pedrojunqueira.github.io/blog/tags/hugo/</link>
       <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
       

@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Thu, 02 Jul 2020 20:56:05 +0930</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2020 07:52:24 +0930</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/tags/openshift/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pushing_image_to_local_minishift_registry</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</link>
+      <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</guid>
+      <description>I am learning OpenShift as I am using it more and more at work and it has been great fun and I am really enjoying the DevOps space which is giving me new super powers as a developer.
+It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases.</description>
+    </item>
     
     <item>
       <title>Basic CLI commands for Openshift-Minishift</title>

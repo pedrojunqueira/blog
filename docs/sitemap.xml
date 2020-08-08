@@ -3,37 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/devops/</loc>
+    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/docker/</loc>
+    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/kubernetes/</loc>
+    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/openshift/</loc>
+    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/</loc>
+    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
+    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</loc>
+    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
+    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/containers/</loc>
     <lastmod>2020-07-10T06:02:26+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/devops/</loc>
-    <lastmod>2020-07-10T06:02:26+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/kubernetes/</loc>
-    <lastmod>2020-07-10T06:02:26+09:30</lastmod>
-  </url>
-  
-  <url>
     <loc>https://pedrojunqueira.github.io/blog/posts/kubernetes-cheat-sheet/</loc>
-    <lastmod>2020-07-10T06:02:26+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/</loc>
-    <lastmod>2020-07-10T06:02:26+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
-    <lastmod>2020-07-10T06:02:26+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
     <lastmod>2020-07-10T06:02:26+09:30</lastmod>
   </url>
   
@@ -53,11 +68,6 @@
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/openshift/</loc>
-    <lastmod>2020-07-02T20:56:05+09:30</lastmod>
-  </url>
-  
-  <url>
     <loc>https://pedrojunqueira.github.io/blog/posts/data-driven-vs-model-driven/</loc>
     <lastmod>2020-06-12T05:56:21+09:30</lastmod>
   </url>
@@ -65,11 +75,6 @@
   <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/strategy/</loc>
     <lastmod>2020-06-12T05:56:21+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/docker/</loc>
-    <lastmod>2020-04-17T06:55:35+09:30</lastmod>
   </url>
   
   <url>
@@ -170,6 +175,11 @@
   <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/datascience/</loc>
     <lastmod>2020-04-11T23:29:13+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/how_to_create_new_post_hugo/</loc>
+    <lastmod>2020-04-09T07:53:52+09:30</lastmod>
   </url>
   
   <url>

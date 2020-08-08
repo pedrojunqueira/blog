@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Fri, 10 Jul 2020 06:02:26 +0930</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2020 07:52:24 +0930</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pushing_image_to_local_minishift_registry</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</link>
+      <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</guid>
+      <description>I am learning OpenShift as I am using it more and more at work and it has been great fun and I am really enjoying the DevOps space which is giving me new super powers as a developer.
+It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases.</description>
+    </item>
     
     <item>
       <title>Kubernetes Cheat Sheet</title>
@@ -120,6 +130,18 @@ Since I started working on the IT side of data I realized that it is not enough 
       
       <guid>https://pedrojunqueira.github.io/blog/posts/best-podcasts/</guid>
       <description>If I am not doing an Udemy course, testing a tutorial or doing any online course in any break I get to learn as much as I can about Python, Computer Science, Software Engineering, Statistics and Data Science, I am listening to a podcast. I usually do this when I am commuting either riding my bike, on the bus or driving. A good time to listen to a podcast is when I need a break from absorbing too much content by following a course.</description>
+    </item>
+    
+    <item>
+      <title>How_to_create_new_post_hugo</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/how_to_create_new_post_hugo/</link>
+      <pubDate>Thu, 09 Apr 2020 07:53:52 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/how_to_create_new_post_hugo/</guid>
+      <description>Because I am not very consistent in my blog I always forget the command on how to create a new post.
+Here it is
+hugo new posts/my-first-post.md
+Got from the reference quick start</description>
     </item>
     
   </channel>
