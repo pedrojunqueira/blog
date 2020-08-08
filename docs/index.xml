@@ -32,6 +32,28 @@ Create/Reconfigure a pod based on a manifest file</description>
     </item>
     
     <item>
+      <title>Openshift</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/openshift/</link>
+      <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/openshift/</guid>
+      <description>Important Openshift command lines
+minishift oc-env
+export PATH=&amp;quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&amp;quot;
+to log in
+oc login -u &amp;lt;user&amp;gt; -p &amp;lt;password&amp;gt;
+deploy an application from git
+oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp
+log in as sys:admin
+oc login -u system:admin
+get users
+oc get users
+make an user called administrator a system admin
+oc adm policy add-cluster-role-to-user cluster-admin administrator
+now the administrator user is adm and see all the projects</description>
+    </item>
+    
+    <item>
       <title>Data driven business vs. Business model driven by data</title>
       <link>https://pedrojunqueira.github.io/blog/posts/data-driven-vs-model-driven/</link>
       <pubDate>Fri, 12 Jun 2020 05:56:21 +0930</pubDate>

@@ -87,6 +87,47 @@ Create/Reconfigure a pod based on a manifest file</description>
 <p><code>kubectl config set-context $(kubectl config current-context) --namespace=dev</code></p>
 <p>get resources in all namespaces</p>
 <p><code>kubectl get pods --all-namespaces</code></p>
+<h2 id="secrets">Secrets</h2>
+<p>Create a secret</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    &lt;secret name&gt; --from-literal<span style="color:#f92672">=</span>&lt;key&gt;<span style="color:#f92672">=</span>&lt;value&gt;
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>Openshift</title>
+            <link>https://pedrojunqueira.github.io/blog/posts/openshift/</link>
+            <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/blog/posts/openshift/</guid>
+            <description>Important Openshift command lines
+minishift oc-env
+export PATH=&amp;quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&amp;quot;
+to log in
+oc login -u &amp;lt;user&amp;gt; -p &amp;lt;password&amp;gt;
+deploy an application from git
+oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp
+log in as sys:admin
+oc login -u system:admin
+get users
+oc get users
+make an user called administrator a system admin
+oc adm policy add-cluster-role-to-user cluster-admin administrator
+now the administrator user is adm and see all the projects</description>
+            <content type="html"><![CDATA[<p>Important Openshift command lines</p>
+<p><code>minishift oc-env</code></p>
+<p><code>export PATH=&quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&quot;</code></p>
+<p>to log in</p>
+<p><code>oc login -u &lt;user&gt; -p &lt;password&gt;</code></p>
+<p>deploy an application from git</p>
+<p><code>oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp</code></p>
+<p>log in as sys:admin</p>
+<p><code>oc login -u system:admin</code></p>
+<p>get users</p>
+<p><code>oc get users</code></p>
+<p>make an user called administrator a system admin</p>
+<p><code>oc adm policy add-cluster-role-to-user cluster-admin administrator</code></p>
+<p>now the administrator user is adm and see all the projects</p>
 ]]></content>
         </item>
         

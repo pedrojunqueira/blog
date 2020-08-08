@@ -1,7 +1,7 @@
 ---
 title: "Openshift"
 date: 2020-07-02T20:56:05+09:30
-draft: true
+draft: false
 toc: false
 images:
 tags:
@@ -24,7 +24,7 @@ deploy an application from git
 
 log in as sys:admin
 
-`oc login system:admin`
+`oc login -u system:admin`
 
 get users 
 

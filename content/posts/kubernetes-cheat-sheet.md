@@ -134,10 +134,11 @@ get resources in all namespaces
 
 `kubectl get pods --all-namespaces`
 
+## Secrets
 
+Create a secret
 
-
-
-
-
-
+```bash
+kubectl create secret generic \
+    <secret name> --from-literal=<key>=<value>
+```
