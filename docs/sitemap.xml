@@ -3,6 +3,61 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/api/</loc>
+    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/how_to_download_data_strava/</loc>
+    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/pandas/</loc>
+    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/</loc>
+    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
+    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/python/</loc>
+    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/requests/</loc>
+    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/strava/</loc>
+    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
+    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/kubernetes_secrets/</loc>
+    <lastmod>2020-08-26T06:38:52+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/kubernetes/</loc>
+    <lastmod>2020-08-26T06:38:52+09:30</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/devops/</loc>
     <lastmod>2020-08-09T07:52:24+09:30</lastmod>
   </url>
@@ -13,32 +68,12 @@
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/kubernetes/</loc>
-    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
-  </url>
-  
-  <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/openshift/</loc>
     <lastmod>2020-08-09T07:52:24+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/blog/</loc>
-    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
-    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
-  </url>
-  
-  <url>
     <loc>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</loc>
-    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
     <lastmod>2020-08-09T07:52:24+09:30</lastmod>
   </url>
   
@@ -149,11 +184,6 @@
   
   <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/pyspark/</loc>
-    <lastmod>2020-04-13T21:35:16+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/python/</loc>
     <lastmod>2020-04-13T21:35:16+09:30</lastmod>
   </url>
   

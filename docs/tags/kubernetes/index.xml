@@ -7,10 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Sun, 09 Aug 2020 07:52:24 +0930</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2020 06:38:52 +0930</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to create a Kubernetes Secret</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/kubernetes_secrets/</link>
+      <pubDate>Wed, 26 Aug 2020 06:38:52 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/kubernetes_secrets/</guid>
+      <description>Creating secret imperatively
+kubectl create secret generic \  &amp;lt;secret name&amp;gt; --from-literal=&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt; kubectl explain pods --recursive | less 
+kubectl explain pods --recursive | grep -A8 envFrom
+create secrete base64
+$ echo -n &amp;quot;secret&amp;quot; | base64 c2VjcmV0 decode
+$ echo -n &amp;quot;c2VjcmV0&amp;quot; | base64 --decode secret Secret definition file
+apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod</description>
+    </item>
     
     <item>
       <title>Pushing image to local minishift registry</title>

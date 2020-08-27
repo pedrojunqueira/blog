@@ -6,8 +6,175 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>pedro junqueira</copyright>
-        <lastBuildDate>Sun, 09 Aug 2020 07:52:24 +0930</lastBuildDate>
+        <lastBuildDate>Thu, 27 Aug 2020 12:01:22 +0930</lastBuildDate>
         <atom:link href="https://pedrojunqueira.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>How to download data from Strava with Python</title>
+            <link>https://pedrojunqueira.github.io/blog/posts/how_to_download_data_strava/</link>
+            <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/blog/posts/how_to_download_data_strava/</guid>
+            <description>I am a cyclist enthusiast and you may be if you are reading this blog post.
+Strava has a nice API which gives access to the data recorded on the application.
+Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer. The API, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user.</description>
+            <content type="html"><![CDATA[<p>I am a cyclist enthusiast and you may be if you are reading this blog post.</p>
+<p>Strava has a nice <a href="https://developers.strava.com/docs/reference/">API</a> which gives access to the data recorded on the application.</p>
+<p>Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer.
+The  <a href="https://en.wikipedia.org/wiki/API">API</a>, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user.</p>
+<p>The Strava API story is very close to my heart when it comes to learn how to program and it was a huge driver for me.</p>
+<p>When I first went through the documentation of the API it was really hard to understand as I had nearly zero programming knowledge. Then it drove me to really start learning programming and the whole ecosystem around programming like web, networking, deployment and etc.</p>
+<p>I did some research and found a package <code>stravaio</code> that really helped me on how to download the data and it was the first time I had to look into a package source code, because I found a bug and posted an issue that the maintainer of the package end up <a href="https://github.com/sladkovm/stravaio/issues/4">fixing it</a>.</p>
+<p>I remember that it was the first time I had to use <code>defaultdictionary</code> from <code>collections</code> to parse a <code>JSON</code> of nested dictionaries to build a data structure that <code>pandas</code> would take to render a <code>DataFrame</code> object.</p>
+<p>So this post will briefly show you how you can use this <code>stravaio</code> package to download your activities. You can do much more than that, just look for the <a href="https://github.com/sladkovm/stravaio">&ldquo;documentation&rdquo;</a>.</p>
+<p>Here are the steps and I will walk through the code and post the whole code at the end</p>
+<ol>
+<li>Import the packages</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
+</code></pre></div><ol start="2">
+<li>Get your secrets from environment variables</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
+client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
+</code></pre></div><p>To make API calls to Strava you need to have a registered application. This can be easily done on your <a href="https://developers.strava.com/docs/getting-started/#account">Strava account</a>. Here is the instructions to get your CLIENT_ID and CLIENT_SECRET. Please keep this with you.</p>
+<ol start="3">
+<li>Generate a token by Authenticating with Strava oauth2</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
+access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
+</code></pre></div><p>This was a part that it took me a while to get my head around. Strava improved the documentation a lot since the first time I read. They even drew a chart flow for <a href="https://developers.strava.com/docs/getting-started/#oauth">absolute dummies</a>.</p>
+<p>What it actually does is a 2 way authentication.</p>
+<p>First you make a request to have access to a athlete data then the athlete log to his account by giving you permission you asked for on the request then it return you a JSON with a temporary access token and a refresh token where you then can make calls to the API and get data.
+The permission given to you is based on the context you asked (e.g. only read or read and write)
+In this example you would be doing it with your own account and I am sure you will allow yourself do access your own data.</p>
+<ol start="4">
+<li>Create a client object and call get_logged_in_athlete_activities methods</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
+date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
+activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
+</code></pre></div><p>Now that you have the token you can create a client object from the StravaIO class which handles the session and you can then call the method that fetch the athlete activity. For more details about the class here is the <a href="https://github.com/sladkovm/stravaio/blob/master/stravaio.py">source code</a></p>
+<ol start="5">
+<li>Finally transform into a pandas DataFrame and export to csv or other format you like.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df_data <span style="color:#f92672">=</span> defaultdict(list)
+
+<span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
+    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
+        df_data[k]<span style="color:#f92672">.</span>append(v)
+
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
+
+df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
+</code></pre></div><p>The <code>activity</code> variable is a <code>Stravaio</code> object which has a method <code>to_dict()</code> that makes life much easier.
+It returns a list of dictionaries. This is perfect scenario to used defaultdict as a list so it can be easily ingested by pandas</p>
+<p>Here is the full script</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
+
+
+client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
+client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
+
+token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
+access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
+
+client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
+date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
+activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
+
+df_data <span style="color:#f92672">=</span> defaultdict(list)
+
+<span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
+    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
+        df_data[k]<span style="color:#f92672">.</span>append(v)
+
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
+
+df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
+</code></pre></div><p>Even though the above script is relatively simple it is not for the common citizen that does not code and is not enthusiast about Python like you and me</p>
+<p>For this I am currently developing a Web app that downloads your data into a csv file in 3 simple clicks.</p>
+<p>You can access it <a href="http://172.105.188.53:5000/">here</a>.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>How to create a Kubernetes Secret</title>
+            <link>https://pedrojunqueira.github.io/blog/posts/kubernetes_secrets/</link>
+            <pubDate>Wed, 26 Aug 2020 06:38:52 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/blog/posts/kubernetes_secrets/</guid>
+            <description>Creating secret imperatively
+kubectl create secret generic \  &amp;lt;secret name&amp;gt; --from-literal=&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt; kubectl explain pods --recursive | less 
+kubectl explain pods --recursive | grep -A8 envFrom
+create secrete base64
+$ echo -n &amp;quot;secret&amp;quot; | base64 c2VjcmV0 decode
+$ echo -n &amp;quot;c2VjcmV0&amp;quot; | base64 --decode secret Secret definition file
+apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod</description>
+            <content type="html"><![CDATA[<p>Creating secret imperatively</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    &lt;secret name&gt; --from-literal<span style="color:#f92672">=</span>&lt;key&gt;<span style="color:#f92672">=</span>&lt;value&gt;
+</code></pre></div><p><code>kubectl explain pods --recursive | less </code></p>
+<p><code>kubectl explain pods --recursive | grep -A8 envFrom</code></p>
+<p>create secrete base64</p>
+<pre><code>$ echo -n &quot;secret&quot; | base64
+c2VjcmV0
+</code></pre><p>decode</p>
+<pre><code>$ echo -n &quot;c2VjcmV0&quot; | base64 --decode
+secret
+</code></pre><p>Secret definition file</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Secret
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: mysecret
+<span style="color:#66d9ef">type</span>: Opaque
+<span style="color:#66d9ef">data</span>:
+  <span style="color:#66d9ef">username</span>: YWRtaW4=
+  <span style="color:#66d9ef">password</span>: MWYyZDFlMmU2N2Rm
+  
+</code></pre></div><p>injecting in through a volume in a pod</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Pod
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: secret-test-pod
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">containers</span>:
+    - <span style="color:#66d9ef">name</span>: test-container
+      <span style="color:#66d9ef">image</span>: nginx
+      <span style="color:#66d9ef">volumeMounts</span>:
+        <span style="color:#75715e"># name must match the volume name below</span>
+        - <span style="color:#66d9ef">name</span>: secret-volume
+          <span style="color:#66d9ef">mountPath</span>: /etc/secret-volume
+  <span style="color:#75715e"># The secret data is exposed to Containers in the Pod through a Volume.</span>
+  <span style="color:#66d9ef">volumes</span>:
+    - <span style="color:#66d9ef">name</span>: secret-volume
+      <span style="color:#66d9ef">secret</span>:
+        <span style="color:#66d9ef">secretName</span>: mysecret        
+</code></pre></div><p>Injecing as environment variable</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Pod
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: envfrom-secret
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">containers</span>:
+  - <span style="color:#66d9ef">name</span>: envars-test-container
+    <span style="color:#66d9ef">image</span>: nginx
+    <span style="color:#66d9ef">envFrom</span>:
+    - <span style="color:#66d9ef">secretRef</span>:
+        <span style="color:#66d9ef">name</span>: test-secret
+</code></pre></div>]]></content>
+        </item>
         
         <item>
             <title>Pushing image to local minishift registry</title>

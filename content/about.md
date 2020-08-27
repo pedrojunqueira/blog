@@ -12,7 +12,7 @@ It involves being a Full Stack Data Scientist, and by that I mean knowing Data E
 
 This is only the technical side, but there is more.
 
-One need to be business savvy and have a good understanding of how value is created in an organization, because this is the very reason companies invest in data technology. What they are really trying to achieve is to create value to society by solving problems, by doing things faster, cheaper and even doing thing that was imaginable before.
+One need to be business savvy and have a good understanding of how value is created in an organization, because this is the very reason companies invest in data technology. What they are really trying to achieve is to create value to society by solving problems, by doing things faster, cheaper and even doing thing that was never imagined before.
 
 In my personal website I would like to share those 3 aspects of the Full Stack Data Science.
 

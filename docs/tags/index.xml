@@ -7,10 +7,64 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Sun, 09 Aug 2020 07:52:24 +0930</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2020 12:01:22 +0930</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>api</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/api/</link>
+      <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pandas</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/pandas/</link>
+      <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/pandas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/python/</link>
+      <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>requests</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/requests/</link>
+      <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/requests/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>strava</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/strava/</link>
+      <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/strava/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/kubernetes/</link>
+      <pubDate>Wed, 26 Aug 2020 06:38:52 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/kubernetes/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>DevOps</title>
@@ -27,15 +81,6 @@
       <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/kubernetes/</link>
-      <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/kubernetes/</guid>
       <description></description>
     </item>
     
@@ -180,15 +225,6 @@
       <pubDate>Mon, 13 Apr 2020 21:35:16 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/pyspark/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/python/</link>
-      <pubDate>Mon, 13 Apr 2020 21:35:16 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/python/</guid>
       <description></description>
     </item>
     
