@@ -73,7 +73,7 @@ df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Da
 
 df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
 </code></pre></div><p>The <code>activity</code> variable is a <code>Stravaio</code> object which has a method <code>to_dict()</code> that makes life much easier.
-It returns a list of dictionaries. This is perfect scenario to used defaultdict as a list so it can be easily ingested by pandas</p>
+It returns a list of dictionaries. This is perfect scenario to use defaultdict as a list so it can be easily ingested by pandas</p>
 <p>Here is the full script</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
 <span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
@@ -104,7 +104,7 @@ df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Da
 df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
 </code></pre></div><p>Even though the above script is relatively simple it is not for the common citizen that does not code and is not enthusiast about Python like you and me</p>
 <p>For this I am currently developing a Web app that downloads your data into a csv file in 3 simple clicks.</p>
-<p>You can access it <a href="http://172.105.188.53:5000/">here</a>.</p>
+<p>You can access it <a href="http://172.105.188.53/">here</a>.</p>
 ]]></content>
         </item>
         

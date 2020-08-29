@@ -89,7 +89,7 @@ df = pd.DataFrame(df_data)
 df.to_csv("my_activities.csv",index=False)
 ```
 The `activity` variable is a `Stravaio` object which has a method `to_dict()` that makes life much easier.
-It returns a list of dictionaries. This is perfect scenario to used defaultdict as a list so it can be easily ingested by pandas
+It returns a list of dictionaries. This is perfect scenario to use defaultdict as a list so it can be easily ingested by pandas
 
 Here is the full script
 
@@ -127,4 +127,4 @@ Even though the above script is relatively simple it is not for the common citiz
 
 For this I am currently developing a Web app that downloads your data into a csv file in 3 simple clicks.
 
-You can access it [here](http://172.105.188.53:5000/).
+You can access it [here](http://172.105.188.53/).
