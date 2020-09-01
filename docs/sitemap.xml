@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pedrojunqueira.github.io/blog/</loc>
+    <lastmod>2020-09-01T20:21:51+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
+    <lastmod>2020-09-01T20:21:51+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/python/</loc>
+    <lastmod>2020-09-01T20:21:51+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/python_regex_never_forget/</loc>
+    <lastmod>2020-09-01T20:21:51+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/regex/</loc>
+    <lastmod>2020-09-01T20:21:51+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
+    <lastmod>2020-09-01T20:21:51+09:30</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/api/</loc>
     <lastmod>2020-08-27T12:01:22+09:30</lastmod>
   </url>
@@ -18,32 +48,12 @@
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/blog/</loc>
-    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
-    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/python/</loc>
-    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
-  </url>
-  
-  <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/requests/</loc>
     <lastmod>2020-08-27T12:01:22+09:30</lastmod>
   </url>
   
   <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/strava/</loc>
-    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
     <lastmod>2020-08-27T12:01:22+09:30</lastmod>
   </url>
   

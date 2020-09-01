@@ -7,10 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Thu, 27 Aug 2020 12:01:22 +0930</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2020 20:21:51 +0930</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python regex basics to never forget</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/python_regex_never_forget/</link>
+      <pubDate>Tue, 01 Sep 2020 20:21:51 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/python_regex_never_forget/</guid>
+      <description>I have to confess that regex is a weakness this is why I am writing this post.
+Whenever I can I try to avoid using regex if the problem can be used in a different way, but sometimes I have to inevitably use regex.
+to import
+import re
+This is the only part that I usually remember :)
+Regex are patters represented by symbols
+for example
+pattern = &amp;#39;a&amp;#39; test_string = &amp;#39;a cat&amp;#39; result = re.</description>
+    </item>
     
     <item>
       <title>How to download data from Strava with Python</title>

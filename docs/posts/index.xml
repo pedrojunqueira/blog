@@ -6,8 +6,97 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>pedro junqueira</copyright>
-        <lastBuildDate>Thu, 27 Aug 2020 12:01:22 +0930</lastBuildDate>
+        <lastBuildDate>Tue, 01 Sep 2020 20:21:51 +0930</lastBuildDate>
         <atom:link href="https://pedrojunqueira.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Python regex basics to never forget</title>
+            <link>https://pedrojunqueira.github.io/blog/posts/python_regex_never_forget/</link>
+            <pubDate>Tue, 01 Sep 2020 20:21:51 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/blog/posts/python_regex_never_forget/</guid>
+            <description>I have to confess that regex is a weakness this is why I am writing this post.
+Whenever I can I try to avoid using regex if the problem can be used in a different way, but sometimes I have to inevitably use regex.
+to import
+import re
+This is the only part that I usually remember :)
+Regex are patters represented by symbols
+for example
+pattern = &amp;#39;a&amp;#39; test_string = &amp;#39;a cat&amp;#39; result = re.</description>
+            <content type="html"><![CDATA[<p>I have to confess that regex is a weakness this is why I am writing this post.</p>
+<p>Whenever I can I try to avoid using regex if the problem can be used in a different way, but sometimes I have to inevitably use regex.</p>
+<p>to import</p>
+<p><code>import re</code></p>
+<p>This is the only part that I usually remember :)</p>
+<p>Regex are patters represented by symbols</p>
+<p>for example</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span>
+
+test_string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a cat&#39;</span>
+
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(pattern, test_string)
+<span style="color:#75715e"># Output: &lt;re.Match object; span=(0, 1), match=&#39;a&#39;&gt;</span>
+</code></pre></div><p>Usually the method match is not very useful but there is a better one <code>re.findall</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#75715e"># Program to extract numbers from a string</span>
+
+<span style="color:#f92672">import</span> re
+
+string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;hello 12 hi 89. Howdy 34&#39;</span>
+pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\d+&#39;</span>
+
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>findall(pattern, string) 
+<span style="color:#66d9ef">print</span>(result)
+
+<span style="color:#75715e"># Output: [&#39;12&#39;, &#39;89&#39;, &#39;34&#39;]</span>
+
+</code></pre></div><p>it returns a list with all matches of the pattern</p>
+<p>Another useful one is <code>re.sub</code> to substitute</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#75715e"># Program to remove all whitespaces</span>
+<span style="color:#f92672">import</span> re
+
+<span style="color:#75715e"># multiline string</span>
+string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;abc 12</span><span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span><span style="color:#e6db74">de 23 </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> f45 6&#39;</span>
+
+<span style="color:#75715e"># matches all whitespace characters</span>
+pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\s+&#39;</span>
+
+<span style="color:#75715e"># empty string</span>
+replace <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+
+new_string <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>sub(pattern, replace, string) 
+<span style="color:#66d9ef">print</span>(new_string)
+
+<span style="color:#75715e"># Output: abc12de23f456</span>
+</code></pre></div><p>Different from match that match exactly the search lookup if there is a pattern in the string</p>
+<p><code>re.search</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+
+string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Python is fun&#34;</span>
+
+<span style="color:#75715e"># check if &#39;Python&#39; is at the beginning</span>
+match <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;\APython&#39;</span>, string)
+
+<span style="color:#66d9ef">if</span> match:
+  <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;pattern found inside the string&#34;</span>)
+<span style="color:#66d9ef">else</span>:
+  <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;pattern not found&#34;</span>)  
+
+<span style="color:#75715e"># Output: pattern found inside the string</span>
+</code></pre></div><p>No finalise, and this is a matter os preference, is the compile object</p>
+<p>in the example above you could have done the re.search by</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">&#39;\APython&#39;</span>)
+p<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#34;Python is fun&#34;</span>)
+
+<span style="color:#75715e"># Output: &lt;re.Match object; span=(0, 6), match=&#39;Python&#39;&gt;</span>
+</code></pre></div><p>I got almost if not all examples from programviz which is a great resource and the best on the internet I could find on regex documentation.</p>
+<p>For example of patterns it can be consulted <a href="https://www.programiz.com/python-programming/regex">here</a></p>
+<p>also there is a very good regex in &ldquo;general&rdquo; site where you can test your patterns and there is also a cheat sheet</p>
+<p><a href="https://regexr.com/">https://regexr.com/</a></p>
+]]></content>
+        </item>
         
         <item>
             <title>How to download data from Strava with Python</title>
