@@ -6,8 +6,64 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>pedro junqueira</copyright>
-        <lastBuildDate>Tue, 01 Sep 2020 20:21:51 +0930</lastBuildDate>
+        <lastBuildDate>Mon, 07 Sep 2020 06:20:14 +0930</lastBuildDate>
         <atom:link href="https://pedrojunqueira.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Duck Typing in Python</title>
+            <link>https://pedrojunqueira.github.io/blog/posts/duck-typing/</link>
+            <pubDate>Mon, 07 Sep 2020 06:20:14 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/blog/posts/duck-typing/</guid>
+            <description>In OOP (Object Oriented Programming) there is a concept called Polymorphism which allow the use of objects of different types through a uniform interface.
+Since Python allow OOP constructs Polymorphism applies.
+As Python is a dynamic type language a method didn’t using an interface does not need to know about about the interface type, only it&amp;rsquo;s abstract details. The interface will work just by making suer the arguments match when it is used.</description>
+            <content type="html"><![CDATA[<p>In OOP (Object Oriented Programming) there is a concept called Polymorphism which allow the use of objects of different types through a uniform interface.</p>
+<p>Since Python allow OOP constructs Polymorphism applies.</p>
+<p>As Python is a dynamic type language a method didn’t using an interface does not need to know about about the interface type, only it&rsquo;s abstract details. The interface will work just by making suer the arguments match when it is used.</p>
+<p>This Polymorphism in Python is called duck typing.</p>
+<p>Duck typing is in turn named after the “duck test”, attributed to <a href="https://en.wikipedia.org/wiki/James_Whitcomb_Riley">James Whitcomb Riley</a>, the American poet.</p>
+<blockquote>
+<p>&ldquo;When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.&rdquo;</p>
+</blockquote>
+<p>Better to demonstrate that with an example.</p>
+<p>This I got from the book <code>The Python - Apprentice</code>. This actually an excellent series of 3 books where you can get it <a href="https://leanpub.com/b/python-craftsman">here</a></p>
+<p>Lets say you have a <code>Flight</code> <code>class</code> which records data of a flight and one of the methods is to print the boarding pass of the passengers</p>
+<p>So a decoupled implementation of the <code>make_board_pass</code> method would be:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Flight</span>:
+
+<span style="color:#75715e"># ...</span>
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_boarding_cards</span>(self, card_printer):
+    <span style="color:#66d9ef">for</span> passenger, seat <span style="color:#f92672">in</span> sorted(self<span style="color:#f92672">.</span>_passenger_seats()):
+      card_printer(passenger, seat, self<span style="color:#f92672">.</span>number(), self<span style="color:#f92672">.</span>aircraft_model())
+</code></pre></div><p>Given the duck typing of Python we can write a <code>card_printer</code> function that would work &ldquo;inside&rdquo; the <code>make_boarding_cards</code> method and it does not need to know the type of the <code>card_printer</code> object as long it looks like a card_printer interface it will be treated as one.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">console_card_printer</span>(passenger, seat, flight_number, aircraft):
+  output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;| Name: {0}&#34;</span> \
+      <span style="color:#e6db74">&#34; Flight: {1}&#34;</span> \
+      <span style="color:#e6db74">&#34; Seat:{2}&#34;</span> \
+      <span style="color:#e6db74">&#34; Aircraft: {3}&#34;</span> \
+      <span style="color:#e6db74">&#34; |&#34;</span><span style="color:#f92672">.</span>format(passenger, flight_number, seat, aircraft)
+  banner <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">*</span> (len(output) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;+&#39;</span> border <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;|&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">*</span> (len(output) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;|&#39;</span> lines <span style="color:#f92672">=</span> [banner, border,   output, border, banner] card <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join(lines)
+  <span style="color:#66d9ef">print</span>(card) 
+  <span style="color:#66d9ef">print</span>()
+</code></pre></div><p>So then we can inject the <code>console_card_printer</code> in the <code>make_boarding_cards</code> method</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> airline <span style="color:#f92672">import</span> Flight, console_card_printer
+
+f <span style="color:#f92672">=</span> Flight(<span style="color:#e6db74">&#34;BA758&#34;</span>, Aircraft(<span style="color:#e6db74">&#34;G-EUPT&#34;</span>, <span style="color:#e6db74">&#34;Airbus A319&#34;</span>,
+num_rows<span style="color:#f92672">=</span><span style="color:#ae81ff">22</span>, num_seats_per_row<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>)) 
+
+f<span style="color:#f92672">.</span>allocate_seat(<span style="color:#e6db74">&#39;12A&#39;</span>, <span style="color:#e6db74">&#39;Guido van Rossum&#39;</span>)
+
+f<span style="color:#f92672">.</span>make_boarding_cards(console_card_printer)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">+-------------------------------------------------------------------------+ 
+|                                                                         | 
+| Name: Guido van Rossum Flight: BA758 Seat: 12A Aircraft: Airbus A319    |
+|                                                                         |
++-------------------------------------------------------------------------+
+</code></pre></div><p>The advantage of duck typing is that we can design a more loosely coupled program.</p>
+<p>For example if later needed one can write N different card_priters that will produce a different output, say a printer that output a html format or a markdown instead of a console output, and still work without the necessity to change the make_boarding_cards method.</p>
+]]></content>
+        </item>
         
         <item>
             <title>Python regex basics to never forget</title>
