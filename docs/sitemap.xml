@@ -3,27 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://pedrojunqueira.github.io/blog/posts/duck-typing/</loc>
-    <lastmod>2020-09-07T06:20:14+09:30</lastmod>
-  </url>
-  
-  <url>
     <loc>https://pedrojunqueira.github.io/blog/</loc>
-    <lastmod>2020-09-07T06:20:14+09:30</lastmod>
+    <lastmod>2020-09-16T06:03:39+09:30</lastmod>
   </url>
   
   <url>
     <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
-    <lastmod>2020-09-07T06:20:14+09:30</lastmod>
+    <lastmod>2020-09-16T06:03:39+09:30</lastmod>
   </url>
   
   <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/python/</loc>
-    <lastmod>2020-09-07T06:20:14+09:30</lastmod>
+    <lastmod>2020-09-16T06:03:39+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/python_property_class/</loc>
+    <lastmod>2020-09-16T06:03:39+09:30</lastmod>
   </url>
   
   <url>
     <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
+    <lastmod>2020-09-16T06:03:39+09:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/duck-typing/</loc>
     <lastmod>2020-09-07T06:20:14+09:30</lastmod>
   </url>
   
