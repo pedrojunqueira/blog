@@ -3,13 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/ai/</loc>
+    <lastmod>2021-02-28T20:55:50+10:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/datascience/</loc>
+    <lastmod>2021-02-28T20:55:50+10:30</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pedrojunqueira.github.io/blog/</loc>
-    <lastmod>2020-09-16T06:03:39+09:30</lastmod>
+    <lastmod>2021-02-28T20:55:50+10:30</lastmod>
   </url>
   
   <url>
     <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
-    <lastmod>2020-09-16T06:03:39+09:30</lastmod>
+    <lastmod>2021-02-28T20:55:50+10:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
+    <lastmod>2021-02-28T20:55:50+10:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/why-not-data-science/</loc>
+    <lastmod>2021-02-28T20:55:50+10:30</lastmod>
   </url>
   
   <url>
@@ -19,11 +39,6 @@
   
   <url>
     <loc>https://pedrojunqueira.github.io/blog/posts/python_property_class/</loc>
-    <lastmod>2020-09-16T06:03:39+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
     <lastmod>2020-09-16T06:03:39+09:30</lastmod>
   </url>
   
@@ -219,11 +234,6 @@
   
   <url>
     <loc>https://pedrojunqueira.github.io/blog/posts/best-podcasts/</loc>
-    <lastmod>2020-04-11T23:29:13+09:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/datascience/</loc>
     <lastmod>2020-04-11T23:29:13+09:30</lastmod>
   </url>
   

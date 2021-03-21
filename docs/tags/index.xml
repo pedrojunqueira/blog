@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Wed, 16 Sep 2020 06:03:39 +0930</lastBuildDate>
+    <lastBuildDate>Sun, 28 Feb 2021 20:55:50 +1030</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ai</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/ai/</link>
+      <pubDate>Sun, 28 Feb 2021 20:55:50 +1030</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>datascience</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/datascience/</link>
+      <pubDate>Sun, 28 Feb 2021 20:55:50 +1030</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/datascience/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>python</title>
@@ -243,15 +261,6 @@
       <pubDate>Mon, 13 Apr 2020 21:35:16 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/spark/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>datascience</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/datascience/</link>
-      <pubDate>Sat, 11 Apr 2020 23:29:13 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/datascience/</guid>
       <description></description>
     </item>
     

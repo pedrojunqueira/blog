@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Wed, 16 Sep 2020 06:03:39 +0930</lastBuildDate>
+    <lastBuildDate>Sun, 28 Feb 2021 20:55:50 +1030</lastBuildDate>
     
 	<atom:link href="https://pedrojunqueira.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Why I do not want to be a Data Scientist</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/why-not-data-science/</link>
+      <pubDate>Sun, 28 Feb 2021 20:55:50 +1030</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/why-not-data-science/</guid>
+      <description>According to the World Economic Forum Report data scientist is one of the most sought after professional and on the rise in 2020/2021 and it will be for a while.
+In 2012 when Harvard Business Review published the article as the most sexy profession it is strange someone saying that does not want to be a data scientist?
+Why not if it is so hot and so cool and it pays so much?</description>
+    </item>
     
     <item>
       <title>Python property class and decorator</title>
@@ -183,8 +194,8 @@ Besides the debugging, you need to set up your development environment that can 
       <pubDate>Sat, 11 Apr 2020 23:33:34 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/about/</guid>
-      <description>I am Pedro Junqueira Full Stack Data Scientist
-I have been a data analyst and a business analyst for couple of decades, however have not left excel spreadsheets, until around 2014 where I have been focused more on the Data Science Space, which involve more and more computer science and I rarely solve my clients problem using excel nowadays.
+      <description>I am Pedro Junqueira Full Stack Business Intelligence Data Analyst Scientist
+I have been a data analyst and a business analyst for couple of decades, however have not left excel spreadsheets, until around 2016 where I have been focused more on the Data Science Space, which involve more and more computer science and I rarely solve my clients problem using excel nowadays.
 Since I started working on the IT side of data I realized that it is not enough only to know statists, EDA and Machine learning to thrive, because if you really want to solve the data problems that organizations face, the rabbit hole is much deeper.</description>
     </item>
     
