@@ -80,7 +80,7 @@ A lot of work in systems design and business improvement need to be made in orde
 **Summary**
 
 In the end I find data science a fascinating field and having experimenting first hand and given what I enjoy doing and what a real data scientist do I came to the realization that it is not what I want to be good at. At the moment I write this post I am concentrating in repositioning myself as a Business Intelligence Data Analyst focused in Power BI and in the Azure Cloud data services.
-I enjoy a lot Python and use at my job to do lots of analysis, visualisation and automation. I will continue to study this on the side as well as back-end web development such as developing applications in Flask and FastAPI. Also I am getting an interest in JavaScrip which is a very useful language to get into software development, Web Development and also very powerful for visualisation.
+I enjoy a lot Python and use at my job to do lots of analysis, visualisation and automation. I will continue to study this on the side as well as back-end web development such as developing applications in Flask and FastAPI. Also I am getting an interest in JavaScript which is a very useful language to get into software development, Web Development and also very powerful for visualisation.
 I don't know where this will take me. To be a Power BI and Azure data guru, a data engineer or just a BI data analysist.
 
 I am very happy with this decision and direction I am taking and this is my current drive and it is keeping me motivated, keeping a sane balance in between work and personal life.
