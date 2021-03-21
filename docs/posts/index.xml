@@ -66,7 +66,7 @@ This in itself already brings tremendous business return on investment doing zer
 <p>I have seen a lot of money invested in data science and models that end up only presented in PowerPoint and never go to production. I see great frustration of data scientist never seeing their model in production or the business trusting that the output of the model is any better than the human intelligence.
 At least in my experience the only AI and machine learning I have seen are those running in FAANG (Facebook, Apple, Amazon, Netflix and Google) companies or some specialist AI company that specialized in a niche AI in a particular subject matter expertize and those really good systems take years, lots of man power, experimenting, failure and obviously million of dollars in investments.</p>
 <ul>
-<li><strong>Integration and operations are more important the in-house development</strong></li>
+<li><strong>Integration and operations are more important than the in-house development</strong></li>
 </ul>
 <p>Instead of developing data science in-house I do see a trend which is a company ability to purchase a pre-trained model to solve a particular problem and integrate with its systems.
 Just to give an example a company that wants to optimize its rostering and then buy an AI roster optimization system that can be called with an API. It is just matter of integration work of inputting the company data and doing something internally with the API response.
