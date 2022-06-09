@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pedro Junqueira</title>
+    <link>http://example.org/</link>
+    <description>Recent content on Pedro Junqueira</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>pedro junqueira</copyright>
+    <lastBuildDate>Fri, 10 Jun 2022 08:24:01 +0930</lastBuildDate>
+    
+	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Test Post</title>
+      <link>http://example.org/posts/test-post/</link>
+      <pubDate>Fri, 10 Jun 2022 08:24:01 +0930</pubDate>
+      
+      <guid>http://example.org/posts/test-post/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>About me</title>
+      <link>http://example.org/about/</link>
+      <pubDate>Sat, 11 Apr 2020 23:33:34 +0930</pubDate>
+      
+      <guid>http://example.org/about/</guid>
+      <description>I am Pedro Junqueira Full Stack Business Intelligence Data Analyst Scientist
+I have been a data analyst and a business analyst for couple of decades, however have not left excel spreadsheets, until around 2016 where I have been focused more on the Data Science Space, which involve more and more computer science and I rarely solve my clients problem using excel nowadays.
+Since I started working on the IT side of data I realized that it is not enough only to know statists, EDA and Machine learning to thrive, because if you really want to solve the data problems that organizations face, the rabbit hole is much deeper.</description>
+    </item>
+    
+  </channel>
+</rss>
