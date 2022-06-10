@@ -3,267 +3,267 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://pedrojunqueira.github.io/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/</loc>
     <lastmod>2022-06-10T21:16:44+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
     <lastmod>2022-06-10T21:16:44+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/python/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/python/</loc>
     <lastmod>2022-06-10T21:16:44+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
     <lastmod>2022-06-10T21:16:44+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/object-pointer-python/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/object-pointer-python/</loc>
     <lastmod>2022-06-10T21:16:44+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/azure/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/azure/</loc>
     <lastmod>2022-05-21T20:58:05+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/connect-python-azure-sqldb-pandas/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/connect-python-azure-sqldb-pandas/</loc>
     <lastmod>2022-05-21T20:58:05+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/linux/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/linux/</loc>
     <lastmod>2022-05-21T20:58:05+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/sql/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/sql/</loc>
     <lastmod>2022-05-21T20:58:05+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/ai/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/ai/</loc>
     <lastmod>2021-02-28T20:55:50+10:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/datascience/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/datascience/</loc>
     <lastmod>2021-02-28T20:55:50+10:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/why-not-data-science/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/why-not-data-science/</loc>
     <lastmod>2021-02-28T20:55:50+10:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/python_property_class/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/python_property_class/</loc>
     <lastmod>2020-09-16T06:03:39+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/duck-typing/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/duck-typing/</loc>
     <lastmod>2020-09-07T06:20:14+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/python_regex_never_forget/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/python_regex_never_forget/</loc>
     <lastmod>2020-09-01T20:21:51+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/regex/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/regex/</loc>
     <lastmod>2020-09-01T20:21:51+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/api/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/api/</loc>
     <lastmod>2020-08-27T12:01:22+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/how_to_download_data_strava/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/how_to_download_data_strava/</loc>
     <lastmod>2020-08-27T12:01:22+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/pandas/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/pandas/</loc>
     <lastmod>2020-08-27T12:01:22+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/requests/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/requests/</loc>
     <lastmod>2020-08-27T12:01:22+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/strava/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/strava/</loc>
     <lastmod>2020-08-27T12:01:22+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/kubernetes_secrets/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/kubernetes_secrets/</loc>
     <lastmod>2020-08-26T06:38:52+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/kubernetes/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/kubernetes/</loc>
     <lastmod>2020-08-26T06:38:52+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/devops/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/devops/</loc>
     <lastmod>2020-08-09T07:52:24+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/docker/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/docker/</loc>
     <lastmod>2020-08-09T07:52:24+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/openshift/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/openshift/</loc>
     <lastmod>2020-08-09T07:52:24+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/pushing_image_to_local_minishift_registry/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</loc>
     <lastmod>2020-08-09T07:52:24+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/containers/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/containers/</loc>
     <lastmod>2020-07-10T06:02:26+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/kubernetes-cheat-sheet/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/kubernetes-cheat-sheet/</loc>
     <lastmod>2020-07-10T06:02:26+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/minishift_basic_cli/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/minishift_basic_cli/</loc>
     <lastmod>2020-07-02T20:56:05+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/cli/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/cli/</loc>
     <lastmod>2020-07-02T20:56:05+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/minishift/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/minishift/</loc>
     <lastmod>2020-07-02T20:56:05+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/data-driven-vs-model-driven/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/data-driven-vs-model-driven/</loc>
     <lastmod>2020-06-12T05:56:21+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/strategy/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/strategy/</loc>
     <lastmod>2020-06-12T05:56:21+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/postgresql/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/postgresql/</loc>
     <lastmod>2020-04-17T06:55:35+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/understand-docker-volume/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/understand-docker-volume/</loc>
     <lastmod>2020-04-17T06:55:35+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/aws/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/aws/</loc>
     <lastmod>2020-04-16T05:50:27+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/bash/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/bash/</loc>
     <lastmod>2020-04-16T05:50:27+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/cloud/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/cloud/</loc>
     <lastmod>2020-04-16T05:50:27+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/how-to-s3-cli/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/how-to-s3-cli/</loc>
     <lastmod>2020-04-16T05:50:27+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/s3/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/s3/</loc>
     <lastmod>2020-04-16T05:50:27+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/golang/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/golang/</loc>
     <lastmod>2020-04-14T07:10:33+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/hugo/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/hugo/</loc>
     <lastmod>2020-04-14T07:10:33+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/markdown/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/markdown/</loc>
     <lastmod>2020-04-14T07:10:33+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/why-started-hugo/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/why-started-hugo/</loc>
     <lastmod>2020-04-14T07:10:33+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/data-science-on-docker/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/data-science-on-docker/</loc>
     <lastmod>2020-04-13T21:35:16+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/jupyter/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/jupyter/</loc>
     <lastmod>2020-04-13T21:35:16+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/pyspark/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/pyspark/</loc>
     <lastmod>2020-04-13T21:35:16+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/tags/spark/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/tags/spark/</loc>
     <lastmod>2020-04-13T21:35:16+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/about/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/about/</loc>
     <lastmod>2020-04-11T23:33:34+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/best-podcasts/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/best-podcasts/</loc>
     <lastmod>2020-04-11T23:29:13+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/posts/how_to_create_new_post_hugo/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/posts/how_to_create_new_post_hugo/</loc>
     <lastmod>2020-04-09T07:53:52+09:30</lastmod>
   </url>
   
   <url>
-    <loc>https://pedrojunqueira.github.io/categories/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/categories/</loc>
   </url>
   
 </urlset>

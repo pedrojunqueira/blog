@@ -2,283 +2,283 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Pedro Junqueira</title>
-    <link>https://pedrojunqueira.github.io/tags/</link>
+    <link>https://pedrojunqueira.github.io/blog/tags/</link>
     <description>Recent content in Tags on Pedro Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
     <lastBuildDate>Fri, 10 Jun 2022 21:16:44 +0930</lastBuildDate>
     
-	<atom:link href="https://pedrojunqueira.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>python</title>
-      <link>https://pedrojunqueira.github.io/tags/python/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/python/</link>
       <pubDate>Fri, 10 Jun 2022 21:16:44 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/python/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>azure</title>
-      <link>https://pedrojunqueira.github.io/tags/azure/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/azure/</link>
       <pubDate>Sat, 21 May 2022 20:58:05 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/azure/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/azure/</guid>
       <description></description>
     </item>
     
     <item>
       <title>linux</title>
-      <link>https://pedrojunqueira.github.io/tags/linux/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/linux/</link>
       <pubDate>Sat, 21 May 2022 20:58:05 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/linux/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>sql</title>
-      <link>https://pedrojunqueira.github.io/tags/sql/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/sql/</link>
       <pubDate>Sat, 21 May 2022 20:58:05 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/sql/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/sql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ai</title>
-      <link>https://pedrojunqueira.github.io/tags/ai/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/ai/</link>
       <pubDate>Sun, 28 Feb 2021 20:55:50 +1030</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/ai/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/ai/</guid>
       <description></description>
     </item>
     
     <item>
       <title>datascience</title>
-      <link>https://pedrojunqueira.github.io/tags/datascience/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/datascience/</link>
       <pubDate>Sun, 28 Feb 2021 20:55:50 +1030</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/datascience/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/datascience/</guid>
       <description></description>
     </item>
     
     <item>
       <title>regex</title>
-      <link>https://pedrojunqueira.github.io/tags/regex/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/regex/</link>
       <pubDate>Tue, 01 Sep 2020 20:21:51 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/regex/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/regex/</guid>
       <description></description>
     </item>
     
     <item>
       <title>api</title>
-      <link>https://pedrojunqueira.github.io/tags/api/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/api/</link>
       <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/api/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/api/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pandas</title>
-      <link>https://pedrojunqueira.github.io/tags/pandas/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/pandas/</link>
       <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/pandas/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/pandas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>requests</title>
-      <link>https://pedrojunqueira.github.io/tags/requests/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/requests/</link>
       <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/requests/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/requests/</guid>
       <description></description>
     </item>
     
     <item>
       <title>strava</title>
-      <link>https://pedrojunqueira.github.io/tags/strava/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/strava/</link>
       <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/strava/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/strava/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kubernetes</title>
-      <link>https://pedrojunqueira.github.io/tags/kubernetes/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/kubernetes/</link>
       <pubDate>Wed, 26 Aug 2020 06:38:52 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/kubernetes/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DevOps</title>
-      <link>https://pedrojunqueira.github.io/tags/devops/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/devops/</link>
       <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/devops/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/devops/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker</title>
-      <link>https://pedrojunqueira.github.io/tags/docker/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/docker/</link>
       <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/docker/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>openshift</title>
-      <link>https://pedrojunqueira.github.io/tags/openshift/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/openshift/</link>
       <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/openshift/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/openshift/</guid>
       <description></description>
     </item>
     
     <item>
       <title>containers</title>
-      <link>https://pedrojunqueira.github.io/tags/containers/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/containers/</link>
       <pubDate>Fri, 10 Jul 2020 06:02:26 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/containers/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/containers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>cli</title>
-      <link>https://pedrojunqueira.github.io/tags/cli/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/cli/</link>
       <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/cli/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/cli/</guid>
       <description></description>
     </item>
     
     <item>
       <title>minishift</title>
-      <link>https://pedrojunqueira.github.io/tags/minishift/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/minishift/</link>
       <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/minishift/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/minishift/</guid>
       <description></description>
     </item>
     
     <item>
       <title>strategy</title>
-      <link>https://pedrojunqueira.github.io/tags/strategy/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/strategy/</link>
       <pubDate>Fri, 12 Jun 2020 05:56:21 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/strategy/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/strategy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>postgresql</title>
-      <link>https://pedrojunqueira.github.io/tags/postgresql/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/postgresql/</link>
       <pubDate>Fri, 17 Apr 2020 06:55:35 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/postgresql/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/postgresql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>aws</title>
-      <link>https://pedrojunqueira.github.io/tags/aws/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/aws/</link>
       <pubDate>Thu, 16 Apr 2020 05:50:27 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/aws/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/aws/</guid>
       <description></description>
     </item>
     
     <item>
       <title>bash</title>
-      <link>https://pedrojunqueira.github.io/tags/bash/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/bash/</link>
       <pubDate>Thu, 16 Apr 2020 05:50:27 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/bash/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/bash/</guid>
       <description></description>
     </item>
     
     <item>
       <title>cloud</title>
-      <link>https://pedrojunqueira.github.io/tags/cloud/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/cloud/</link>
       <pubDate>Thu, 16 Apr 2020 05:50:27 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/cloud/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/cloud/</guid>
       <description></description>
     </item>
     
     <item>
       <title>s3</title>
-      <link>https://pedrojunqueira.github.io/tags/s3/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/s3/</link>
       <pubDate>Thu, 16 Apr 2020 05:50:27 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/s3/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/s3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>https://pedrojunqueira.github.io/tags/golang/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/golang/</link>
       <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/golang/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://pedrojunqueira.github.io/tags/hugo/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/hugo/</link>
       <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/hugo/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>markdown</title>
-      <link>https://pedrojunqueira.github.io/tags/markdown/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/markdown/</link>
       <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/markdown/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>jupyter</title>
-      <link>https://pedrojunqueira.github.io/tags/jupyter/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/jupyter/</link>
       <pubDate>Mon, 13 Apr 2020 21:35:16 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/jupyter/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/jupyter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pyspark</title>
-      <link>https://pedrojunqueira.github.io/tags/pyspark/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/pyspark/</link>
       <pubDate>Mon, 13 Apr 2020 21:35:16 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/pyspark/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/pyspark/</guid>
       <description></description>
     </item>
     
     <item>
       <title>spark</title>
-      <link>https://pedrojunqueira.github.io/tags/spark/</link>
+      <link>https://pedrojunqueira.github.io/blog/tags/spark/</link>
       <pubDate>Mon, 13 Apr 2020 21:35:16 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/tags/spark/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/tags/spark/</guid>
       <description></description>
     </item>
     
