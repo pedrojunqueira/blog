@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cli on Pedro Junqueira</title>
+    <link>https://pedrojunqueira.github.io/tags/cli/</link>
+    <description>Recent content in cli on Pedro Junqueira</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>pedro junqueira</copyright>
+    <lastBuildDate>Thu, 02 Jul 2020 20:56:05 +0930</lastBuildDate>
+    
+	<atom:link href="https://pedrojunqueira.github.io/tags/cli/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic CLI commands for Openshift-Minishift</title>
+      <link>https://pedrojunqueira.github.io/posts/minishift_basic_cli/</link>
+      <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/posts/minishift_basic_cli/</guid>
+      <description>Here is a post with the absolute basic commands that I always forget Getting the export Path of oc CLI tool minishift oc-env
+export PATH=&amp;quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&amp;quot;
+Logging in to log in
+oc login -u &amp;lt;user&amp;gt; -p &amp;lt;password&amp;gt;
+Deploy an application from git oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp
+login as sys:admin oc login -u system:admin
+get users
+oc get users
+make an user called administrator a system admin
+oc adm policy add-cluster-role-to-user cluster-admin administrator</description>
+    </item>
+    
+    <item>
+      <title>How: to navigate on AWS S3 bucket using CLI</title>
+      <link>https://pedrojunqueira.github.io/posts/how-to-s3-cli/</link>
+      <pubDate>Thu, 16 Apr 2020 05:50:27 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/posts/how-to-s3-cli/</guid>
+      <description>Using the command line interface (CLI) can be very intimidating and make one completely lost if you always dealt with graphical drag and drop, click and point interface.
+I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then cls for clear the screen and dir to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="I am a cyclist enthusiast and you may be if you are reading this blog post.
+Strava has a nice API which gives access to the data recorded on the application.
+Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer. The API, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user." />
+<meta name="keywords" content=", api, python, pandas, requests, strava" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://pedrojunqueira.github.io/posts/how_to_download_data_strava/" />
+
+
+    <title>
+        
+            How to download data from Strava with Python :: Pedro Junqueira  — Data Scientist
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="How to download data from Strava with Python">
+<meta itemprop="description" content="I am a cyclist enthusiast and you may be if you are reading this blog post.
+Strava has a nice API which gives access to the data recorded on the application.
+Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer. The API, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user.">
+<meta itemprop="datePublished" content="2020-08-27T12:01:22&#43;09:30" />
+<meta itemprop="dateModified" content="2020-08-27T12:01:22&#43;09:30" />
+<meta itemprop="wordCount" content="789">
+<meta itemprop="image" content="https://pedrojunqueira.github.io"/>
+
+
+
+<meta itemprop="keywords" content="api,python,pandas,requests,strava," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://pedrojunqueira.github.io"/>
+
+<meta name="twitter:title" content="How to download data from Strava with Python"/>
+<meta name="twitter:description" content="I am a cyclist enthusiast and you may be if you are reading this blog post.
+Strava has a nice API which gives access to the data recorded on the application.
+Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer. The API, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user."/>
+
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-08-27 12:01:22 &#43;0930 ACST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/blog" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">pedrojunqueira@home: ~$</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        4 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://pedrojunqueira.github.io/posts/how_to_download_data_strava/">How to download data from Strava with Python</a>
+      </h1>
+
+      
+
+      
+
+      
+
+      <div class="post-content">
+        <p>I am a cyclist enthusiast and you may be if you are reading this blog post.</p>
+<p>Strava has a nice <a href="https://developers.strava.com/docs/reference/">API</a> which gives access to the data recorded on the application.</p>
+<p>Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer.
+The  <a href="https://en.wikipedia.org/wiki/API">API</a>, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user.</p>
+<p>The Strava API story is very close to my heart when it comes to learn how to program and it was a huge driver for me.</p>
+<p>When I first went through the documentation of the API it was really hard to understand as I had nearly zero programming knowledge. Then it drove me to really start learning programming and the whole ecosystem around programming like web, networking, deployment and etc.</p>
+<p>I did some research and found a package <code>stravaio</code> that really helped me on how to download the data and it was the first time I had to look into a package source code, because I found a bug and posted an issue that the maintainer of the package end up <a href="https://github.com/sladkovm/stravaio/issues/4">fixing it</a>.</p>
+<p>I remember that it was the first time I had to use <code>defaultdictionary</code> from <code>collections</code> to parse a <code>JSON</code> of nested dictionaries to build a data structure that <code>pandas</code> would take to render a <code>DataFrame</code> object.</p>
+<p>So this post will briefly show you how you can use this <code>stravaio</code> package to download your activities. You can do much more than that, just look for the <a href="https://github.com/sladkovm/stravaio">&ldquo;documentation&rdquo;</a>.</p>
+<p>Here are the steps and I will walk through the code and post the whole code at the end</p>
+<ol>
+<li>Import the packages</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
+</code></pre></div><ol start="2">
+<li>Get your secrets from environment variables</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
+client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
+</code></pre></div><p>To make API calls to Strava you need to have a registered application. This can be easily done on your <a href="https://developers.strava.com/docs/getting-started/#account">Strava account</a>. Here is the instructions to get your CLIENT_ID and CLIENT_SECRET. Please keep this with you.</p>
+<ol start="3">
+<li>Generate a token by Authenticating with Strava oauth2</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
+access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
+</code></pre></div><p>This was a part that it took me a while to get my head around. Strava improved the documentation a lot since the first time I read. They even drew a chart flow for <a href="https://developers.strava.com/docs/getting-started/#oauth">absolute dummies</a>.</p>
+<p>What it actually does is a 2 way authentication.</p>
+<p>First you make a request to have access to a athlete data then the athlete log to his account by giving you permission you asked for on the request then it return you a JSON with a temporary access token and a refresh token where you then can make calls to the API and get data.
+The permission given to you is based on the context you asked (e.g. only read or read and write)
+In this example you would be doing it with your own account and I am sure you will allow yourself do access your own data.</p>
+<ol start="4">
+<li>Create a client object and call get_logged_in_athlete_activities methods</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
+date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
+activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
+</code></pre></div><p>Now that you have the token you can create a client object from the StravaIO class which handles the session and you can then call the method that fetch the athlete activity. For more details about the class here is the <a href="https://github.com/sladkovm/stravaio/blob/master/stravaio.py">source code</a></p>
+<ol start="5">
+<li>Finally transform into a pandas DataFrame and export to csv or other format you like.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df_data <span style="color:#f92672">=</span> defaultdict(list)
+
+<span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
+    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
+        df_data[k]<span style="color:#f92672">.</span>append(v)
+
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
+
+df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
+</code></pre></div><p>The <code>activity</code> variable is a <code>Stravaio</code> object which has a method <code>to_dict()</code> that makes life much easier.
+It returns a list of dictionaries. This is perfect scenario to use defaultdict as a list so it can be easily ingested by pandas</p>
+<p>Here is the full script</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
+
+
+client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
+client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
+
+token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
+access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
+
+client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
+date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
+activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
+
+df_data <span style="color:#f92672">=</span> defaultdict(list)
+
+<span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
+    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
+        df_data[k]<span style="color:#f92672">.</span>append(v)
+
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
+
+df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
+</code></pre></div><p>Even though the above script is relatively simple it is not for the common citizen that does not code and is not enthusiast about Python like you and me</p>
+<p>For this I am currently developing a Web app that downloads your data into a csv file in 3 simple clicks.</p>
+<p>You can access it <a href="http://www.download-data.com/">here</a>.</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/api/">api</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/python/">python</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/pandas/">pandas</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/requests/">requests</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/strava/">strava</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        789 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2020-08-27 12:01 &#43;0930
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+            <span class="button previous">
+                <a href="https://pedrojunqueira.github.io/posts/python_regex_never_forget/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">Python regex basics to never forget</span>
+                </a>
+            </span>
+            
+
+            
+            <span class="button next">
+                <a href="https://pedrojunqueira.github.io/posts/kubernetes_secrets/">
+                    <span class="button__text">How to create a Kubernetes Secret</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+
+
+
+    </body>
+</html>

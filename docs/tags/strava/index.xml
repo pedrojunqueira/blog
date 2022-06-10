@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>strava on Pedro Junqueira</title>
+    <link>https://pedrojunqueira.github.io/tags/strava/</link>
+    <description>Recent content in strava on Pedro Junqueira</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>pedro junqueira</copyright>
+    <lastBuildDate>Thu, 27 Aug 2020 12:01:22 +0930</lastBuildDate>
+    
+	<atom:link href="https://pedrojunqueira.github.io/tags/strava/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to download data from Strava with Python</title>
+      <link>https://pedrojunqueira.github.io/posts/how_to_download_data_strava/</link>
+      <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/posts/how_to_download_data_strava/</guid>
+      <description>I am a cyclist enthusiast and you may be if you are reading this blog post.
+Strava has a nice API which gives access to the data recorded on the application.
+Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer. The API, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user.</description>
+    </item>
+    
+  </channel>
+</rss>

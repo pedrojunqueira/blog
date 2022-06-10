@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>markdown on Pedro Junqueira</title>
+    <link>https://pedrojunqueira.github.io/tags/markdown/</link>
+    <description>Recent content in markdown on Pedro Junqueira</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>pedro junqueira</copyright>
+    <lastBuildDate>Tue, 14 Apr 2020 07:10:33 +0930</lastBuildDate>
+    
+	<atom:link href="https://pedrojunqueira.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Why I started a blog using Hugo?</title>
+      <link>https://pedrojunqueira.github.io/posts/why-started-hugo/</link>
+      <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/posts/why-started-hugo/</guid>
+      <description>This is the second attempt I started a blog and this time is different.
+I once had a blog that was not about data science but I was able to write over 150 blog posts and I had a decent readership and people following it and even launched a paid e-book that gave me some money. Not enough for me to do it full time but it was very encouraging and it kept me motivated to keep me writing.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Here is a post with the absolute basic commands that I always forget Getting the export Path of oc CLI tool minishift oc-env
+export PATH=&amp;quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&amp;quot;
+Logging in to log in
+oc login -u &amp;lt;user&amp;gt; -p &amp;lt;password&amp;gt;
+Deploy an application from git oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp
+login as sys:admin oc login -u system:admin
+get users
+oc get users
+make an user called administrator a system admin
+oc adm policy add-cluster-role-to-user cluster-admin administrator" />
+<meta name="keywords" content=", openshift, minishift, kubernetes, DevOps, CLI" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://pedrojunqueira.github.io/posts/minishift_basic_cli/" />
+
+
+    <title>
+        
+            Basic CLI commands for Openshift-Minishift :: Pedro Junqueira  — Data Scientist
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="Basic CLI commands for Openshift-Minishift">
+<meta itemprop="description" content="Here is a post with the absolute basic commands that I always forget Getting the export Path of oc CLI tool minishift oc-env
+export PATH=&quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&quot;
+Logging in to log in
+oc login -u &lt;user&gt; -p &lt;password&gt;
+Deploy an application from git oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp
+login as sys:admin oc login -u system:admin
+get users
+oc get users
+make an user called administrator a system admin
+oc adm policy add-cluster-role-to-user cluster-admin administrator">
+<meta itemprop="datePublished" content="2020-07-02T20:56:05&#43;09:30" />
+<meta itemprop="dateModified" content="2020-07-02T20:56:05&#43;09:30" />
+<meta itemprop="wordCount" content="83">
+<meta itemprop="image" content="https://pedrojunqueira.github.io"/>
+
+
+
+<meta itemprop="keywords" content="openshift,minishift,kubernetes,DevOps,CLI," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://pedrojunqueira.github.io"/>
+
+<meta name="twitter:title" content="Basic CLI commands for Openshift-Minishift"/>
+<meta name="twitter:description" content="Here is a post with the absolute basic commands that I always forget Getting the export Path of oc CLI tool minishift oc-env
+export PATH=&quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&quot;
+Logging in to log in
+oc login -u &lt;user&gt; -p &lt;password&gt;
+Deploy an application from git oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp
+login as sys:admin oc login -u system:admin
+get users
+oc get users
+make an user called administrator a system admin
+oc adm policy add-cluster-role-to-user cluster-admin administrator"/>
+
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-07-02 20:56:05 &#43;0930 ACST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/blog" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">pedrojunqueira@home: ~$</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://pedrojunqueira.github.io/posts/minishift_basic_cli/">Basic CLI commands for Openshift-Minishift</a>
+      </h1>
+
+      
+
+      
+
+      
+
+      <div class="post-content">
+        <h2 id="here-is-a-post-with-the-absolute-basic-commands-that-i-always-forget">Here is a post with the absolute basic commands that I always forget</h2>
+<h3 id="getting-the-export-path-of-oc-cli-tool">Getting the export Path of oc CLI tool</h3>
+<p><code>minishift oc-env</code></p>
+<p><code>export PATH=&quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&quot;</code></p>
+<h3 id="logging-in">Logging in</h3>
+<p>to log in</p>
+<p><code>oc login -u &lt;user&gt; -p &lt;password&gt;</code></p>
+<h3 id="deploy-an-application-from-git">Deploy an application from git</h3>
+<p><code>oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp</code></p>
+<h2 id="login-as-sysadmin">login as sys:admin</h2>
+<p><code>oc login -u system:admin</code></p>
+<p>get users</p>
+<p><code>oc get users</code></p>
+<p>make an user called administrator a system admin</p>
+<p><code>oc adm policy add-cluster-role-to-user cluster-admin administrator</code></p>
+<p>now the administrator user is adm and see all the projects</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/openshift/">openshift</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/minishift/">minishift</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/kubernetes/">kubernetes</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/devops/">DevOps</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/cli/">CLI</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        83 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2020-07-02 20:56 &#43;0930
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+            <span class="button previous">
+                <a href="https://pedrojunqueira.github.io/posts/kubernetes-cheat-sheet/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">Kubernetes Cheat Sheet</span>
+                </a>
+            </span>
+            
+
+            
+            <span class="button next">
+                <a href="https://pedrojunqueira.github.io/posts/data-driven-vs-model-driven/">
+                    <span class="button__text">Data driven business vs. Business model driven by data</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+
+
+
+    </body>
+</html>

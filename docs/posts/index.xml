@@ -1,22 +1,1461 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Pedro Junqueira</title>
-        <link>http://example.org/posts/</link>
+        <link>https://pedrojunqueira.github.io/posts/</link>
         <description>Recent content in Posts on Pedro Junqueira</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>pedro junqueira</copyright>
-        <lastBuildDate>Fri, 10 Jun 2022 08:24:01 +0930</lastBuildDate>
-        <atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Fri, 10 Jun 2022 21:16:44 +0930</lastBuildDate>
+        <atom:link href="https://pedrojunqueira.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>Test Post</title>
-            <link>http://example.org/posts/test-post/</link>
-            <pubDate>Fri, 10 Jun 2022 08:24:01 +0930</pubDate>
+            <title>Understand how objects behave in memory Python</title>
+            <link>https://pedrojunqueira.github.io/posts/object-pointer-python/</link>
+            <pubDate>Fri, 10 Jun 2022 21:16:44 +0930</pubDate>
             
-            <guid>http://example.org/posts/test-post/</guid>
-            <description></description>
-            <content type="html"><![CDATA[]]></content>
+            <guid>https://pedrojunqueira.github.io/posts/object-pointer-python/</guid>
+            <description>Sometimes debugging take more time than you are willing to spend on it. Usually you do not want to waste any time debugging but the life of a software developer is debugging all the time.
+I came across a interesting one.
+I often see mini examples on twitter about a code snippet of how objects behave in Python and some unintended consequences may cause your code to do things you were not expecting, yet it totally makes sense.</description>
+            <content type="html"><![CDATA[<p>Sometimes debugging take more time than you are willing to spend on it. Usually you do not want to waste any time debugging but the life of a software developer is debugging all the time.</p>
+<p>I came across a interesting one.</p>
+<p>I often see mini examples on twitter about a code snippet of how objects behave in Python and some unintended consequences may cause your code to do things you were not expecting, yet it totally makes sense.</p>
+<p>Here is a simple version of the example of how objects behave.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+obj_a <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+obj_b <span style="color:#f92672">=</span> obj_a
+obj_b<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">4</span>)
+<span style="color:#66d9ef">print</span>(obj_a)
+
+</code></pre></div><p>This will print</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>1, 2, 3, 4<span style="color:#f92672">]</span>
+</code></pre></div><p>Simply because the objects in memory are the same.</p>
+<p>In python you can check this by passing the object to the build-in function <code>id</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#66d9ef">assert</span> id(obj_a) <span style="color:#f92672">==</span> id(obj_b)
+
+</code></pre></div><p>I used to see this then meh 🤷‍♂️ interesting to know.</p>
+<p>This is good thing to be aware because in a program you can have objects being executed in one part of your program and affecting others that you do not want.</p>
+<p>This week I spent a great amount of time to figure out a bug 🐛 in a program and here a snippet that reproduces the issue.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bizarre_list <span style="color:#f92672">=</span> []
+my_dict <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;key&#34;</span>: [] }
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+    bizarre_list<span style="color:#f92672">.</span>append(i)
+    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>:
+        <span style="color:#66d9ef">print</span>(bizarre_list)
+        my_dict[<span style="color:#e6db74">&#34;key&#34;</span>]<span style="color:#f92672">.</span>append(bizarre_list)
+
+<span style="color:#66d9ef">print</span>(bizarre_list)
+
+<span style="color:#66d9ef">print</span>(my_dict)
+</code></pre></div><p>output</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6<span style="color:#f92672">]</span>
+<span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9<span style="color:#f92672">]</span>
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;key&#39;</span>: <span style="color:#f92672">[[</span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9<span style="color:#f92672">]]}</span>
+</code></pre></div><p>When I appended the <code>list</code> to the <code>dict</code> value <code>list</code>. After I done that it kept on adding items to the list in both the <code>dict</code> and the <code>bizarre_list</code>. This is what python does because they just are the same object, but I wanted a different behavior. The intention is to the <code>list</code> be at the state in iteration <code>i == 6</code></p>
+<p>To achieve this just use the python module <code>copy</code> and the function <code>deepcopy</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#f92672">from</span> copy <span style="color:#f92672">import</span> deepcopy
+
+bizarre_list <span style="color:#f92672">=</span> []
+my_dict <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;key&#34;</span>: [] }
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+    bizarre_list<span style="color:#f92672">.</span>append(i)
+    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>:
+        <span style="color:#66d9ef">print</span>(bizarre_list)
+        bizarre_list_snapshot <span style="color:#f92672">=</span> deepcopy(bizarre_list)
+        my_dict[<span style="color:#e6db74">&#34;key&#34;</span>]<span style="color:#f92672">.</span>append(bizarre_list_snapshot)
+
+<span style="color:#66d9ef">print</span>(bizarre_list)
+
+<span style="color:#66d9ef">print</span>(my_dict)
+
+</code></pre></div><p>output</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6<span style="color:#f92672">]</span>
+<span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9<span style="color:#f92672">]</span>
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;key&#39;</span>: <span style="color:#f92672">[[</span>0, 1, 2, 3, 4, 5, 6<span style="color:#f92672">]]}</span>
+</code></pre></div><p>What deepcopy does is to copy the object and save it in another place in memory</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;bizarre_list ID: {id(bizarre_list)}&#34;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;dict list ID: {id(my_dict[&#39;key&#39;][0])}&#34;</span>)
+</code></pre></div><p>output</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bizarre_list ID: <span style="color:#ae81ff">140154658362112</span>
+dict list ID: <span style="color:#ae81ff">140154658425344</span>
+</code></pre></div><p>This is it for this post.</p>
+<p>cheers</p>
+<p>Pedro</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Connect Python Azure SQL DB using Pandas</title>
+            <link>https://pedrojunqueira.github.io/posts/connect-python-azure-sqldb-pandas/</link>
+            <pubDate>Sat, 21 May 2022 20:58:05 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/connect-python-azure-sqldb-pandas/</guid>
+            <description>The other day I wanted to connect pandas to Azure SQL DB and boy took me longer than I wanted. In the end I solved my problem. Although, connecting to DBs always involves more complex things like DB drives and OS dependencies the part I struggled the most was with the connection string 😅. Microsoft, in its documentation, which by the way is good, gives good example and steps on setting up the environnement and how to connect through pyodbc.</description>
+            <content type="html"><![CDATA[<p>The other day I wanted to connect <code>pandas</code> to Azure SQL DB and boy took me longer than I wanted.
+In the end I solved my problem. Although, connecting to DBs always involves more complex things like DB drives and OS dependencies the part I struggled the most was with the connection string 😅.
+Microsoft, in its <a href="https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/python-sql-driver-pyodbc?view=sql-server-ver15">documentation</a>, which by the way is good, gives good example and steps on setting up the environnement and how to connect through <code>pyodbc</code>.</p>
+<p>Nevertheless, I wanted to connect using <code>sqlalchemy</code>.</p>
+<p>Both works fine with <code>pandas</code> but I specifically wanted to connect with <code>sqlalchemy</code> for reasons I will get into later in this post.</p>
+<p>I run my code in my Windows working computer always in WSL (Ubuntu) so I will go step by step on what you need to get your environment running and also a starting code to get you connected.</p>
+<p>steps are</p>
+<ol>
+<li>Prepare the environment</li>
+<li>Connect</li>
+</ol>
+<h2 id="1-prepare-the-environnement">1. Prepare the environnement</h2>
+<h3 id="os-dependencies">OS dependencies</h3>
+<h4 id="sql-server-driver">SQL server driver.</h4>
+<p>To install in linux the driver &ldquo;Microsoft ODBC 18&rdquo; just follow this <a href="https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15#18">instructions</a></p>
+<p>for <a href="https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15#ubuntu18">Ubuntu</a> here is the script</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">if</span> ! <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;18.04 20.04 21.04&#34;</span> <span style="color:#f92672">==</span> *<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>* <span style="color:#f92672">]]</span>;
+<span style="color:#66d9ef">then</span>
+    echo <span style="color:#e6db74">&#34;Ubuntu </span><span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span><span style="color:#e6db74"> is not currently supported.&#34;</span>;
+    exit;
+<span style="color:#66d9ef">fi</span>
+
+sudo su
+curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+
+curl https://packages.microsoft.com/config/ubuntu/<span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span>/prod.list &gt; /etc/apt/sources.list.d/mssql-release.list
+
+exit
+sudo apt-get update
+sudo ACCEPT_EULA<span style="color:#f92672">=</span>Y apt-get install -y msodbcsql18
+<span style="color:#75715e"># optional: for bcp and sqlcmd</span>
+sudo ACCEPT_EULA<span style="color:#f92672">=</span>Y apt-get install -y mssql-tools18
+echo <span style="color:#e6db74">&#39;export PATH=&#34;$PATH:/opt/mssql-tools18/bin&#34;&#39;</span> &gt;&gt; ~/.bashrc
+source ~/.bashrc
+<span style="color:#75715e"># optional: for unixODBC development headers</span>
+sudo apt-get install -y unixodbc-dev
+
+</code></pre></div><h4 id="python-environment">Python environment</h4>
+<p>for the examples below install <code>pyodbc</code> <code>sqlalchemy</code> and <code>pandas</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install pyodbc SQLAlchemy pandas
+</code></pre></div><h2 id="2-connect">2. Connect</h2>
+<p>Now comes the easy&hellip; part&hellip; the code</p>
+<h3 id="connecting-using-pyodbc">Connecting using <code>pyodbc</code></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> pyodbc
+
+server <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-server-name&gt;.database.windows.net&#39;</span>
+database <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-db-name&gt;&#39;</span>
+driver<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{ODBC Driver 18 for SQL Server}&#39;</span>
+
+username <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_USERNAME&#39;</span>)
+password <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_PASSWORD&#39;</span>)
+
+connection_string <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;DRIVER={driver};SERVER=tcp:{server};PORT=1433;DATABASE={database};UID={username};PWD={password}&#39;</span>
+
+<span style="color:#75715e"># query system views</span>
+
+<span style="color:#66d9ef">with</span> pyodbc<span style="color:#f92672">.</span>connect(connection_string) <span style="color:#66d9ef">as</span> conn:
+    query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">            SELECT
+</span><span style="color:#e6db74">                [name]
+</span><span style="color:#e6db74">                ,[database_id]
+</span><span style="color:#e6db74">            FROM [sys].[databases];
+</span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+
+    df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(sql<span style="color:#f92672">=</span>query, con<span style="color:#f92672">=</span>conn)
+    <span style="color:#66d9ef">print</span>(df<span style="color:#f92672">.</span>head())
+
+</code></pre></div><p>This will print to the output the first 10 rows of the query result of the data frame.</p>
+<p>It works fine but <code>pandas</code> will issue the following warning</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">UserWarning: pandas only support SQLAlchemy connectable<span style="color:#f92672">(</span>engine/connection<span style="color:#f92672">)</span> ordatabase string URI or sqlite3 DBAPI2 connectionother DBAPI2 objects are not tested, please consider using SQLAlchemy
+</code></pre></div><h3 id="connecting-using-sqlalchemy">Connecting using <code>sqlalchemy</code></h3>
+<p>The documentation in SQLAlchemy does not goes great length explaining the connection string with SQL Server DB and after a few stack overflow posts here is a working code.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
+
+server <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-server-name&gt;.database.windows.net&#39;</span>
+database <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-db-name&gt;&#39;</span>
+driver<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{ODBC Driver 18 for SQL Server}&#39;</span>
+
+username <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_USERNAME&#39;</span>)
+password <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_PASSWORD&#39;</span>)
+
+odbc_params <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;DRIVER={driver};SERVER=tcp:{server};PORT=1433;DATABASE={database};UID={username};PWD={password}&#39;</span>
+
+connection_string <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;mssql+pyodbc:///?odbc_connect={odbc_params}&#39;</span>
+
+engine <span style="color:#f92672">=</span> create_engine(connection_string)
+
+<span style="color:#75715e"># query sys.databases view</span>
+
+query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">        SELECT
+</span><span style="color:#e6db74">               [name]
+</span><span style="color:#e6db74">              ,[database_id]
+</span><span style="color:#e6db74">       FROM [sys].[databases];
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(query, engine)
+<span style="color:#66d9ef">print</span>(df<span style="color:#f92672">.</span>head())
+
+engine<span style="color:#f92672">.</span>dispose()
+</code></pre></div><p>It is very similar. You just need to &ldquo;attach&rdquo; the same pyodbc string after <code>'mssql+pyodbc:///?odbc_connect='</code></p>
+<p>for more detail on sql and <code>pandas</code> the
+<code>pandas</code> <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html">documentation</a> is very good.</p>
+<p>this is it.</p>
+<p>If I had this post on my google search my life would be simpler but I would have learned less
+😃</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Why I do not want to be a Data Scientist</title>
+            <link>https://pedrojunqueira.github.io/posts/why-not-data-science/</link>
+            <pubDate>Sun, 28 Feb 2021 20:55:50 +1030</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/why-not-data-science/</guid>
+            <description>According to the World Economic Forum Report data scientist is one of the most sought after professional and on the rise in 2020/2021 and it will be for a while.
+In 2012 when Harvard Business Review published the article as the most sexy profession it is strange someone saying that does not want to be a data scientist?
+Why not if it is so hot and so cool and it pays so much?</description>
+            <content type="html"><![CDATA[<p>According to the <a href="https://www.weforum.org/reports/the-future-of-jobs-report-2020/in-full/chapter-2-forecasts-for-labour-market-evolution-in-2020-2025#2-2-emerging-and-declining-jobs">World Economic Forum</a> Report data scientist is one of the most sought after professional and on the rise in 2020/2021 and it will be for a while.</p>
+<p>In 2012 when <a href="https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century">Harvard Business Review</a> published the article as the most sexy profession it is strange someone saying that does not want to be a data scientist?</p>
+<p>Why not if it is so hot and so cool and it pays so much?</p>
+<p>I have worked as a Data Scientist. I had a Data Scientist title and had this label stuck on my back. I worked in a team of data scientists, developed data science models with real world data and have reasonable knowledge about the matter and credentials to perform the role of a Data Scientist.</p>
+<p>Is there something wrong with me?</p>
+<p>I will explain why there is nothing wrong with me and that it is OK not wanting to be a Data Scientist. Also I hope this will help you to reflect why data science may not be your career path.</p>
+<p>Do not get me wrong. I think data science is very interesting subject and I still find it fascinating. This is what got me interested in it and I believe that data science and AI can do a lot for the world to become a better place in so many aspects. Also it is really interesting studding and understanding how it works. I really enjoyed the process as I love learning new things.</p>
+<p>Do not want to ramble to much more and I will just list the reasons and develop further each point.</p>
+<ul>
+<li><strong>Kaggle competitions never got me hooked</strong></li>
+</ul>
+<p>Since when I started my interest in data science I heard about this thing called Kaggle. I explain my journey into data <a href="https://petodata.space/2019/05/29/my-journey-into-the-data-world/">here</a>. If you are reading this post you probably know what is <a href="https://www.kaggle.com/">Kaggle</a>. It is a Data Scientist community where data scientists can share their knowledge by publishing notebooks with data analysis and most important it is a place where you can compete with other data scientists to solve data problems involving predictive analytics.
+It is a great place to learn and develop your data science career.
+I have to confess one thing. I never felt compelled to participate in any of those competitions to build model to predict something, to be honest. I should have listened to this big warning at the start before getting too involved in the field and in the theory.
+I mean, if I am not drawn and excited to this type of problem solving it is a great sign that I had not much interest in becoming a data scientist. Not even doing data science tutorials excited me too much or even browsing notebooks to learn the data science code.</p>
+<ul>
+<li><strong>There is too much ground to cover and eventually it will lead to burn out</strong></li>
+</ul>
+<p>It was not only once but many times I simple got overwhelmed by the amount of knowledge you need to accumulate to be up to the challenge to be a real good data scientist. Just the whole theory content is huge like the type of models and algorithms, statistics, probability, maths, linear algebra, Python libraries, evaluation techniques, sampling, munging data and etc and etc . It is not just linear regression but there are random forest, clustering algorithms, deep learning, reinforcement learning and in each of this areas you can go deep from doing things from scratch to using various types of Python and R libraries.
+Maybe the problem is trying to be a generalist only, I think it is too much you have to know to just keep up. On top of it there are basically 1 paper published daily in a subject that you may be solving a problem. I just did not have the drive to be on top of the latest tech.
+Like I learned Tensorflow with Keras back end and could scratch it and build and train some models. But no, this is not enough. There was this cool new library called PyTorch I felt that I had to learn to be on top of things.
+Then if a project involved NLP I learned NLTK and then there was this thing called Spacy which I also learned.
+I realized I was just happy doing some modelling and play around with SkitLearn on the side as a hobby to fulfil an internal curiosity that I really enjoyed.</p>
+<p>I known people that really enjoyed and put the hours to excel at data science and they were really invested in it and had the energy to do a good job and they had the passion to keep pushing and enjoyed the process.
+If this is your case, by all means you need to go for it and pursue that dream. I once thought it was mine but after going through I realized that this was one aspect that played a good part and made me reflect if I really wanted to be a data scientist.</p>
+<ul>
+<li><strong>I don&rsquo;t enjoy the detail process of modelling and doing data science</strong></li>
+</ul>
+<p>On top of having to keep up and learn all the theory I really did not enjoy the process involved in being a data scientist like building the model, finding the patterns, training the model over and over and experimenting and evaluating parameters.
+I also am not too invested in the mathematics of it and the knowledge I had was much more the intuition of it. Which was ok to be a applied data scientist and I was not doing any research or building anything from scratch. I just needed to understand the API which in the end was very high level.
+However, I think to really be a good data scientist you really need to understand what is going on behind the maths and that interest did not spark me at all.</p>
+<ul>
+<li><strong>I enjoy more working in automation and building</strong></li>
+</ul>
+<p>In the process of learning Python to do data science I realized that I enjoyed much more on working in building applications and infra structure. I was involved in a project where I worked with Flask where the team was building an API to service a few machine learning models and I found this much more interesting things than doing the model itself.
+Also I got involved in a project where I was kind the DevOps Engineer and had to deploy infra structure as code using GitLab CI/CD pipelines, Kubernetes and Docker containers. Also building an instance of AirFlow running in Kubernets and building pipelines in pure Python. I find solving this kind of problem of software and data engineer not only more interesting but more useful for an organisation than pure data science and model building.</p>
+<ul>
+<li><strong>Most companies do not need a data scientists</strong></li>
+</ul>
+<p>From experience I realized that most of the companies not only cannot afford a data scientist but they just do not need one. There are so many other problems with data that need to be solved before doing any data science with the data.
+Just to give a few examples, companies would better spending money just analyzing data for process improvement and that would require data analysts, business analyst and of course data engineers to create pipelines and built a basic data warehouse or data platform and a self service BI infrastructure to monitor performance and business processes.
+This in itself already brings tremendous business return on investment doing zero modelling, machine learning or AI.</p>
+<ul>
+<li><strong>Most data science projects stays either in a ppt or in a jupyter notebook</strong></li>
+</ul>
+<p>I have seen a lot of money invested in data science and models that end up only presented in PowerPoint and never go to production. I see great frustration of data scientists never seeing their model in production or the business trusting that the output of the model is any better than the human intelligence.
+At least in my experience the only AI and machine learning I have seen are those running in FAANG (Facebook, Apple, Amazon, Netflix and Google) companies or some specialist AI company that specialized in a niche AI in a particular subject matter expertize and those really good systems take years, lots of man power, experimenting, failure and obviously million of dollars in investments.</p>
+<ul>
+<li><strong>Integration and operations are more important than the in-house development</strong></li>
+</ul>
+<p>Instead of developing data science in-house I do see a trend which is a company ability to purchase a pre-trained model to solve a particular problem and integrate with its systems.
+Just to give an example a company that wants to optimize its rostering and then buy an AI roster optimization system that can be called with an API. It is just matter of integration work of inputting the company data and doing something internally with the API response.
+This apply to other problems like computer vision, text analytics, anomaly detection among other problems.
+And to do this work the pure data science skill is not required, unless you work in a specialized AI company. What is required in a company are more data analyst, data engineering, DevOps and software developers to build the infrastructure to integrate with the organizational systems.</p>
+<ul>
+<li><strong>Most data is not data science ready</strong></li>
+</ul>
+<p>As I already mentioned above. There is a lot to do before any data science start in a company. The reason is that sometimes a company does not even have visibility of their own data. There is not even reporting or the systems do not record the data properly in a way that allow any analysis let alone data science.
+A lot of work in systems design and business improvement need to be made in order to be able to have good data capture and quality to make data science and this is done by data engineers, system architects and software engineers. To be honest once this is all running then the data science part can be the &ldquo;simplest&rdquo; part of it all.</p>
+<p><strong>Summary</strong></p>
+<p>In the end I find data science a fascinating field and have experimented first hand and given what I enjoy doing and what a real data scientist do I came to the realization that it is not what I want to be good at. At the moment I write this post I am concentrating in repositioning myself as a Business Intelligence Data Analyst focused in Power BI and in the Azure Cloud data services.
+I enjoy a lot Python and use at my job to do lots of analysis, visualisation and automation. I will continue to study this on the side as well as back-end web development such as developing applications in Flask and FastAPI. Also I am getting an interest in JavaScript which is a very useful language to get into software development, Web Development and also very powerful for visualisation.
+I don&rsquo;t know where this will take me. To be a Power BI and Azure data guru, a data engineer or just a BI data analyst.</p>
+<p>I am very happy with this decision and direction I am taking and this is my current drive and it is keeping me motivated, keeping a sane balance in between work and personal life.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Python property class and decorator</title>
+            <link>https://pedrojunqueira.github.io/posts/python_property_class/</link>
+            <pubDate>Wed, 16 Sep 2020 06:03:39 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/python_property_class/</guid>
+            <description>About 2 months ago I considered my self an intermediate python user.
+This level of knowledge was enough to work on pandas data transformation and use most of the data science API.
+However, when it comes to software engineering and developing production, tested code I realized that there was a lot to learn about programming concepts and how that would work with python.
+My intermediate knowledge and experience already gave me lots of power but when I started to dig into source code and also at work when I had to browse to some large code base I felt that I did not know lots of things in python and had to get my s*** together and become a proficient advanced and fluent python user.</description>
+            <content type="html"><![CDATA[<p>About 2 months ago I considered my self an intermediate python user.</p>
+<p>This level of knowledge was enough to work on pandas data transformation and use most of the data science API.</p>
+<p>However, when it comes to software engineering and developing production, tested code I realized that there was a lot to learn about programming concepts and how that would work with python.</p>
+<p>My intermediate knowledge and experience already gave me lots of power but when I started to dig into source code and also at work when I had to browse to some large code base I felt that I did not know lots of things in python and had to get my s*** together and become a proficient advanced and fluent python user.</p>
+<p>I am talking about advanced concepts like property, decorator, inheritance, mro, getters, setters and the other OOP paradigm like interfaces and encapsulation that was necessary to up my game.</p>
+<p>In this post I will give an introduction of the property class and property decorator.</p>
+<p>When someone start learning about classes one of the first concepts we learn is class attribute and instance attribute which is not the scope of this post. I assume that this is already a clear concept. If not you can refresh <a href="https://www.python-course.eu/python3_class_and_instance_attributes.php">here</a></p>
+<p>The property class helps to manage class attribute where you can control the mutability of an instance property and also set some conditions you want an instance attribute to have.</p>
+<p>A classical example which is widely used in many example is temperature.</p>
+<p>Say was want to create a class that manages objects temperature and convert between Celsius and Fahrenheit.</p>
+<p>The absolute zero temperature is -273 Celsius and you would not want to allow anyone to set a temperature below this value.</p>
+<p>A way to manage this is via property.</p>
+<p>There are two ways you can do it, i.e. using the <code>property</code> class itself or the <code>@property</code> decorator.</p>
+<p>The documentation doc string in python is very good actually. Lets print it.</p>
+<p><code>help(property)</code></p>
+<p>Here is an exert of it with a quick example to get you started.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+
+
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getx</span>(self):
+    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x
+
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setx</span>(self, value):
+    self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value
+
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delx</span>(self): 
+    <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+
+  x <span style="color:#f92672">=</span> property(getx, setx, delx, <span style="color:#e6db74">&#34;I&#39;m the &#39;x&#39; property.&#34;</span>)
+
+</code></pre></div><p>The property class take 4 arguments and returns the property attribute</p>
+<p><code>property(fget=None, fset=None, fdel=None , doc=None) -&gt; property attribute</code></p>
+<p><code>fget</code> is a function to be used for getting an attribute value, and likewise</p>
+<p><code>fset</code> is a function for setting</p>
+<p>and <code>fdel</code> a function for deleting,
+an attribute.</p>
+<p>The decorator alternative makes it simpler</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+
+<span style="color:#a6e22e">@property</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+  <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+  <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+
+<span style="color:#a6e22e">@x.setter</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
+  self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value
+
+<span style="color:#a6e22e">@x.deleter</span> 
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+  <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+
+</code></pre></div><p>This where just template examples. Lets now write our temperature class that I took from <a href="https://www.programiz.com/python-programming/property">programviz</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#75715e"># Using @property decorator</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Celsius</span>:
+    <span style="color:#66d9ef">def</span> __init__(self, temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+        self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">=</span> temperature
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_fahrenheit</span>(self):
+        <span style="color:#66d9ef">return</span> (self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.8</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">32</span>
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self):
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Getting value...&#34;</span>)
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_temperature
+
+    <span style="color:#a6e22e">@temperature.setter</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self, value):
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Setting value...&#34;</span>)
+        <span style="color:#66d9ef">if</span> value <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">273.15</span>:
+            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Temperature below -273 is not possible&#34;</span>)
+        self<span style="color:#f92672">.</span>_temperature <span style="color:#f92672">=</span> value
+
+
+<span style="color:#75715e"># create an object</span>
+human <span style="color:#f92672">=</span> Celsius(<span style="color:#ae81ff">37</span>)
+
+<span style="color:#66d9ef">print</span>(human<span style="color:#f92672">.</span>temperature) 
+
+<span style="color:#66d9ef">print</span>(human<span style="color:#f92672">.</span>to_fahrenheit())
+
+coldest_thing <span style="color:#f92672">=</span> Celsius(<span style="color:#f92672">-</span><span style="color:#ae81ff">300</span>) <span style="color:#75715e"># this is going to raise an exception as it is below 273.15</span>
+
+<span style="color:#75715e"># output of the program (commented out)</span>
+
+<span style="color:#f92672">&gt;</span> Setting value<span style="color:#f92672">...</span>
+<span style="color:#f92672">&gt;</span> Getting value<span style="color:#f92672">...</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">37</span>
+<span style="color:#f92672">&gt;</span> Getting value<span style="color:#f92672">...</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">98.60000000000001</span>
+<span style="color:#f92672">&gt;</span> Setting value<span style="color:#f92672">...</span>
+
+
+Traceback (most recent call last):
+  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">28</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+    coldest_thing <span style="color:#f92672">=</span> Celsius(<span style="color:#f92672">-</span><span style="color:#ae81ff">300</span>)
+  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">3</span>, <span style="color:#f92672">in</span> __init__
+    self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">=</span> temperature
+  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">17</span>, <span style="color:#f92672">in</span> temperature
+    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Temperature below -273 is not possible&#34;</span>)
+<span style="color:#a6e22e">ValueError</span>: Temperature below <span style="color:#f92672">-</span><span style="color:#ae81ff">273</span> <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> possible
+
+</code></pre></div><p>Note that when an instance of class initialize it firsts sets the value then it gets.</p>
+<p>I got confused with this as sometimes I used the property to set an immutable property but on the example it made it mutable with the <code>@temperature.setter</code> decorator.</p>
+<p>If you pay attention to the example on the documentation it does not initiate with a default value and the <code>x</code>. So let&rsquo;s implement it as in the help example</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+
+    <span style="color:#a6e22e">@property</span> 
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
+        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+
+    <span style="color:#a6e22e">@x.setter</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
+        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
+
+    <span style="color:#a6e22e">@x.deleter</span> 
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+
+c <span style="color:#f92672">=</span> C(<span style="color:#ae81ff">3</span>)
+
+<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
+
+<span style="color:#75715e"># output</span>
+
+Traceback (most recent call last):
+  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">19</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+    <span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
+  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">6</span>, <span style="color:#f92672">in</span> x
+    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+<span style="color:#a6e22e">AttributeError</span>: <span style="color:#e6db74">&#39;C&#39;</span> object has no attribute <span style="color:#e6db74">&#39;_x&#39;</span>
+</code></pre></div><p>So if we add the <code>__init__</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+
+    <span style="color:#66d9ef">def</span> __init__(self, x<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+        self<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> x
+
+    <span style="color:#a6e22e">@property</span> 
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
+        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+
+    <span style="color:#a6e22e">@x.setter</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
+        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
+
+    <span style="color:#a6e22e">@x.deleter</span> 
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+
+
+c <span style="color:#f92672">=</span> C(<span style="color:#ae81ff">3</span>)
+
+<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
+
+c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
+
+<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
+
+<span style="color:#75715e"># output</span>
+
+<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>
+<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">23</span>
+</code></pre></div><p>Actually what happened is that when it <code>__init__</code> the instance it set the value to the default value.</p>
+<p>If you want to make it immutable like having a value that does not change just only implement set method.</p>
+<p>Let&rsquo;s demonstrate it</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+
+    <span style="color:#66d9ef">def</span> __init__(self):
+        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+
+    <span style="color:#a6e22e">@property</span> 
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
+        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+
+c <span style="color:#f92672">=</span> C()
+
+<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
+
+c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
+
+<span style="color:#75715e"># output</span>
+
+<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">42</span>
+
+Traceback (most recent call last):
+  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">24</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+    c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
+<span style="color:#a6e22e">AttributeError</span>: can<span style="color:#e6db74">&#39;t set attribute</span>
+</code></pre></div><p>Note that this time on the <code>__init__</code> I set the value <code>42</code> to the <code>_x</code> underscore version to set it to a value at initialization and never allow it to change.</p>
+<p>I think this is it for property.</p>
+<p>If you inspect source code in GitHub you will see it a lot and now you know what is going on when you see it.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Duck Typing in Python</title>
+            <link>https://pedrojunqueira.github.io/posts/duck-typing/</link>
+            <pubDate>Mon, 07 Sep 2020 06:20:14 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/duck-typing/</guid>
+            <description>In OOP (Object Oriented Programming) there is a concept called Polymorphism which allow the use of objects of different types through a uniform interface.
+Since Python allow OOP constructs Polymorphism applies.
+As Python is a dynamic type language a method didn’t using an interface does not need to know about about the interface type, only it&amp;rsquo;s abstract details. The interface will work just by making suer the arguments match when it is used.</description>
+            <content type="html"><![CDATA[<p>In OOP (Object Oriented Programming) there is a concept called Polymorphism which allow the use of objects of different types through a uniform interface.</p>
+<p>Since Python allow OOP constructs Polymorphism applies.</p>
+<p>As Python is a dynamic type language a method didn’t using an interface does not need to know about about the interface type, only it&rsquo;s abstract details. The interface will work just by making suer the arguments match when it is used.</p>
+<p>This Polymorphism in Python is called duck typing.</p>
+<p>Duck typing is in turn named after the “duck test”, attributed to <a href="https://en.wikipedia.org/wiki/James_Whitcomb_Riley">James Whitcomb Riley</a>, the American poet.</p>
+<blockquote>
+<p>&ldquo;When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.&rdquo;</p>
+</blockquote>
+<p>Better to demonstrate that with an example.</p>
+<p>This I got from the book <code>The Python - Apprentice</code>. This actually an excellent series of 3 books where you can get it <a href="https://leanpub.com/b/python-craftsman">here</a></p>
+<p>Lets say you have a <code>Flight</code> <code>class</code> which records data of a flight and one of the methods is to print the boarding pass of the passengers</p>
+<p>So a decoupled implementation of the <code>make_board_pass</code> method would be:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Flight</span>:
+
+<span style="color:#75715e"># ...</span>
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_boarding_cards</span>(self, card_printer):
+    <span style="color:#66d9ef">for</span> passenger, seat <span style="color:#f92672">in</span> sorted(self<span style="color:#f92672">.</span>_passenger_seats()):
+      card_printer(passenger, seat, self<span style="color:#f92672">.</span>number(), self<span style="color:#f92672">.</span>aircraft_model())
+</code></pre></div><p>Given the duck typing of Python we can write a <code>card_printer</code> function that would work &ldquo;inside&rdquo; the <code>make_boarding_cards</code> method and it does not need to know the type of the <code>card_printer</code> object as long it looks like a card_printer interface it will be treated as one.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">console_card_printer</span>(passenger, seat, flight_number, aircraft):
+  output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;| Name: {0}&#34;</span> \
+      <span style="color:#e6db74">&#34; Flight: {1}&#34;</span> \
+      <span style="color:#e6db74">&#34; Seat:{2}&#34;</span> \
+      <span style="color:#e6db74">&#34; Aircraft: {3}&#34;</span> \
+      <span style="color:#e6db74">&#34; |&#34;</span><span style="color:#f92672">.</span>format(passenger, flight_number, seat, aircraft)
+  banner <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">*</span> (len(output) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;+&#39;</span> border <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;|&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">*</span> (len(output) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;|&#39;</span> lines <span style="color:#f92672">=</span> [banner, border,   output, border, banner] card <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join(lines)
+  <span style="color:#66d9ef">print</span>(card) 
+  <span style="color:#66d9ef">print</span>()
+</code></pre></div><p>So then we can inject the <code>console_card_printer</code> in the <code>make_boarding_cards</code> method</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> airline <span style="color:#f92672">import</span> Flight, console_card_printer
+
+f <span style="color:#f92672">=</span> Flight(<span style="color:#e6db74">&#34;BA758&#34;</span>, Aircraft(<span style="color:#e6db74">&#34;G-EUPT&#34;</span>, <span style="color:#e6db74">&#34;Airbus A319&#34;</span>,
+num_rows<span style="color:#f92672">=</span><span style="color:#ae81ff">22</span>, num_seats_per_row<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>)) 
+
+f<span style="color:#f92672">.</span>allocate_seat(<span style="color:#e6db74">&#39;12A&#39;</span>, <span style="color:#e6db74">&#39;Guido van Rossum&#39;</span>)
+
+f<span style="color:#f92672">.</span>make_boarding_cards(console_card_printer)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">+-------------------------------------------------------------------------+ 
+|                                                                         | 
+| Name: Guido van Rossum Flight: BA758 Seat: 12A Aircraft: Airbus A319    |
+|                                                                         |
++-------------------------------------------------------------------------+
+</code></pre></div><p>The advantage of duck typing is that we can design a more loosely coupled program.</p>
+<p>For example if later needed one can write N different card_priters that will produce a different output, say a printer that output a html format or a markdown instead of a console output, and still work without the necessity to change the make_boarding_cards method.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Python regex basics to never forget</title>
+            <link>https://pedrojunqueira.github.io/posts/python_regex_never_forget/</link>
+            <pubDate>Tue, 01 Sep 2020 20:21:51 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/python_regex_never_forget/</guid>
+            <description>I have to confess that regex is a weakness this is why I am writing this post.
+Whenever I can I try to avoid using regex if the problem can be used in a different way, but sometimes I have to inevitably use regex.
+to import
+import re
+This is the only part that I usually remember :)
+Regex are patters represented by symbols
+for example
+pattern = &amp;#39;a&amp;#39; test_string = &amp;#39;a cat&amp;#39; result = re.</description>
+            <content type="html"><![CDATA[<p>I have to confess that regex is a weakness this is why I am writing this post.</p>
+<p>Whenever I can I try to avoid using regex if the problem can be used in a different way, but sometimes I have to inevitably use regex.</p>
+<p>to import</p>
+<p><code>import re</code></p>
+<p>This is the only part that I usually remember :)</p>
+<p>Regex are patters represented by symbols</p>
+<p>for example</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span>
+
+test_string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a cat&#39;</span>
+
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(pattern, test_string)
+<span style="color:#75715e"># Output: &lt;re.Match object; span=(0, 1), match=&#39;a&#39;&gt;</span>
+</code></pre></div><p>Usually the method match is not very useful but there is a better one <code>re.findall</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#75715e"># Program to extract numbers from a string</span>
+
+<span style="color:#f92672">import</span> re
+
+string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;hello 12 hi 89. Howdy 34&#39;</span>
+pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\d+&#39;</span>
+
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>findall(pattern, string) 
+<span style="color:#66d9ef">print</span>(result)
+
+<span style="color:#75715e"># Output: [&#39;12&#39;, &#39;89&#39;, &#39;34&#39;]</span>
+
+</code></pre></div><p>it returns a list with all matches of the pattern</p>
+<p>Another useful one is <code>re.sub</code> to substitute</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#75715e"># Program to remove all whitespaces</span>
+<span style="color:#f92672">import</span> re
+
+<span style="color:#75715e"># multiline string</span>
+string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;abc 12</span><span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span><span style="color:#e6db74">de 23 </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> f45 6&#39;</span>
+
+<span style="color:#75715e"># matches all whitespace characters</span>
+pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\s+&#39;</span>
+
+<span style="color:#75715e"># empty string</span>
+replace <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+
+new_string <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>sub(pattern, replace, string) 
+<span style="color:#66d9ef">print</span>(new_string)
+
+<span style="color:#75715e"># Output: abc12de23f456</span>
+</code></pre></div><p>Different from match that match exactly the search lookup if there is a pattern in the string</p>
+<p><code>re.search</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+
+string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Python is fun&#34;</span>
+
+<span style="color:#75715e"># check if &#39;Python&#39; is at the beginning</span>
+match <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;\APython&#39;</span>, string)
+
+<span style="color:#66d9ef">if</span> match:
+  <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;pattern found inside the string&#34;</span>)
+<span style="color:#66d9ef">else</span>:
+  <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;pattern not found&#34;</span>)  
+
+<span style="color:#75715e"># Output: pattern found inside the string</span>
+</code></pre></div><p>No finalise, and this is a matter os preference, is the compile object</p>
+<p>in the example above you could have done the re.search by</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">&#39;\APython&#39;</span>)
+p<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#34;Python is fun&#34;</span>)
+
+<span style="color:#75715e"># Output: &lt;re.Match object; span=(0, 6), match=&#39;Python&#39;&gt;</span>
+</code></pre></div><p>I got almost if not all examples from programviz which is a great resource and the best on the internet I could find on regex documentation.</p>
+<p>For example of patterns it can be consulted <a href="https://www.programiz.com/python-programming/regex">here</a></p>
+<p>also there is a very good regex in &ldquo;general&rdquo; site where you can test your patterns and there is also a cheat sheet</p>
+<p><a href="https://regexr.com/">https://regexr.com/</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>How to download data from Strava with Python</title>
+            <link>https://pedrojunqueira.github.io/posts/how_to_download_data_strava/</link>
+            <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/how_to_download_data_strava/</guid>
+            <description>I am a cyclist enthusiast and you may be if you are reading this blog post.
+Strava has a nice API which gives access to the data recorded on the application.
+Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer. The API, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user.</description>
+            <content type="html"><![CDATA[<p>I am a cyclist enthusiast and you may be if you are reading this blog post.</p>
+<p>Strava has a nice <a href="https://developers.strava.com/docs/reference/">API</a> which gives access to the data recorded on the application.</p>
+<p>Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer.
+The  <a href="https://en.wikipedia.org/wiki/API">API</a>, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user.</p>
+<p>The Strava API story is very close to my heart when it comes to learn how to program and it was a huge driver for me.</p>
+<p>When I first went through the documentation of the API it was really hard to understand as I had nearly zero programming knowledge. Then it drove me to really start learning programming and the whole ecosystem around programming like web, networking, deployment and etc.</p>
+<p>I did some research and found a package <code>stravaio</code> that really helped me on how to download the data and it was the first time I had to look into a package source code, because I found a bug and posted an issue that the maintainer of the package end up <a href="https://github.com/sladkovm/stravaio/issues/4">fixing it</a>.</p>
+<p>I remember that it was the first time I had to use <code>defaultdictionary</code> from <code>collections</code> to parse a <code>JSON</code> of nested dictionaries to build a data structure that <code>pandas</code> would take to render a <code>DataFrame</code> object.</p>
+<p>So this post will briefly show you how you can use this <code>stravaio</code> package to download your activities. You can do much more than that, just look for the <a href="https://github.com/sladkovm/stravaio">&ldquo;documentation&rdquo;</a>.</p>
+<p>Here are the steps and I will walk through the code and post the whole code at the end</p>
+<ol>
+<li>Import the packages</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
+</code></pre></div><ol start="2">
+<li>Get your secrets from environment variables</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
+client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
+</code></pre></div><p>To make API calls to Strava you need to have a registered application. This can be easily done on your <a href="https://developers.strava.com/docs/getting-started/#account">Strava account</a>. Here is the instructions to get your CLIENT_ID and CLIENT_SECRET. Please keep this with you.</p>
+<ol start="3">
+<li>Generate a token by Authenticating with Strava oauth2</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
+access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
+</code></pre></div><p>This was a part that it took me a while to get my head around. Strava improved the documentation a lot since the first time I read. They even drew a chart flow for <a href="https://developers.strava.com/docs/getting-started/#oauth">absolute dummies</a>.</p>
+<p>What it actually does is a 2 way authentication.</p>
+<p>First you make a request to have access to a athlete data then the athlete log to his account by giving you permission you asked for on the request then it return you a JSON with a temporary access token and a refresh token where you then can make calls to the API and get data.
+The permission given to you is based on the context you asked (e.g. only read or read and write)
+In this example you would be doing it with your own account and I am sure you will allow yourself do access your own data.</p>
+<ol start="4">
+<li>Create a client object and call get_logged_in_athlete_activities methods</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
+date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
+activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
+</code></pre></div><p>Now that you have the token you can create a client object from the StravaIO class which handles the session and you can then call the method that fetch the athlete activity. For more details about the class here is the <a href="https://github.com/sladkovm/stravaio/blob/master/stravaio.py">source code</a></p>
+<ol start="5">
+<li>Finally transform into a pandas DataFrame and export to csv or other format you like.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df_data <span style="color:#f92672">=</span> defaultdict(list)
+
+<span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
+    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
+        df_data[k]<span style="color:#f92672">.</span>append(v)
+
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
+
+df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
+</code></pre></div><p>The <code>activity</code> variable is a <code>Stravaio</code> object which has a method <code>to_dict()</code> that makes life much easier.
+It returns a list of dictionaries. This is perfect scenario to use defaultdict as a list so it can be easily ingested by pandas</p>
+<p>Here is the full script</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
+
+
+client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
+client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
+
+token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
+access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
+
+client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
+date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
+activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
+
+df_data <span style="color:#f92672">=</span> defaultdict(list)
+
+<span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
+    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
+        df_data[k]<span style="color:#f92672">.</span>append(v)
+
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
+
+df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
+</code></pre></div><p>Even though the above script is relatively simple it is not for the common citizen that does not code and is not enthusiast about Python like you and me</p>
+<p>For this I am currently developing a Web app that downloads your data into a csv file in 3 simple clicks.</p>
+<p>You can access it <a href="http://www.download-data.com/">here</a>.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>How to create a Kubernetes Secret</title>
+            <link>https://pedrojunqueira.github.io/posts/kubernetes_secrets/</link>
+            <pubDate>Wed, 26 Aug 2020 06:38:52 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/kubernetes_secrets/</guid>
+            <description>Creating secret imperatively
+kubectl create secret generic \  &amp;lt;secret name&amp;gt; --from-literal=&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt; kubectl explain pods --recursive | less 
+kubectl explain pods --recursive | grep -A8 envFrom
+create secrete base64
+$ echo -n &amp;quot;secret&amp;quot; | base64 c2VjcmV0 decode
+$ echo -n &amp;quot;c2VjcmV0&amp;quot; | base64 --decode secret Secret definition file
+apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod</description>
+            <content type="html"><![CDATA[<p>Creating secret imperatively</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    &lt;secret name&gt; --from-literal<span style="color:#f92672">=</span>&lt;key&gt;<span style="color:#f92672">=</span>&lt;value&gt;
+</code></pre></div><p><code>kubectl explain pods --recursive | less </code></p>
+<p><code>kubectl explain pods --recursive | grep -A8 envFrom</code></p>
+<p>create secrete base64</p>
+<pre><code>$ echo -n &quot;secret&quot; | base64
+c2VjcmV0
+</code></pre><p>decode</p>
+<pre><code>$ echo -n &quot;c2VjcmV0&quot; | base64 --decode
+secret
+</code></pre><p>Secret definition file</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Secret
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: mysecret
+<span style="color:#66d9ef">type</span>: Opaque
+<span style="color:#66d9ef">data</span>:
+  <span style="color:#66d9ef">username</span>: YWRtaW4=
+  <span style="color:#66d9ef">password</span>: MWYyZDFlMmU2N2Rm
+  
+</code></pre></div><p>injecting in through a volume in a pod</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Pod
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: secret-test-pod
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">containers</span>:
+    - <span style="color:#66d9ef">name</span>: test-container
+      <span style="color:#66d9ef">image</span>: nginx
+      <span style="color:#66d9ef">volumeMounts</span>:
+        <span style="color:#75715e"># name must match the volume name below</span>
+        - <span style="color:#66d9ef">name</span>: secret-volume
+          <span style="color:#66d9ef">mountPath</span>: /etc/secret-volume
+  <span style="color:#75715e"># The secret data is exposed to Containers in the Pod through a Volume.</span>
+  <span style="color:#66d9ef">volumes</span>:
+    - <span style="color:#66d9ef">name</span>: secret-volume
+      <span style="color:#66d9ef">secret</span>:
+        <span style="color:#66d9ef">secretName</span>: mysecret        
+</code></pre></div><p>Injecing as environment variable</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Pod
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: envfrom-secret
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">containers</span>:
+  - <span style="color:#66d9ef">name</span>: envars-test-container
+    <span style="color:#66d9ef">image</span>: nginx
+    <span style="color:#66d9ef">envFrom</span>:
+    - <span style="color:#66d9ef">secretRef</span>:
+        <span style="color:#66d9ef">name</span>: test-secret
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>Pushing image to local minishift registry</title>
+            <link>https://pedrojunqueira.github.io/posts/pushing_image_to_local_minishift_registry/</link>
+            <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/pushing_image_to_local_minishift_registry/</guid>
+            <description>I am learning OpenShift as I am using it more and more at work and it has been great fun and I am really enjoying the DevOps space which is giving me new super powers as a developer.
+It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases.</description>
+            <content type="html"><![CDATA[<p>I am learning OpenShift as I am using it more and more at work and it has been great fun and I am really enjoying the DevOps space which is giving me new super powers as a developer.</p>
+<p>It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases. It is just a matter of getting used to it.</p>
+<p>OpenShift has a command line <code>oc</code> which most of the <code>kubectl</code> commands will work.</p>
+<p>This post is a walk through on hot to push an image to a local registry.</p>
+<p>I am testing a project to deploy airflow in openshift at work and here is my lab 😀.</p>
+<p>To learn this I am using a template I found in <a href="https://github.com/kbristow/airflow-openshift">GitHub</a></p>
+<p>This project is using a template and it is assuming that the images need to be already pushed to the project local registry.</p>
+<p>What you need to do first is to make sure your Docker is activated in Minishift</p>
+<p>Assuming you are starting from the absolute zero the steps are.</p>
+<ol>
+<li>Start Minishift</li>
+</ol>
+<p><code>minishift start</code></p>
+<ol start="2">
+<li>Configure <a href="https://docs.okd.io/3.11/minishift/using/docker-daemon.html">Minishift Docker Daemon</a></li>
+</ol>
+<p><code>minishift docker-env</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export DOCKER_TLS_VERIFY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>
+export DOCKER_HOST<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tcp://192.168.99.101:2376&#34;</span>
+export DOCKER_CERT_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/Users/john/.minishift/certs&#34;</span>
+export DOCKER_API_VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.24&#34;</span>
+</code></pre></div><p>Run this command to configure your shell:</p>
+<p><code>eval $(minishift docker-env)</code></p>
+<p>to test check processes</p>
+<p><code>docker ps</code></p>
+<p>You should see a lot of things running</p>
+<p>Also list the images</p>
+<p><code>docker image ls</code></p>
+<p>you should see only image of your minishift projects and registry</p>
+<ol start="3">
+<li>Login a a developer</li>
+</ol>
+<p><code>oc login</code></p>
+<ol start="4">
+<li>Login to your local minishift register</li>
+</ol>
+<p><code>docker login -u developer -p $(oc whoami -t) $(minishift openshift registry)</code></p>
+<ol start="5">
+<li>Pull an existing image from a registry or build your image from a Docker file</li>
+</ol>
+<p>This step depends what you wanted to do.</p>
+<p>In my case I like to keep my images in Docker Hub then what I do is to pull the image from Docker hub</p>
+<p><code>docker pull dockerhubid/image:tag</code></p>
+<ol start="6">
+<li>Tag the image with your local minishift register</li>
+</ol>
+<p><code>docker tag dockerhubid/image:tag $(minishift openshift registry)/myproject/image:tag</code></p>
+<ol start="7">
+<li>Push image</li>
+</ol>
+<p><code>docker push $(minishift openshift registry)/myproject/image:tag</code></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Kubernetes Cheat Sheet</title>
+            <link>https://pedrojunqueira.github.io/posts/kubernetes-cheat-sheet/</link>
+            <pubDate>Fri, 10 Jul 2020 06:02:26 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/kubernetes-cheat-sheet/</guid>
+            <description>This is the most handy Kubernetes kubectl commands Pods List all pods
+kubectl get pods
+Create a pod from CLI
+kubectl run nginx --image=nginx
+Describe the pod details
+kubectl describe pod &amp;lt;name&amp;gt;
+Get pods listed with more details e.g. which nodes are running
+kubectl get pods -o wide
+Open a vim editor to edit the pod yaml definition file
+kubeclt edit pod &amp;lt;podname&amp;gt;
+Create/Reconfigure a pod based on a manifest file</description>
+            <content type="html"><![CDATA[<h2 id="this-is-the-most-handy-kubernetes-kubectl-commands">This is the most handy Kubernetes kubectl commands</h2>
+<h3 id="pods">Pods</h3>
+<p>List all pods</p>
+<p><code>kubectl get pods</code></p>
+<p>Create a pod from CLI</p>
+<p><code>kubectl run nginx --image=nginx</code></p>
+<p>Describe the pod details</p>
+<p><code>kubectl describe pod &lt;name&gt;</code></p>
+<p>Get pods listed with more details e.g. which nodes are running</p>
+<p><code>kubectl get pods -o wide</code></p>
+<p>Open a vim editor to edit the pod yaml definition file</p>
+<p><code>kubeclt edit pod &lt;podname&gt;</code></p>
+<p>Create/Reconfigure a pod based on a manifest file</p>
+<p><code>kubectl apply -f manifest.yaml</code></p>
+<p>Display the contents of a running pod yaml file</p>
+<p><code>kubectl get pod &lt;pod-name&gt; -o yaml</code></p>
+<p>Create a definition file from an existing one</p>
+<p><code>kubectl get pod &lt;pod-name&gt; -o yaml &gt; pod-definition.yaml</code></p>
+<h2 id="creating-objects-imperatively">Creating objects imperatively</h2>
+<p><code>kubectl run nginx --image=nginx</code></p>
+<p>With Labels</p>
+<p><code>kubectl run redis --image=redis:alpine -l tier=db</code></p>
+<p>Create a service</p>
+<p><code>kubectl expose pod redis --port 6370 --name redis-service -l tier=db</code></p>
+<p>Deployment</p>
+<p><code>kubectl create deployment webapp --image=kodekloud/webapp-color</code></p>
+<p>Scale deployement</p>
+<p><code>kubectl scale deployment/webapp --replicas=3</code></p>
+<p>Create a pod and expose a port</p>
+<p><code>kubectl run custom-nginx --image=nginx --port=8080</code></p>
+<p>Create a namespace</p>
+<p><code>kubectl create ns &lt;name&gt;</code></p>
+<p>Pipe deployment to YAML file</p>
+<p><code>kubectl create deployment redis-deploy --namespace=dev-ns --image redis --dry-run=client -o yaml &gt; deploy.yaml</code></p>
+<h3 id="replica-sets">Replica Sets</h3>
+<p><code>kubectl get replicasets</code></p>
+<p>use the same commands as pod for describe, edit, delete and also apply manifests</p>
+<h3 id="deployments">Deployments</h3>
+<p><code>kubectl create -f deployment.yml</code></p>
+<p>a deployment automatically creates a replicaset</p>
+<p>to see all objects running in the cluster write</p>
+<p><code>kubectl get all</code></p>
+<h3 id="output-format">Output format</h3>
+<p>the kubectl output can be specified with the <code>-o</code> argument other than receiving text only</p>
+<p>Json</p>
+<p><code>-o json</code></p>
+<p>Just the name</p>
+<p><code>-o name</code></p>
+<p>text with a few extra detail</p>
+<p><code>-o wide</code></p>
+<p>Yaml</p>
+<p><code>-o yaml</code></p>
+<h2 id="namespaces">Namespaces</h2>
+<p>Create a name space</p>
+<p><code>kubectl create namespace &lt;name&gt;</code></p>
+<p>get resources in a particular namespace</p>
+<p><code>kubectl get pods --namespace &lt;namespace name&gt;</code></p>
+<p>Change namespace context to list resources on the set namespace</p>
+<p><code>kubectl config set-context $(kubectl config current-context) --namespace=dev</code></p>
+<p>get resources in all namespaces</p>
+<p><code>kubectl get pods --all-namespaces</code></p>
+<h2 id="secrets">Secrets</h2>
+<p>Create a secret</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    &lt;secret name&gt; --from-literal<span style="color:#f92672">=</span>&lt;key&gt;<span style="color:#f92672">=</span>&lt;value&gt;
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>Basic CLI commands for Openshift-Minishift</title>
+            <link>https://pedrojunqueira.github.io/posts/minishift_basic_cli/</link>
+            <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/minishift_basic_cli/</guid>
+            <description>Here is a post with the absolute basic commands that I always forget Getting the export Path of oc CLI tool minishift oc-env
+export PATH=&amp;quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&amp;quot;
+Logging in to log in
+oc login -u &amp;lt;user&amp;gt; -p &amp;lt;password&amp;gt;
+Deploy an application from git oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp
+login as sys:admin oc login -u system:admin
+get users
+oc get users
+make an user called administrator a system admin
+oc adm policy add-cluster-role-to-user cluster-admin administrator</description>
+            <content type="html"><![CDATA[<h2 id="here-is-a-post-with-the-absolute-basic-commands-that-i-always-forget">Here is a post with the absolute basic commands that I always forget</h2>
+<h3 id="getting-the-export-path-of-oc-cli-tool">Getting the export Path of oc CLI tool</h3>
+<p><code>minishift oc-env</code></p>
+<p><code>export PATH=&quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&quot;</code></p>
+<h3 id="logging-in">Logging in</h3>
+<p>to log in</p>
+<p><code>oc login -u &lt;user&gt; -p &lt;password&gt;</code></p>
+<h3 id="deploy-an-application-from-git">Deploy an application from git</h3>
+<p><code>oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp</code></p>
+<h2 id="login-as-sysadmin">login as sys:admin</h2>
+<p><code>oc login -u system:admin</code></p>
+<p>get users</p>
+<p><code>oc get users</code></p>
+<p>make an user called administrator a system admin</p>
+<p><code>oc adm policy add-cluster-role-to-user cluster-admin administrator</code></p>
+<p>now the administrator user is adm and see all the projects</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Data driven business vs. Business model driven by data</title>
+            <link>https://pedrojunqueira.github.io/posts/data-driven-vs-model-driven/</link>
+            <pubDate>Fri, 12 Jun 2020 05:56:21 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/data-driven-vs-model-driven/</guid>
+            <description>What business admit that is not driven by data?
+Even if some argue that most of the business make decisions on intuition at least some understanding of the data is needed such as how much is in the bank, what is the sales ytd, how many staff there are in the books, are we meeting budget.
+No one just make decisions on a whim and in my view to some degree all companies are data driven.</description>
+            <content type="html"><![CDATA[<p>What business admit that is not driven by data?</p>
+<p>Even if some argue that most of the business make decisions on intuition at least some understanding of the data is needed such as how much is in the bank, what is the sales ytd, how many staff there are in the books, are we meeting budget.</p>
+<p>No one just make decisions on a whim and in my view to some degree all companies are data driven. I agree that some companies use more evidence and are more mature in their process when it comes to managing data to make data driven decisions. Therefore data driven decisions are the norm and I believe that companies that do not act accordingly are short lived.</p>
+<p>But wait if all companies are to some level data driven how one can one differentiate?</p>
+<p>How data can transform a company and make it more competitive?</p>
+<p>So to be clear here. When I said that a company is data driven It means that before a company making a decision or take a path they look at the data to support the decision full stop. Until then there is nothing different in the company strategy and business is managed as usual irrespective it they used pen and paper or a dashboard hosted in the cloud.</p>
+<p>The new concept that I wanted to emphasise and that can revolutionise a company is when their business model is data drive i.e. data is the main asset of the company and without it the company cannot exist. A mission woven around data is the very reason of their existence.</p>
+<p>Most companies that are just data driven can go about without a Business Intelligence team or even a highly specialized Machine Learning and Software Engineering team that are relentlessly developing new tools and none of that is essential to be data driven. The good old excel and export to csv, copy and paste to word document does the job. This is certainly not the most efficient way but it is certainly feasible and obviously cheaper.</p>
+<p>They question is. How long a company can sustain competitivity by just being data driven?</p>
+<p>Different to that are business models that are data driven such as Uber, though. The data is vital for the business to function because it is only possible when Uber knows where their customers and drivers are and efficiently adjust supply and demand using algorithms and AI. They simple cannot run the business on pen and paper or even spreadsheets alone.</p>
+<p>Amazon, another example, posses the knowledge of customer habits stored in databases and can advertise accordingly as well as develop and test products that are working. It is all based on the data and the platform that runs all automated intelligence. This means that all they do as a business is around their data strategy, infra structure and processes.</p>
+<p>The companies that are business model data driven not simply pull data from somewhere somehow analyse and make decisions. This is just data driven. What they do is to build a whole data ecosystem.</p>
+<p>It goes beyond the vanilla business intelligence of ingesting data in a warehouse and displaying the data in a Dashboard.</p>
+<p>A Business Model Driven by Data has an ecosystem where:</p>
+<ul>
+<li>Machine Learning is in production in multiples systems at back and front of the house</li>
+<li>Data integration is streaming and live</li>
+<li>All Organisational software development happen around the Data Architecture</li>
+<li>Data Governance is across the board</li>
+<li>C-Suite is data savvy and have clear understanding of AI its use cases and potential</li>
+<li>Data Quality is measured</li>
+<li>There is a presence of multiple analytics stores (beyond vanilla SQL) i.e. Data Lake, No SQL, Columnar etc.</li>
+<li>There is Data Virtualization and a Common Data Model</li>
+<li>Doing Predictive Analytics is part of multiple business processes to increase productivity and sales</li>
+</ul>
+<p>Which side your company wants to gravitate towards?</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Understanding Docker volumes with a practical example</title>
+            <link>https://pedrojunqueira.github.io/posts/understand-docker-volume/</link>
+            <pubDate>Fri, 17 Apr 2020 06:55:35 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/understand-docker-volume/</guid>
+            <description>Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
+This post is not a What is Docker one or an introduction.
+You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for.</description>
+            <content type="html"><![CDATA[<p>Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.</p>
+<p>This post is not a What is Docker one or an introduction.</p>
+<p>You can read it <a href="https://docs.docker.com/get-started/overview/">here</a> or just watch this very good video from <a href="https://www.youtube.com/watch?v=eGz9DS-aIeY&amp;t=494s">NetworkChuck</a> then you will have a good grasp of its core concepts and what this is for.</p>
+<p>My interest in Docker comes from my data analysis and data scientist background.</p>
+<p>When I started to develop web services applications for machine learning in production Docker came very handy.</p>
+<p>One issue that I came across when learning docker was that a Docker container life cycle is ephemeral because all its components like data, writable layer, network, ports set up and etc are gone once the container is gone, including all the data.</p>
+<p>What!?</p>
+<p>Yes.</p>
+<p>Just to illustrate an example. Say you developed an app in Flask that has a back end database in psql and you decide to containerize this and ship. It all works fine and data gets stores inside the container. However, eventually you wanted to do some changes in the app like add new features of fix some bugs etc. Then it is necessary to rebuild the image. You know what happens when this is done?</p>
+<p>All the data that was inside the old container is gone</p>
+<p>How do we solve this?</p>
+<p>Well this is why it is important to understand volumes because this is the way you can persist data of your project that lives outside the life cycle of your container.</p>
+<p>There are 2 ways to solve this problem, actually 3 but will talk about 2 here.</p>
+<ol>
+<li>Volume</li>
+<li>Bind Mount</li>
+</ol>
+<p>What both of the solutions do is to make sure that any part of your container data, and you define what, is actually outside the container because there is a &ldquo;link&rdquo; that allow your container access this data.</p>
+<p><img src="https://docs.docker.com/storage/images/types-of-mounts-volume.png" alt="Docker">
+<a href="https://docs.docker.com/storage/volumes/">source</a></p>
+<p>The difference from volume and bind mount is that:</p>
+<ul>
+<li>Volume lives in the host machine, inside Docker file system, and it is the recommended option by Docker and there are some advantages and it is listed below why.</li>
+<li>Bind Mount also lives in the host machine however the developer put is wherever he/she wants and there are some limitations</li>
+</ul>
+<p>According to Docker <a href="https://docs.docker.com/storage/volumes/">documentation</a> here are the advantages of Volume over Bind Mount</p>
+<ul>
+<li>Volumes are easier to back up or migrate than bind mounts.</li>
+<li>You can manage volumes using Docker CLI commands or the Docker API.</li>
+<li>Volumes work on both Linux and Windows containers.</li>
+<li>Volumes can be more safely shared among multiple containers.</li>
+<li>Volume drivers let you store volumes on remote hosts or cloud providers, to encrypt the contents of volumes, or to add other functionality.</li>
+<li>New volumes can have their content pre-populated by a container</li>
+</ul>
+<p>I will give an example now, using volumes, so this may help you to solidify your understanding.</p>
+<p>I will create 3 containers with a Postgresql image running in different ports in the development machine, however all those 3 containers you share the same volume i.e., the same data. The example is just for illustration of how volumes work.</p>
+<p>You do <strong>not</strong> need to have a Postgresql instance installed on your host/development system and all that you need is Docker installed.</p>
+<p>Just check if you have Docker already:</p>
+<pre><code>$docker -v
+Docker version 19.03.8, build afacb8b
+</code></pre><p>If not it is easy to install <a href="https://docs.docker.com/get-docker/">Docker</a>.</p>
+<p>For this lets create a folder to test those concepts</p>
+<p><code>mkdir docker_volume</code>
+then cd into it
+<code>cd docker_volume</code></p>
+<p>create a shell script file so it will save some typing</p>
+<p><code>touch commands.sh</code></p>
+<p>Then write on the .sh file</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>
+docker run --name psql1 -p 5435:5432 -d <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    postgres
+</code></pre></div><p>What the command this sequence of command do is</p>
+<p><code>run</code> to run a countainer
+<code>--name</code> flag to name the container psql1
+<code>-p</code> determines the port where &lt;host_port&gt;:&lt;container_port&gt;
+<code>-e</code> are the environement variables for the container and define the password, user and database name</p>
+<p><code>v</code> is the &lt;name_volume&gt;:<!-- raw HTML omitted --></p>
+<p>and finally the base image is the latest <code>postgres</code> image from <a href="https://hub.docker.com/_/postgres">Docker Hub</a></p>
+<p>Before run the scrip you need to give permission to run it so run the command</p>
+<p><code>$ chmod +x commands.sh</code></p>
+<p>then <code>$ ./commands.sh</code></p>
+<p>If you do not have a postgres in your cache it is going to automatically download from Docker Hub and build the image then run the container</p>
+<p>Run the following command to check it container is running</p>
+<pre><code>$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+c2081d77d376        postgres            &quot;docker-entrypoint.s…&quot;   24 seconds ago      Up 23 seconds       0.0.0.0:5435-&gt;5432/tcp   psql1
+</code></pre><p>you will see something like the above</p>
+<p>Then check if the volume was created</p>
+<pre><code>$ docker volume ls
+DRIVER              VOLUME NAME
+local               pgdata
+</code></pre><p>You can use any client to check it and lets do it now.</p>
+<p>First from inside the container</p>
+<p><code>$ docker exec -it psql1 psql -p 5432  -h 0.0.0.0 -U postgres</code></p>
+<pre><code>$ docker exec -it psql1 psql -h 0.0.0.0 -U postgres
+psql (12.2 (Debian 12.2-2.pgdg100+1))
+Type &quot;help&quot; for help.
+
+postgres=#
+</code></pre><p>Now you are inside the container using the psql client</p>
+<p>write the command <code>\l</code> to list the database then connect to the exampledb by</p>
+<pre><code>postgres-# \c exampledb;
+You are now connected to database &quot;exampledb&quot; as user &quot;postgres&quot;.
+</code></pre><p>create a table</p>
+<pre><code>CREATE TABLE account(
+	user_id serial PRIMARY KEY,
+	username VARCHAR (50) UNIQUE NOT NULL,
+	email VARCHAR (355) UNIQUE NOT NULL
+);
+</code></pre><p><code>dt</code> to list tables</p>
+<pre><code>exampledb=# \dt
+          List of relations
+ Schema |  Name   | Type  |  Owner   
+--------+---------+-------+----------
+ public | account | table | postgres
+(1 row)
+</code></pre><p>lets add some data</p>
+<pre><code>INSERT INTO account (username, email) 
+values ('John', 'john@email.com');
+</code></pre><p>then check the data by <code>SELECT</code> statement</p>
+<pre><code>exampledb=# select * from account;
+ user_id | username |     email      
+---------+----------+----------------
+       1 | John     | john@email.com
+(1 row)
+</code></pre><p>ok now quit <code>\q</code></p>
+<p>Now that the fun starts</p>
+<p>change the .sh scrip to add more containers</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --name psql2 -p 5437:5432 -d <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    postgres
+
+</code></pre></div><p>everything is the same but the name of the container and the port</p>
+<p>note that both container are sharing the SAME volume</p>
+<p>run the bash script again</p>
+<p><code>./commands.sh</code></p>
+<p>note that there are 2 containers running</p>
+<pre><code>$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+e504b08a8d2a        postgres            &quot;docker-entrypoint.s…&quot;   3 seconds ago       Up 3 seconds        0.0.0.0:5437-&gt;5432/tcp   psql2
+c2081d77d376        postgres            &quot;docker-entrypoint.s…&quot;   18 minutes ago      Up 18 minutes       0.0.0.0:5435-&gt;5432/tcp   psql1
+</code></pre><p>and only one volume</p>
+<pre><code>$ docker volume ls
+DRIVER              VOLUME NAME
+local               pgdata
+</code></pre><p>Now lets get inside the container psql2 and connect to the database</p>
+<p><code>docker exec -it psql2 psql -p 5432  -h 0.0.0.0 -U postgres</code></p>
+<p>connect to the database <code>\c exampledb;</code></p>
+<p>query the account table</p>
+<pre><code>exampledb=# select * from account;
+ user_id | username |     email      
+---------+----------+----------------
+       1 | John     | john@email.com
+(1 row)
+</code></pre><p>now lets create another record</p>
+<pre><code>INSERT INTO account (username, email) 
+values ('Jane', 'jane@email.com');
+</code></pre><p>quit <code>\q</code></p>
+<p>Now lets stop the containers and remove them</p>
+<pre><code>$ docker stop psql1
+$ docker stop psql2
+$ docker rm psql1
+$ docker rm psql2
+</code></pre><p>check if they where removed</p>
+<pre><code>$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre><p>We did not removed the volume</p>
+<pre><code>$ docker volume ls
+DRIVER              VOLUME NAME
+local               pgdata
+</code></pre><p>We are now creating another container called psql3 and &ldquo;connected&rdquo; to the same volume</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>
+docker run --name psql3 -p 5439:5432 -d <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    postgres
+</code></pre></div><p>Now instead of connecting inside the container we are connecting it from command line from the host machine.
+In this case you need to have either the psql cli installed in your system or use any other postgersql client tool.
+I now need to use the port <code>-p 5439</code> because it is the port in the host system that is bound to the default postgres port 5432.</p>
+<pre><code>$ psql -p 5439  -h localhost -U postgres
+Password for user postgres: 
+psql (12.1, server 12.2 (Debian 12.2-2.pgdg100+1))
+Type &quot;help&quot; for help.
+
+postgres=# 
+
+</code></pre><p>now it is the hour of reckoning and lets check if we can access the data</p>
+<pre><code>postgres=# \c exampledb;
+psql (12.1, server 12.2 (Debian 12.2-2.pgdg100+1))
+You are now connected to database &quot;exampledb&quot; as user &quot;postgres&quot;.
+exampledb=# \dt
+          List of relations
+ Schema |  Name   | Type  |  Owner   
+--------+---------+-------+----------
+ public | account | table | postgres
+(1 row)
+
+exampledb=# select * from account;
+ user_id | username |     email      
+---------+----------+----------------
+       1 | John     | john@email.com
+       2 | Jane     | jane@email.com
+(2 rows)
+</code></pre><p>AMAZING 🤯! THERE YOU HAVE IT!</p>
+<p>Isn&rsquo;t cool?</p>
+<p>The data persisted in the volume and new containers could easily connect to it. Imagine an environment of continued development and the possibilities and flexibility that it brings.</p>
+<p>to clean up your system we can</p>
+<p><code>\q</code> get out of the psql cli tool.</p>
+<p>Stop and remove the containers and volume.</p>
+<pre><code>$ docker stop psql3
+$ docker rm psql3
+$ docker volume rm pgdata
+$ docker volume ls
+</code></pre><p>Did not do the example with bind mount however the principle is the same and the documentation is <a href="https://docs.docker.com/storage/bind-mounts/">here</a></p>
+<p>If you get to here thanks for reading 😀.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>How: to navigate on AWS S3 bucket using CLI</title>
+            <link>https://pedrojunqueira.github.io/posts/how-to-s3-cli/</link>
+            <pubDate>Thu, 16 Apr 2020 05:50:27 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/how-to-s3-cli/</guid>
+            <description>Using the command line interface (CLI) can be very intimidating and make one completely lost if you always dealt with graphical drag and drop, click and point interface.
+I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then cls for clear the screen and dir to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then.</description>
+            <content type="html"><![CDATA[<p>Using the command line interface (CLI) can be very intimidating and make one completely lost if you always dealt with graphical drag and drop, click and point interface.</p>
+<p>I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then <code>cls</code> for clear the screen and <code>dir</code> to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then.</p>
+<p>Soon after in the late 80 and early 90 came the windows graphical interface and the OS was loaded on a graphical interface we never had to deal with it again, unless you were a developer or worked with IT and had to configure the computer BIOS or the likes of it.</p>
+<p>Now in Data Science I had to re-learn and get comfortable with.</p>
+<p>All the work I do now is mostly using Linux or Mac which uses bash like command line commands so this is the one I know more commands.</p>
+<p>As for Amazon Web Services (AWS) CLI to access S3 buckets uses the same commands as linux so if you already know how to use linux you already know how to use the AWS CLI.</p>
+<p>Here is a crash course on how to use it to perform the basic operations.</p>
+<h2 id="s3-command-line-crash-course">S3 command line crash course</h2>
+<p>There are 3 useful command that probably you can achieve 99% of what you want</p>
+<ol>
+<li>
+<p>ls (list directory and files)</p>
+</li>
+<li>
+<p>cp (copy files from and to)</p>
+</li>
+<li>
+<p>sync (synchronize directories from and to)</p>
+</li>
+</ol>
+<p>Lets get to is with examples</p>
+<h2 id="1-ls">1. ls</h2>
+<p>examples:</p>
+<ul>
+<li>list your buckets</li>
+</ul>
+<pre><code>$ aws s3 ls
+2013-04-22 20:47:26 veladelivery
+</code></pre><ul>
+<li>list the directory tree of a specific bucket</li>
+</ul>
+<pre><code>$ aws s3 ls s3://veladelivery
+                           PRE FSWM/
+                           PRE GCDBT72635G/
+                           PRE GCDBT8547S/
+                           PRE GCDBT9874/
+                           PRE backtest/
+                           PRE freereport/
+</code></pre><ul>
+<li>if you have spaces in file path name then you need to use &quot;&rdquo; quotes</li>
+</ul>
+<pre><code>$ aws s3 ls &quot;s3://veladelivery/FSWM&quot;
+                           PRE FSWM/
+</code></pre><ul>
+<li>important that a forward slash <code>/</code> is needed at the end of the command to list the files in the directory</li>
+</ul>
+<pre><code>$ aws s3 ls &quot;s3://veladelivery/FSWM/&quot;
+2016-05-19 06:21:24          0 
+2016-08-18 14:51:39   10298199 15.mp4
+2016-08-18 14:52:27   13516259 17.mp4
+2016-08-18 14:35:28    8244901 8.mp4
+2016-05-19 06:22:06     741773 Achieve Financial Freedom - How to create, grow and protect wealth.pdf
+2016-08-01 21:38:09     907255 Achieve Financial FreedomV3.pdf
+2016-08-18 06:18:26     763189 Achieve Financial FreedomV4.pdf
+2016-08-21 17:12:10     763468 Achieve Financial FreedomV5.pdf
+2016-08-26 05:41:11     923941 Achieve Financial FreedomV6.pdf
+2016-08-01 12:34:40     763151 Achieve Financial Freedom_V2.pdf
+2016-08-18 14:54:50    7426172 BONUS.mp4
+2016-05-19 06:23:01     742532 Financial Freedom - Why some people achieve it while others dont.pdf
+2016-08-18 09:38:00 1721777541 IMG_8303.mov
+</code></pre><h2 id="2-cp">2. cp</h2>
+<p>Usually you want to copy a file from a S3 bucket to your local machine or vice versa then will give example for copy to and one for copy from</p>
+<p><strong>copying from S3 to your local machine</strong></p>
+<pre><code>$ aws s3 cp &quot;s3://veladelivery/FSWM/Achieve Financial Freedom_V2.pdf&quot; /Users/pedrojunqueira/Desktop
+download: s3://veladelivery/FSWM/Achieve Financial Freedom_V2.pdf to ../Achieve Financial Freedom_V2.pdf
+</code></pre><p>Note that the to path does not necessarily need to have the file name</p>
+<p>alternatively this command would have worked the same</p>
+<p><code>s3 cp &quot;s3://veladelivery/FSWM/Achieve Financial Freedom_V2.pdf&quot; &quot;/Users/pedrojunqueira/Desktop/Achieve Financial Freedom_V2.pdf&quot;</code></p>
+<h2 id="3-sync">3. sync</h2>
+<p>If your objective is to download a single file or upload only one file surgically <code>cp</code> is the best option but the option I use the most is <code>sync</code> which syncs any local folder to a folder path in my bucket.</p>
+<p>Think of a working area on your computer where you do work save files and etc and at the end of the day you just run the <code>sync</code> command to upload the changes to the cloud. That&rsquo;s what <code>sync</code> is all about.</p>
+<p>the pattern is</p>
+<p><code>aws s3 sync &lt;origin path&gt; &lt;destination path&gt;</code></p>
+<p>here is an example</p>
+<pre><code>$ aws s3 sync s3://veladelivery/backtest /Users/pedrojunqueira/Desktop/mys3bucket
+download: s3://veladelivery/backtest/GCDBT.zip to mys3bucket/GCDBT.zip
+</code></pre><p>in the example above even if I did not have a path /mys3bucket aws would have created one and synced all the content down from the origin path /backtest to that folder. I used different names but a good convention would be to use the same name, but you can name it whatever you want.</p>
+<p>This is just a quick example of what you may need but basically it follows the linux commands for more information look at the <a href="https://docs.aws.amazon.com/cli/latest/reference/s3/">documentation</a>.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Why I started a blog using Hugo?</title>
+            <link>https://pedrojunqueira.github.io/posts/why-started-hugo/</link>
+            <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/why-started-hugo/</guid>
+            <description>This is the second attempt I started a blog and this time is different.
+I once had a blog that was not about data science but I was able to write over 150 blog posts and I had a decent readership and people following it and even launched a paid e-book that gave me some money. Not enough for me to do it full time but it was very encouraging and it kept me motivated to keep me writing.</description>
+            <content type="html"><![CDATA[<p>This is the second attempt I started a blog and this time is different.</p>
+<p>I once had a blog that was not about data science but I was able to write over 150 blog posts and I had a decent readership and people following it and even launched a paid <a href="http://www.velaepavio.com/produtos/landing-page/">e-book</a> that gave me some money. Not enough for me to do it full time but it was very encouraging and it kept me motivated to keep me writing.</p>
+<p>The <a href="www.velaepavio.com">blog</a> is still up but I have not written on it since 2016 when I finally abandoned it. The blog was about trading, more specifically about trading systems. I did not know but, what I was actually doing, was data science.
+I completely lost interest in the subject that I once was passionate about. I read a lot of books and was trying out different things but then for some reason this fizzle out and it died.</p>
+<p>What I realized is that I loved the analysis and writing and testing the systems, and simulating but I just could not trade and gamble my money.</p>
+<p>Eventually I got into data science and also am excited about it and reading and studying tonnes and learning, but I have not been writing and sharing much about it.</p>
+<p>About a year ago, or a bit more, I started a new blog and attempt to start writing about data science and sharing my learning. I confess that it was a complete failure.</p>
+<p>I wrote 13 posts so far. This is 1 post a month on average. This is just not good. I think a good average to build significant content and get the momentum going is about 1 or more post a week. That is about 50 posts per year and over the years this compounds. If I can keep up with it in 3 years I would have 150 posts. In this very example I would be about ~ 50 posts already.</p>
+<p>The reason I failed was that I was not consistent and I was just not disciplined enough and this is the difference from the previous blog. I had the discipline to write almost every day even if I was not filling like.</p>
+<p>With this blog, I made the commitment to wake up and write for 30 minutes no matter what and then edit the content to be published at least once a week.</p>
+<p>Back to the topic of my post is if I already have a <a href="http://petodata.space/">blog</a> with 13 posts why I am starting a new one?</p>
+<p>This is an excellent point and the reason is because I wanted to do everything from my text editor and the CLI as I am getting more into software development. Before I was using Word Press, which I think is a great platform.</p>
+<p>However, Hugo is pushing me to learn new things, get comfortable with CLI and also teaching me markdown syntax and probably will eventually push me to learn golang. 🖖🏻</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>How to get a PySpark environment running on Jupyter</title>
+            <link>https://pedrojunqueira.github.io/posts/data-science-on-docker/</link>
+            <pubDate>Mon, 13 Apr 2020 21:35:16 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/data-science-on-docker/</guid>
+            <description>Python is a magical language. It is just import from * and then the magic start happening&amp;hellip;
+However, not always all run smoothly. Sometimes all that you want is to run code but as part of coding debugging is a constant battle until you get your code running as you wish.
+Besides the debugging, you need to set up your development environment that can be very very tedious. Sometime you just want to code and get your job done and you may spend hours and hours just setting up the environnement, importing packages, creating VMs, exporting environment variables, running shell scrips, going 10x to stack overflow and still struggle to make things work fine, then finally you can start writing some code.</description>
+            <content type="html"><![CDATA[<p>Python is a magical language. It is just import from * and then the magic start happening&hellip;</p>
+<p>However, not always all run smoothly. Sometimes all that you want is to run code but as part of coding debugging is a constant battle until you get your code running as you wish.</p>
+<p>Besides the debugging, you need to set up your development environment that can be very very tedious. Sometime you just want to code and get your job done and you may spend hours and hours just setting up the environnement, importing packages, creating VMs, exporting environment variables, running shell scrips, going 10x to stack overflow and still struggle to make things work fine, then finally you can start writing some code. It can be very frustrating.</p>
+<p>It would be nice if there is a way to just press a button and have everything up and running.</p>
+<p>Well there is a thing and it is called Docker.</p>
+<p>If you don&rsquo;t know what it is in 2020 you may be hiding under a rock.</p>
+<p>The other day I did a course on PySpark on <a href="https://www.udemy.com/course/spark-and-python-for-big-data-with-pyspark/learn/lecture/6666744#overview">Udemy</a> and I watched one of the 4 lectures 20 to 40 min each teaching how to set up Spark on your local machine. Ok you can pick one of the options but it is a long process of like 20 to 40 steps and if you want to do it along the instructor it will take over 1 hour.</p>
+<p>I had started to play with Docker a few months ago and I though that someone somewhere made it easier on Docker. Bang!</p>
+<p>Someone other than Jupyter did and here is the <a href="https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html">docs</a></p>
+<p>Then with just one line I got my notebook running on spark so I could cruise through the content of the course.</p>
+<p>Given you already have Docker installed on your local machine the magic command is</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run --rm -p 8888:8888 -v <span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">&#34;</span>:/home/jovyan/work jupyter/pyspark-notebook
+</code></pre></div><p>BANG ! You have it auto magically running on your machine on <code>http://&lt;hostname&gt;:8888/?token=&lt;token&gt;</code> and you have access to all files inside the directory you ran the above bash command.</p>
+<p>Need a R notebook?</p>
+<p>No problem just change <code>jupyter/pyspark-notebook</code> by <code>jupyter/r-notebook</code></p>
+<p>The data science Jupyter stack also have <code>jupyter/tensorflow-notebook</code> and more.</p>
+<p>If you have not looked into <a href="https://docs.docker.com/get-started/">Docker</a> I highly recommend. Not only for the Jupyter stack which is already very good on its own but also for other things like deploying web applications to production.</p>
+<p>Before I go would recommend you to watch this <a href="https://www.youtube.com/watch?v=eGz9DS-aIeY">video</a> from NetworkChuck then Docker may be a path of no return for you.</p>
+<hr>
+<p><img src="https://www.docker.com/sites/default/files/social/docker_facebook_share.png" alt="Docker"></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Best Data Science Podcasts</title>
+            <link>https://pedrojunqueira.github.io/posts/best-podcasts/</link>
+            <pubDate>Sat, 11 Apr 2020 23:29:13 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/best-podcasts/</guid>
+            <description>If I am not doing an Udemy course, testing a tutorial or doing any online course in any break I get to learn as much as I can about Python, Computer Science, Software Engineering, Statistics and Data Science, I am listening to a podcast. I usually do this when I am commuting either riding my bike, on the bus or driving. A good time to listen to a podcast is when I need a break from absorbing too much content by following a course.</description>
+            <content type="html"><![CDATA[<p>If I am not doing an Udemy course, testing a tutorial or doing any online course in any break I get to learn as much as I can about Python, Computer Science, Software Engineering, Statistics and Data Science, I am listening to a podcast. I usually do this when I am commuting either riding my bike, on the bus or driving. A good time to listen to a podcast is when I need a break from absorbing too much content by following a course.</p>
+<p>Listening  to a podcast,  refresh the mind and help me to get new ideas and inspiration to the next project or skill to acquire.</p>
+<p>These are probably the reasons I listen to podcasts. It inspires me to keep moving.</p>
+<p>When I listen so much good stories of people that is in the same situation as me or it is a future version of myself gives me a lot os perspective.</p>
+<p>Even before getting involved in data science I always liked podcasts in general. I probably started listening to it 6 years ago, but in the last 3 it has been more focused in Data Science content and here are my favorite podcasts.</p>
+<ul>
+<li><a href="https://www.superdatascience.com/">SuperDataScience</a></li>
+<li><a href="https://talkpython.fm/">Talk Python to me</a></li>
+<li><a href="https://lexfridman.com/ai/">Artificial Intelligence</a></li>
+<li><a href="https://datahackers.com.br/podcast/">Data Hackers- (Portuguese-br)</a></li>
+<li><a href="https://www.datacamp.com/community/podcast">Data Framed</a></li>
+</ul>
+<p>Those above are my favourites that I highly recommend if you are into Data Science. There are others but I will go more in detail why I think they are my favorite and also will post link at the end to other podcasts that I listened but in the end did not stick to me.</p>
+<p>Let&rsquo;s start with the SuperDataScience podcast which is the one I think I listened to almost all episodes. At least from episode 1 to 200 I have listened to almost all, then I took a break to listed to others but ever now and then I binge listen to it. I am usually like this, if I like a podcast I just go crazy and go through all the content. It takes a while but because I spend a lot of time commuting I can listen around 10 episodes per week.</p>
+<p>What I like about the SuperDataScience show is the presenter Kirill Eremenko who is super pumped up and enthusiastic guy. I owe him a lot as he is the one that made things in DS simple for me, and this is his personal mission. I first got in touch with Python in 2014 and tried to study data science theory for a month however I quickly realised then that it was just too hard and dropped my first attempt. It was then in 2017 that I tried again and just googling about online data science courses I came across Kirill&rsquo;s course on Udemy about machine learning that&rsquo;s when I also discovered the podcast.</p>
+<p>The format of the podcast is a weekly long interview podcast with people in the field of data science. It can be from a student of DS to a &ldquo;celebrity&rdquo; very advanced professional and that is what I like about it. Anyone can be interviewed in the show and Kirill conduct is very well to extract very good content and as I already mentioned it is a very inspiring show. Kirill is not the only one pumped but I always get pumped when I listened to an episode and end up with lots of ideas, links to research and new skills to learn. Besides the weekly long interview podcast Kirill does a quick 5-10minutes weekly motivational or informative episode in case you do not have time for the long one. I like the intro musics he plays which set the tone of what is coming and again I will say again that it is really pumped up. There are now over 355 episodes available and it is hard to give the list of all the episodes I liked but I would recommend the episodes where he interviewed his now business partner <a href="https://www.linkedin.com/in/hadelin-de-ponteves-1425ba5b/?originalSubdomain=uk">Hadelin de Ponteves</a>  , <a href="https://www.superdatascience.com/podcast/sds-002-machine-learning-recommender-systems-and-the-future-of-data-with-hadelin-de-ponteves">1</a>, <a href="https://www.superdatascience.com/podcast/sds-047-expert-overview-deep-learning-models-supervised-unsupervised">2</a> and <a href="https://www.superdatascience.com/podcast/sds-071-world-headed-field-artificial-intelligence">3</a>  which is an excellent educator and highly recommend his courses. Other good episodes are the recent <a href="https://www.superdatascience.com/podcast/hadley-wickham-talks-integration-and-future-of-python-and-r">interview</a>  with  <a href="https://www.linkedin.com/in/hadleywickham/">Hadley Wickham</a>. Let me give another good one such as  <a href="https://www.superdatascience.com/podcast/learning-through-competition">Jose Portilla</a> which is my favorite Udemy instructor. This is already getting too long, so let me move to the next one.</p>
+<p>Talk Python to me is my second if not as good as the SuperDataScience. The host is <a href="https://www.linkedin.com/in/mkennedy/">Michael Kennedy</a>  who is an excellent communicator and he knows Python a lot. This is more of a technical one focused in the Python language that will explore the language beyond only the Data Science aspect. Actually it is most of the time talking about other things than Data Science. Michael is a really good presenter and interviewer and I like that he always asks about how the person being interviewed got into programming and Python and at the end what is their favorite editor (IDE). Need one day to analyse the responses of that and tally. So the summary is this is more technical and help you have an understanding of the Python ecosystem and also to have a good idea of the main personalities behind Python. I recommend the following episodes to get started with <a href="https://talkpython.fm/episodes/show/6/requests-pycon-and-pythons-future">Kenneth Reitz  (Creator of Requests)</a>, <a href="https://talkpython.fm/episodes/show/11/pyimagesearch-and-computer-vision">Adrian Rosebrock</a> My favorite <a href="https://www.pyimagesearch.com/">Computer Vision  Teacher</a>),  <a href="https://talkpython.fm/episodes/show/13/flask-web-framework-and-much-much-more">Armin Ronacher  (Creator of Flask)</a>,   <a href="https://talkpython.fm/episodes/show/48/building-flask-based-web-apps">Miguel Grinberg</a> (Flask expert and creator of  <a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world">Flask Mega Tutorial</a> ).</p>
+<p>The next one is Artificial Intelligence which I got to know more recently. I think the show is kind of newish and it is in Ep. 87 as of today. What I like is the caliber of people he interviews in the AI space. To be 100% honest I think Alex is a very intelligent guy and the show is great but.. sometimes I do not like the way he asks questions. I think sometimes he over formulate the question, giving too much direction to the interviewee and looks like he is driving the person to give the answer he likes, maybe it is just my impression. I would like if he had just asked a more open ended question leaving to the person to develop it as he/she wishes. This does not happen all the time but I notice it sometimes. Episodes I would recommend are <a href="https://www.youtube.com/watch?v=dEv99vxKjVI&amp;list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4">Elon Musk</a> ,  <a href="https://www.youtube.com/watch?v=U_lKUK2MCsg&amp;list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4">Grant Sanderson</a> , <a href="https://www.youtube.com/watch?v=0jspaMLxBig&amp;list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4">Andrew Ng</a> ,  <a href="https://www.youtube.com/watch?v=3qMemn__kK8&amp;list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4">Michael Stevens</a> and  <a href="https://www.youtube.com/watch?v=SGSOCuByo24">Yann LeCun</a> .</p>
+<p>Data Framed! This is such an excellent podcast and for a period of time it was my favorite one because the presenter is an excellent presenter and know a lot about Python. This is a good mix of Data Science, Python, Celebrity and Contributors in the Data Science space. I don&rsquo;t know the reason he stopped the podcast. Maybe the Data Camp   <a href="https://www.shirin-glander.de/2019/04/consider_data_camp/">scandal</a>  but anyway the podcast is fantastic and it is still up and I highly recommend.</p>
+<p>Hugo Bowne-Anderson is the host and here is a twitt about the end of the show.</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">To all you wonderful <a href="https://twitter.com/hashtag/DataFramed?src=hash&amp;ref_src=twsrc%5Etfw">#DataFramed</a> listeners, I&#39;m sincerely sorry that I&#39;ve stopped releasing episodes w/o notice. Know that I appreciate you deeply &amp; that I also appreciate your patience during this challenging time. I plan to bring back the DataFramed podcast in the near future.</p>&mdash; Hugo Bowne-Anderson is podcasting again (@hugobowne) <a href="https://twitter.com/hugobowne/status/1126537584203714561?ref_src=twsrc%5Etfw">May 9, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>I am still waiting.</p>
+<p>Here are good episodes recommendations <a href="https://www.datacamp.com/community/podcast/weapons-math-destruction">Cathy O&rsquo;Neil</a> ,   <a href="https://www.datacamp.com/community/podcast/data-science-tool-building">Wes McKinney</a> ,   <a href="https://www.datacamp.com/community/podcast/data-science-environment-moocs">Roger Peng</a> , <a href="https://www.datacamp.com/community/podcast/biology-deep-learning">Sebastian Raschka</a>,   <a href="https://www.datacamp.com/community/podcast/automated-machine-learning">Randy Olson</a>,  <a href="https://www.datacamp.com/community/podcast/becoming-data-scientist">Renee Teate</a>,   <a href="https://www.datacamp.com/community/podcast/uncertainty-data-science">Allen Downey</a>,  <a href="https://www.datacamp.com/community/podcast/full-stack-data-science">Vicky Boykis</a>,  <a href="https://www.datacamp.com/community/podcast/decision-intelligence-data-science">Cassie Kozyrkov</a> and  <a href="https://www.datacamp.com/community/podcast/managing-data-science-teams">Angela Bassa</a>.</p>
+<p>Lastly but not the least, Data Hackers, a very good one but this is in Portuguese and sorry if you do not speak Portuguese. It is a very entertaining podcast and also very informative and good if you are starting or getting into the Data Science field and want to know lot of goes inside companies and the field in general. Highly recommended.</p>
+<p>Also here are other good podcasts I listened to a few episodes but in reality none of them are my style and did not listened enough to recommend or give a more in depth opinion.</p>
+<ul>
+<li><a href="https://www.stitcher.com/podcast/linear-digressions">Linear Digressions</a></li>
+<li><a href="https://realpython.com/podcasts/rpp/">Real Python (very new but think it is going to be a Best candidate)</a></li>
+<li><a href="https://dataskeptic.com/">Data Skeptic </a></li>
+<li><a href="https://www.pythonpodcast.com/">The Python Podcast.<strong>init</strong> </a></li>
+<li><a href="https://www.oreilly.com/radar/topics/oreilly-data-show-podcast/">O&rsquo; Reilly Data Show Podcast</a></li>
+<li><a href="https://www.becomingadatascientist.com/category/podcast/">Becoming a Data Scientist Podcast</a></li>
+<li><a href="https://pythonbytes.fm/">Python Bytes</a></li>
+<li><a href="https://www.dataengineeringpodcast.com/">The Data Engineering Podcast</a></li>
+</ul>
+]]></content>
+        </item>
+        
+        <item>
+            <title>How to create new post in hugo</title>
+            <link>https://pedrojunqueira.github.io/posts/how_to_create_new_post_hugo/</link>
+            <pubDate>Thu, 09 Apr 2020 07:53:52 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/posts/how_to_create_new_post_hugo/</guid>
+            <description>Because I am not very consistent in my blog I always forget the command on how to create a new post.
+Here it is
+hugo new posts/my-first-post.md
+Got from the reference quick start</description>
+            <content type="html"><![CDATA[<p>Because I am not very consistent in my blog I always forget the command on how to create a new post.</p>
+<p>Here it is</p>
+<p><code>hugo new posts/my-first-post.md</code></p>
+<p>Got from the reference <a href="https://gohugo.io/getting-started/quick-start/">quick start</a></p>
+]]></content>
         </item>
         
     </channel>

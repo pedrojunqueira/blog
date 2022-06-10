@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>strategy on Pedro Junqueira</title>
+    <link>https://pedrojunqueira.github.io/tags/strategy/</link>
+    <description>Recent content in strategy on Pedro Junqueira</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>pedro junqueira</copyright>
+    <lastBuildDate>Fri, 12 Jun 2020 05:56:21 +0930</lastBuildDate>
+    
+	<atom:link href="https://pedrojunqueira.github.io/tags/strategy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data driven business vs. Business model driven by data</title>
+      <link>https://pedrojunqueira.github.io/posts/data-driven-vs-model-driven/</link>
+      <pubDate>Fri, 12 Jun 2020 05:56:21 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/posts/data-driven-vs-model-driven/</guid>
+      <description>What business admit that is not driven by data?
+Even if some argue that most of the business make decisions on intuition at least some understanding of the data is needed such as how much is in the bank, what is the sales ytd, how many staff there are in the books, are we meeting budget.
+No one just make decisions on a whim and in my view to some degree all companies are data driven.</description>
+    </item>
+    
+  </channel>
+</rss>

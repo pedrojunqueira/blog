@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
+This post is not a What is Docker one or an introduction.
+You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for." />
+<meta name="keywords" content=", docker, postgresql, sql" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://pedrojunqueira.github.io/posts/understand-docker-volume/" />
+
+
+    <title>
+        
+            Understanding Docker volumes with a practical example :: Pedro Junqueira  — Data Scientist
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="Understanding Docker volumes with a practical example">
+<meta itemprop="description" content="Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
+This post is not a What is Docker one or an introduction.
+You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for.">
+<meta itemprop="datePublished" content="2020-04-17T06:55:35&#43;09:30" />
+<meta itemprop="dateModified" content="2020-04-17T06:55:35&#43;09:30" />
+<meta itemprop="wordCount" content="1520">
+<meta itemprop="image" content="https://pedrojunqueira.github.io"/>
+
+
+
+<meta itemprop="keywords" content="docker,postgresql,sql," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://pedrojunqueira.github.io"/>
+
+<meta name="twitter:title" content="Understanding Docker volumes with a practical example"/>
+<meta name="twitter:description" content="Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
+This post is not a What is Docker one or an introduction.
+You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for."/>
+
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-04-17 06:55:35 &#43;0930 ACST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/blog" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">pedrojunqueira@home: ~$</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        8 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://pedrojunqueira.github.io/posts/understand-docker-volume/">Understanding Docker volumes with a practical example</a>
+      </h1>
+
+      
+
+      
+
+      
+
+      <div class="post-content">
+        <p>Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.</p>
+<p>This post is not a What is Docker one or an introduction.</p>
+<p>You can read it <a href="https://docs.docker.com/get-started/overview/">here</a> or just watch this very good video from <a href="https://www.youtube.com/watch?v=eGz9DS-aIeY&amp;t=494s">NetworkChuck</a> then you will have a good grasp of its core concepts and what this is for.</p>
+<p>My interest in Docker comes from my data analysis and data scientist background.</p>
+<p>When I started to develop web services applications for machine learning in production Docker came very handy.</p>
+<p>One issue that I came across when learning docker was that a Docker container life cycle is ephemeral because all its components like data, writable layer, network, ports set up and etc are gone once the container is gone, including all the data.</p>
+<p>What!?</p>
+<p>Yes.</p>
+<p>Just to illustrate an example. Say you developed an app in Flask that has a back end database in psql and you decide to containerize this and ship. It all works fine and data gets stores inside the container. However, eventually you wanted to do some changes in the app like add new features of fix some bugs etc. Then it is necessary to rebuild the image. You know what happens when this is done?</p>
+<p>All the data that was inside the old container is gone</p>
+<p>How do we solve this?</p>
+<p>Well this is why it is important to understand volumes because this is the way you can persist data of your project that lives outside the life cycle of your container.</p>
+<p>There are 2 ways to solve this problem, actually 3 but will talk about 2 here.</p>
+<ol>
+<li>Volume</li>
+<li>Bind Mount</li>
+</ol>
+<p>What both of the solutions do is to make sure that any part of your container data, and you define what, is actually outside the container because there is a &ldquo;link&rdquo; that allow your container access this data.</p>
+<p><img src="https://docs.docker.com/storage/images/types-of-mounts-volume.png" alt="Docker">
+<a href="https://docs.docker.com/storage/volumes/">source</a></p>
+<p>The difference from volume and bind mount is that:</p>
+<ul>
+<li>Volume lives in the host machine, inside Docker file system, and it is the recommended option by Docker and there are some advantages and it is listed below why.</li>
+<li>Bind Mount also lives in the host machine however the developer put is wherever he/she wants and there are some limitations</li>
+</ul>
+<p>According to Docker <a href="https://docs.docker.com/storage/volumes/">documentation</a> here are the advantages of Volume over Bind Mount</p>
+<ul>
+<li>Volumes are easier to back up or migrate than bind mounts.</li>
+<li>You can manage volumes using Docker CLI commands or the Docker API.</li>
+<li>Volumes work on both Linux and Windows containers.</li>
+<li>Volumes can be more safely shared among multiple containers.</li>
+<li>Volume drivers let you store volumes on remote hosts or cloud providers, to encrypt the contents of volumes, or to add other functionality.</li>
+<li>New volumes can have their content pre-populated by a container</li>
+</ul>
+<p>I will give an example now, using volumes, so this may help you to solidify your understanding.</p>
+<p>I will create 3 containers with a Postgresql image running in different ports in the development machine, however all those 3 containers you share the same volume i.e., the same data. The example is just for illustration of how volumes work.</p>
+<p>You do <strong>not</strong> need to have a Postgresql instance installed on your host/development system and all that you need is Docker installed.</p>
+<p>Just check if you have Docker already:</p>
+<pre><code>$docker -v
+Docker version 19.03.8, build afacb8b
+</code></pre><p>If not it is easy to install <a href="https://docs.docker.com/get-docker/">Docker</a>.</p>
+<p>For this lets create a folder to test those concepts</p>
+<p><code>mkdir docker_volume</code>
+then cd into it
+<code>cd docker_volume</code></p>
+<p>create a shell script file so it will save some typing</p>
+<p><code>touch commands.sh</code></p>
+<p>Then write on the .sh file</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>
+docker run --name psql1 -p 5435:5432 -d <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    postgres
+</code></pre></div><p>What the command this sequence of command do is</p>
+<p><code>run</code> to run a countainer
+<code>--name</code> flag to name the container psql1
+<code>-p</code> determines the port where &lt;host_port&gt;:&lt;container_port&gt;
+<code>-e</code> are the environement variables for the container and define the password, user and database name</p>
+<p><code>v</code> is the &lt;name_volume&gt;:<!-- raw HTML omitted --></p>
+<p>and finally the base image is the latest <code>postgres</code> image from <a href="https://hub.docker.com/_/postgres">Docker Hub</a></p>
+<p>Before run the scrip you need to give permission to run it so run the command</p>
+<p><code>$ chmod +x commands.sh</code></p>
+<p>then <code>$ ./commands.sh</code></p>
+<p>If you do not have a postgres in your cache it is going to automatically download from Docker Hub and build the image then run the container</p>
+<p>Run the following command to check it container is running</p>
+<pre><code>$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+c2081d77d376        postgres            &quot;docker-entrypoint.s…&quot;   24 seconds ago      Up 23 seconds       0.0.0.0:5435-&gt;5432/tcp   psql1
+</code></pre><p>you will see something like the above</p>
+<p>Then check if the volume was created</p>
+<pre><code>$ docker volume ls
+DRIVER              VOLUME NAME
+local               pgdata
+</code></pre><p>You can use any client to check it and lets do it now.</p>
+<p>First from inside the container</p>
+<p><code>$ docker exec -it psql1 psql -p 5432  -h 0.0.0.0 -U postgres</code></p>
+<pre><code>$ docker exec -it psql1 psql -h 0.0.0.0 -U postgres
+psql (12.2 (Debian 12.2-2.pgdg100+1))
+Type &quot;help&quot; for help.
+
+postgres=#
+</code></pre><p>Now you are inside the container using the psql client</p>
+<p>write the command <code>\l</code> to list the database then connect to the exampledb by</p>
+<pre><code>postgres-# \c exampledb;
+You are now connected to database &quot;exampledb&quot; as user &quot;postgres&quot;.
+</code></pre><p>create a table</p>
+<pre><code>CREATE TABLE account(
+	user_id serial PRIMARY KEY,
+	username VARCHAR (50) UNIQUE NOT NULL,
+	email VARCHAR (355) UNIQUE NOT NULL
+);
+</code></pre><p><code>dt</code> to list tables</p>
+<pre><code>exampledb=# \dt
+          List of relations
+ Schema |  Name   | Type  |  Owner   
+--------+---------+-------+----------
+ public | account | table | postgres
+(1 row)
+</code></pre><p>lets add some data</p>
+<pre><code>INSERT INTO account (username, email) 
+values ('John', 'john@email.com');
+</code></pre><p>then check the data by <code>SELECT</code> statement</p>
+<pre><code>exampledb=# select * from account;
+ user_id | username |     email      
+---------+----------+----------------
+       1 | John     | john@email.com
+(1 row)
+</code></pre><p>ok now quit <code>\q</code></p>
+<p>Now that the fun starts</p>
+<p>change the .sh scrip to add more containers</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --name psql2 -p 5437:5432 -d <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    postgres
+
+</code></pre></div><p>everything is the same but the name of the container and the port</p>
+<p>note that both container are sharing the SAME volume</p>
+<p>run the bash script again</p>
+<p><code>./commands.sh</code></p>
+<p>note that there are 2 containers running</p>
+<pre><code>$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+e504b08a8d2a        postgres            &quot;docker-entrypoint.s…&quot;   3 seconds ago       Up 3 seconds        0.0.0.0:5437-&gt;5432/tcp   psql2
+c2081d77d376        postgres            &quot;docker-entrypoint.s…&quot;   18 minutes ago      Up 18 minutes       0.0.0.0:5435-&gt;5432/tcp   psql1
+</code></pre><p>and only one volume</p>
+<pre><code>$ docker volume ls
+DRIVER              VOLUME NAME
+local               pgdata
+</code></pre><p>Now lets get inside the container psql2 and connect to the database</p>
+<p><code>docker exec -it psql2 psql -p 5432  -h 0.0.0.0 -U postgres</code></p>
+<p>connect to the database <code>\c exampledb;</code></p>
+<p>query the account table</p>
+<pre><code>exampledb=# select * from account;
+ user_id | username |     email      
+---------+----------+----------------
+       1 | John     | john@email.com
+(1 row)
+</code></pre><p>now lets create another record</p>
+<pre><code>INSERT INTO account (username, email) 
+values ('Jane', 'jane@email.com');
+</code></pre><p>quit <code>\q</code></p>
+<p>Now lets stop the containers and remove them</p>
+<pre><code>$ docker stop psql1
+$ docker stop psql2
+$ docker rm psql1
+$ docker rm psql2
+</code></pre><p>check if they where removed</p>
+<pre><code>$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre><p>We did not removed the volume</p>
+<pre><code>$ docker volume ls
+DRIVER              VOLUME NAME
+local               pgdata
+</code></pre><p>We are now creating another container called psql3 and &ldquo;connected&rdquo; to the same volume</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>
+docker run --name psql3 -p 5439:5432 -d <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    postgres
+</code></pre></div><p>Now instead of connecting inside the container we are connecting it from command line from the host machine.
+In this case you need to have either the psql cli installed in your system or use any other postgersql client tool.
+I now need to use the port <code>-p 5439</code> because it is the port in the host system that is bound to the default postgres port 5432.</p>
+<pre><code>$ psql -p 5439  -h localhost -U postgres
+Password for user postgres: 
+psql (12.1, server 12.2 (Debian 12.2-2.pgdg100+1))
+Type &quot;help&quot; for help.
+
+postgres=# 
+
+</code></pre><p>now it is the hour of reckoning and lets check if we can access the data</p>
+<pre><code>postgres=# \c exampledb;
+psql (12.1, server 12.2 (Debian 12.2-2.pgdg100+1))
+You are now connected to database &quot;exampledb&quot; as user &quot;postgres&quot;.
+exampledb=# \dt
+          List of relations
+ Schema |  Name   | Type  |  Owner   
+--------+---------+-------+----------
+ public | account | table | postgres
+(1 row)
+
+exampledb=# select * from account;
+ user_id | username |     email      
+---------+----------+----------------
+       1 | John     | john@email.com
+       2 | Jane     | jane@email.com
+(2 rows)
+</code></pre><p>AMAZING 🤯! THERE YOU HAVE IT!</p>
+<p>Isn&rsquo;t cool?</p>
+<p>The data persisted in the volume and new containers could easily connect to it. Imagine an environment of continued development and the possibilities and flexibility that it brings.</p>
+<p>to clean up your system we can</p>
+<p><code>\q</code> get out of the psql cli tool.</p>
+<p>Stop and remove the containers and volume.</p>
+<pre><code>$ docker stop psql3
+$ docker rm psql3
+$ docker volume rm pgdata
+$ docker volume ls
+</code></pre><p>Did not do the example with bind mount however the principle is the same and the documentation is <a href="https://docs.docker.com/storage/bind-mounts/">here</a></p>
+<p>If you get to here thanks for reading 😀.</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/docker/">docker</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/postgresql/">postgresql</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/sql/">sql</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        1520 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2020-04-17 06:55 &#43;0930
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+            <span class="button previous">
+                <a href="https://pedrojunqueira.github.io/posts/data-driven-vs-model-driven/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">Data driven business vs. Business model driven by data</span>
+                </a>
+            </span>
+            
+
+            
+            <span class="button next">
+                <a href="https://pedrojunqueira.github.io/posts/how-to-s3-cli/">
+                    <span class="button__text">How: to navigate on AWS S3 bucket using CLI</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+
+
+
+    </body>
+</html>

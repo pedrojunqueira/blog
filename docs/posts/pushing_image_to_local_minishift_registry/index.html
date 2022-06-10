@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="I am learning OpenShift as I am using it more and more at work and it has been great fun and I am really enjoying the DevOps space which is giving me new super powers as a developer.
+It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases." />
+<meta name="keywords" content=", kubernetes, openshift, docker, DevOps" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://pedrojunqueira.github.io/posts/pushing_image_to_local_minishift_registry/" />
+
+
+    <title>
+        
+            Pushing image to local minishift registry :: Pedro Junqueira  — Data Scientist
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="Pushing image to local minishift registry">
+<meta itemprop="description" content="I am learning OpenShift as I am using it more and more at work and it has been great fun and I am really enjoying the DevOps space which is giving me new super powers as a developer.
+It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases.">
+<meta itemprop="datePublished" content="2020-08-09T07:52:24&#43;09:30" />
+<meta itemprop="dateModified" content="2020-08-09T07:52:24&#43;09:30" />
+<meta itemprop="wordCount" content="350">
+<meta itemprop="image" content="https://pedrojunqueira.github.io"/>
+
+
+
+<meta itemprop="keywords" content="kubernetes,openshift,docker,DevOps," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://pedrojunqueira.github.io"/>
+
+<meta name="twitter:title" content="Pushing image to local minishift registry"/>
+<meta name="twitter:description" content="I am learning OpenShift as I am using it more and more at work and it has been great fun and I am really enjoying the DevOps space which is giving me new super powers as a developer.
+It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases."/>
+
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-08-09 07:52:24 &#43;0930 ACST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/blog" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">pedrojunqueira@home: ~$</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        2 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://pedrojunqueira.github.io/posts/pushing_image_to_local_minishift_registry/">Pushing image to local minishift registry</a>
+      </h1>
+
+      
+
+      
+
+      
+
+      <div class="post-content">
+        <p>I am learning OpenShift as I am using it more and more at work and it has been great fun and I am really enjoying the DevOps space which is giving me new super powers as a developer.</p>
+<p>It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases. It is just a matter of getting used to it.</p>
+<p>OpenShift has a command line <code>oc</code> which most of the <code>kubectl</code> commands will work.</p>
+<p>This post is a walk through on hot to push an image to a local registry.</p>
+<p>I am testing a project to deploy airflow in openshift at work and here is my lab 😀.</p>
+<p>To learn this I am using a template I found in <a href="https://github.com/kbristow/airflow-openshift">GitHub</a></p>
+<p>This project is using a template and it is assuming that the images need to be already pushed to the project local registry.</p>
+<p>What you need to do first is to make sure your Docker is activated in Minishift</p>
+<p>Assuming you are starting from the absolute zero the steps are.</p>
+<ol>
+<li>Start Minishift</li>
+</ol>
+<p><code>minishift start</code></p>
+<ol start="2">
+<li>Configure <a href="https://docs.okd.io/3.11/minishift/using/docker-daemon.html">Minishift Docker Daemon</a></li>
+</ol>
+<p><code>minishift docker-env</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export DOCKER_TLS_VERIFY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>
+export DOCKER_HOST<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tcp://192.168.99.101:2376&#34;</span>
+export DOCKER_CERT_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/Users/john/.minishift/certs&#34;</span>
+export DOCKER_API_VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.24&#34;</span>
+</code></pre></div><p>Run this command to configure your shell:</p>
+<p><code>eval $(minishift docker-env)</code></p>
+<p>to test check processes</p>
+<p><code>docker ps</code></p>
+<p>You should see a lot of things running</p>
+<p>Also list the images</p>
+<p><code>docker image ls</code></p>
+<p>you should see only image of your minishift projects and registry</p>
+<ol start="3">
+<li>Login a a developer</li>
+</ol>
+<p><code>oc login</code></p>
+<ol start="4">
+<li>Login to your local minishift register</li>
+</ol>
+<p><code>docker login -u developer -p $(oc whoami -t) $(minishift openshift registry)</code></p>
+<ol start="5">
+<li>Pull an existing image from a registry or build your image from a Docker file</li>
+</ol>
+<p>This step depends what you wanted to do.</p>
+<p>In my case I like to keep my images in Docker Hub then what I do is to pull the image from Docker hub</p>
+<p><code>docker pull dockerhubid/image:tag</code></p>
+<ol start="6">
+<li>Tag the image with your local minishift register</li>
+</ol>
+<p><code>docker tag dockerhubid/image:tag $(minishift openshift registry)/myproject/image:tag</code></p>
+<ol start="7">
+<li>Push image</li>
+</ol>
+<p><code>docker push $(minishift openshift registry)/myproject/image:tag</code></p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/kubernetes/">kubernetes</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/openshift/">openshift</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/docker/">docker</a></span>
+        <span class="tag"><a href="https://pedrojunqueira.github.io/tags/devops/">DevOps</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        350 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2020-08-09 07:52 &#43;0930
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+            <span class="button previous">
+                <a href="https://pedrojunqueira.github.io/posts/kubernetes_secrets/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">How to create a Kubernetes Secret</span>
+                </a>
+            </span>
+            
+
+            
+            <span class="button next">
+                <a href="https://pedrojunqueira.github.io/posts/kubernetes-cheat-sheet/">
+                    <span class="button__text">Kubernetes Cheat Sheet</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+
+
+
+    </body>
+</html>

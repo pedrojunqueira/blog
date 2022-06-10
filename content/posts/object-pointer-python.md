@@ -70,9 +70,9 @@ output
 {'key': [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]]}
 ```
 
-When I appended the list to the dict key list it kept on adding items to the list in both the dict and the bizarre_list. This is what python does, but I wanted a different behavior. The intention is to the list be at the state in iteration `i == 6`
+When I appended the `list` to the `dict` value `list`. After I done that it kept on adding items to the list in both the `dict` and the `bizarre_list`. This is what python does because they just are the same object, but I wanted a different behavior. The intention is to the `list` be at the state in iteration `i == 6`
 
-to achieve this just use the python module `copy` and the function `deepcopy`
+To achieve this just use the python module `copy` and the function `deepcopy`
 
 ```python
 
@@ -100,6 +100,20 @@ output
 [0, 1, 2, 3, 4, 5, 6]
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 {'key': [[0, 1, 2, 3, 4, 5, 6]]}
+```
+
+What deepcopy does is to copy the object and save it in another place in memory
+
+```python
+print(f"bizarre_list ID: {id(bizarre_list)}")
+print(f"dict list ID: {id(my_dict['key'][0])}")
+```
+
+output
+
+```bash
+bizarre_list ID: 140154658362112
+dict list ID: 140154658425344
 ```
 
 This is it for this post.
