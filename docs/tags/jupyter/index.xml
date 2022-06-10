@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>jupyter on Pedro Junqueira</title>
-    <link>https://pedrojunqueira.github.io/blog/tags/jupyter/</link>
+    <link>https://pedrojunqueira.github.io/tags/jupyter/</link>
     <description>Recent content in jupyter on Pedro Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
     <lastBuildDate>Mon, 13 Apr 2020 21:35:16 +0930</lastBuildDate>
     
-	<atom:link href="https://pedrojunqueira.github.io/blog/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pedrojunqueira.github.io/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>How to get a PySpark environment running on Jupyter</title>
-      <link>https://pedrojunqueira.github.io/blog/posts/data-science-on-docker/</link>
+      <link>https://pedrojunqueira.github.io/posts/data-science-on-docker/</link>
       <pubDate>Mon, 13 Apr 2020 21:35:16 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/blog/posts/data-science-on-docker/</guid>
+      <guid>https://pedrojunqueira.github.io/posts/data-science-on-docker/</guid>
       <description>Python is a magical language. It is just import from * and then the magic start happening&amp;hellip;
 However, not always all run smoothly. Sometimes all that you want is to run code but as part of coding debugging is a constant battle until you get your code running as you wish.
 Besides the debugging, you need to set up your development environment that can be very very tedious. Sometime you just want to code and get your job done and you may spend hours and hours just setting up the environnement, importing packages, creating VMs, exporting environment variables, running shell scrips, going 10x to stack overflow and still struggle to make things work fine, then finally you can start writing some code.</description>

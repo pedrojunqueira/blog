@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>containers on Pedro Junqueira</title>
-    <link>https://pedrojunqueira.github.io/blog/tags/containers/</link>
+    <link>https://pedrojunqueira.github.io/tags/containers/</link>
     <description>Recent content in containers on Pedro Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
     <lastBuildDate>Fri, 10 Jul 2020 06:02:26 +0930</lastBuildDate>
     
-	<atom:link href="https://pedrojunqueira.github.io/blog/tags/containers/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pedrojunqueira.github.io/tags/containers/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Kubernetes Cheat Sheet</title>
-      <link>https://pedrojunqueira.github.io/blog/posts/kubernetes-cheat-sheet/</link>
+      <link>https://pedrojunqueira.github.io/posts/kubernetes-cheat-sheet/</link>
       <pubDate>Fri, 10 Jul 2020 06:02:26 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/blog/posts/kubernetes-cheat-sheet/</guid>
+      <guid>https://pedrojunqueira.github.io/posts/kubernetes-cheat-sheet/</guid>
       <description>This is the most handy Kubernetes kubectl commands Pods List all pods
 kubectl get pods
 Create a pod from CLI

@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DevOps on Pedro Junqueira</title>
-    <link>https://pedrojunqueira.github.io/blog/tags/devops/</link>
+    <link>https://pedrojunqueira.github.io/tags/devops/</link>
     <description>Recent content in DevOps on Pedro Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
     <lastBuildDate>Sun, 09 Aug 2020 07:52:24 +0930</lastBuildDate>
     
-	<atom:link href="https://pedrojunqueira.github.io/blog/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pedrojunqueira.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Pushing image to local minishift registry</title>
-      <link>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</link>
+      <link>https://pedrojunqueira.github.io/posts/pushing_image_to_local_minishift_registry/</link>
       <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</guid>
+      <guid>https://pedrojunqueira.github.io/posts/pushing_image_to_local_minishift_registry/</guid>
       <description>I am learning OpenShift as I am using it more and more at work and it has been great fun and I am really enjoying the DevOps space which is giving me new super powers as a developer.
 It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases.</description>
     </item>
     
     <item>
       <title>Kubernetes Cheat Sheet</title>
-      <link>https://pedrojunqueira.github.io/blog/posts/kubernetes-cheat-sheet/</link>
+      <link>https://pedrojunqueira.github.io/posts/kubernetes-cheat-sheet/</link>
       <pubDate>Fri, 10 Jul 2020 06:02:26 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/blog/posts/kubernetes-cheat-sheet/</guid>
+      <guid>https://pedrojunqueira.github.io/posts/kubernetes-cheat-sheet/</guid>
       <description>This is the most handy Kubernetes kubectl commands Pods List all pods
 kubectl get pods
 Create a pod from CLI
@@ -43,10 +43,10 @@ Create/Reconfigure a pod based on a manifest file</description>
     
     <item>
       <title>Basic CLI commands for Openshift-Minishift</title>
-      <link>https://pedrojunqueira.github.io/blog/posts/minishift_basic_cli/</link>
+      <link>https://pedrojunqueira.github.io/posts/minishift_basic_cli/</link>
       <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/blog/posts/minishift_basic_cli/</guid>
+      <guid>https://pedrojunqueira.github.io/posts/minishift_basic_cli/</guid>
       <description>Here is a post with the absolute basic commands that I always forget Getting the export Path of oc CLI tool minishift oc-env
 export PATH=&amp;quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&amp;quot;
 Logging in to log in

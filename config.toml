@@ -1,4 +1,4 @@
-baseURL = "https://pedrojunqueira.github.io/blog"
+baseURL = "https://pedrojunqueira.github.io"
 languageCode = "en-us"
 title = "Pedro Junqueira's Blog"
 publishDir  = 'docs'
@@ -67,9 +67,9 @@ theme = "hello-friend-ng"
   [[menu.main]]
   identifier = "about"
   name       = "About"
-  url        = "/"
+  url        = "/about"
   [[menu.main]]
     identifier = "blog"
     name       = "Blog"
-    url        = "/"
+    url        = "/posts"
 
