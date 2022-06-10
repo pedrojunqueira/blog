@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>linux on Pedro Junqueira</title>
-    <link>https://pedrojunqueira.github.io/tags/linux/</link>
+    <link>https://pedrojunqueira.github.io/blog/tags/linux/</link>
     <description>Recent content in linux on Pedro Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
     <lastBuildDate>Sat, 21 May 2022 20:58:05 +0930</lastBuildDate>
     
-	<atom:link href="https://pedrojunqueira.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pedrojunqueira.github.io/blog/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Connect Python Azure SQL DB using Pandas</title>
-      <link>https://pedrojunqueira.github.io/posts/connect-python-azure-sqldb-pandas/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/connect-python-azure-sqldb-pandas/</link>
       <pubDate>Sat, 21 May 2022 20:58:05 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/connect-python-azure-sqldb-pandas/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/connect-python-azure-sqldb-pandas/</guid>
       <description>The other day I wanted to connect pandas to Azure SQL DB and boy took me longer than I wanted. In the end I solved my problem. Although, connecting to DBs always involves more complex things like DB drives and OS dependencies the part I struggled the most was with the connection string 😅. Microsoft, in its documentation, which by the way is good, gives good example and steps on setting up the environnement and how to connect through pyodbc.</description>
     </item>
     

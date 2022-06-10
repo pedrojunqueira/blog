@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pedro Junqueira</title>
-    <link>https://pedrojunqueira.github.io/</link>
+    <link>https://pedrojunqueira.github.io/blog/</link>
     <description>Recent content on Pedro Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
     <lastBuildDate>Fri, 10 Jun 2022 21:16:44 +0930</lastBuildDate>
     
-	<atom:link href="https://pedrojunqueira.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pedrojunqueira.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Understand how objects behave in memory Python</title>
-      <link>https://pedrojunqueira.github.io/posts/object-pointer-python/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/object-pointer-python/</link>
       <pubDate>Fri, 10 Jun 2022 21:16:44 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/object-pointer-python/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/object-pointer-python/</guid>
       <description>Sometimes debugging take more time than you are willing to spend on it. Usually you do not want to waste any time debugging but the life of a software developer is debugging all the time.
 I came across a interesting one.
 I often see mini examples on twitter about a code snippet of how objects behave in Python and some unintended consequences may cause your code to do things you were not expecting, yet it totally makes sense.</description>
@@ -25,19 +25,19 @@ I often see mini examples on twitter about a code snippet of how objects behave 
     
     <item>
       <title>Connect Python Azure SQL DB using Pandas</title>
-      <link>https://pedrojunqueira.github.io/posts/connect-python-azure-sqldb-pandas/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/connect-python-azure-sqldb-pandas/</link>
       <pubDate>Sat, 21 May 2022 20:58:05 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/connect-python-azure-sqldb-pandas/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/connect-python-azure-sqldb-pandas/</guid>
       <description>The other day I wanted to connect pandas to Azure SQL DB and boy took me longer than I wanted. In the end I solved my problem. Although, connecting to DBs always involves more complex things like DB drives and OS dependencies the part I struggled the most was with the connection string 😅. Microsoft, in its documentation, which by the way is good, gives good example and steps on setting up the environnement and how to connect through pyodbc.</description>
     </item>
     
     <item>
       <title>Why I do not want to be a Data Scientist</title>
-      <link>https://pedrojunqueira.github.io/posts/why-not-data-science/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/why-not-data-science/</link>
       <pubDate>Sun, 28 Feb 2021 20:55:50 +1030</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/why-not-data-science/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/why-not-data-science/</guid>
       <description>According to the World Economic Forum Report data scientist is one of the most sought after professional and on the rise in 2020/2021 and it will be for a while.
 In 2012 when Harvard Business Review published the article as the most sexy profession it is strange someone saying that does not want to be a data scientist?
 Why not if it is so hot and so cool and it pays so much?</description>
@@ -45,10 +45,10 @@ Why not if it is so hot and so cool and it pays so much?</description>
     
     <item>
       <title>Python property class and decorator</title>
-      <link>https://pedrojunqueira.github.io/posts/python_property_class/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/python_property_class/</link>
       <pubDate>Wed, 16 Sep 2020 06:03:39 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/python_property_class/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/python_property_class/</guid>
       <description>About 2 months ago I considered my self an intermediate python user.
 This level of knowledge was enough to work on pandas data transformation and use most of the data science API.
 However, when it comes to software engineering and developing production, tested code I realized that there was a lot to learn about programming concepts and how that would work with python.
@@ -57,10 +57,10 @@ My intermediate knowledge and experience already gave me lots of power but when 
     
     <item>
       <title>Duck Typing in Python</title>
-      <link>https://pedrojunqueira.github.io/posts/duck-typing/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/duck-typing/</link>
       <pubDate>Mon, 07 Sep 2020 06:20:14 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/duck-typing/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/duck-typing/</guid>
       <description>In OOP (Object Oriented Programming) there is a concept called Polymorphism which allow the use of objects of different types through a uniform interface.
 Since Python allow OOP constructs Polymorphism applies.
 As Python is a dynamic type language a method didn’t using an interface does not need to know about about the interface type, only it&amp;rsquo;s abstract details. The interface will work just by making suer the arguments match when it is used.</description>
@@ -68,10 +68,10 @@ As Python is a dynamic type language a method didn’t using an interface does n
     
     <item>
       <title>Python regex basics to never forget</title>
-      <link>https://pedrojunqueira.github.io/posts/python_regex_never_forget/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/python_regex_never_forget/</link>
       <pubDate>Tue, 01 Sep 2020 20:21:51 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/python_regex_never_forget/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/python_regex_never_forget/</guid>
       <description>I have to confess that regex is a weakness this is why I am writing this post.
 Whenever I can I try to avoid using regex if the problem can be used in a different way, but sometimes I have to inevitably use regex.
 to import
@@ -84,10 +84,10 @@ pattern = &amp;#39;a&amp;#39; test_string = &amp;#39;a cat&amp;#39; result = re.
     
     <item>
       <title>How to download data from Strava with Python</title>
-      <link>https://pedrojunqueira.github.io/posts/how_to_download_data_strava/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/how_to_download_data_strava/</link>
       <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/how_to_download_data_strava/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/how_to_download_data_strava/</guid>
       <description>I am a cyclist enthusiast and you may be if you are reading this blog post.
 Strava has a nice API which gives access to the data recorded on the application.
 Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer. The API, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user.</description>
@@ -95,10 +95,10 @@ Strava does not make it easy for the normal human being that no nothing about co
     
     <item>
       <title>How to create a Kubernetes Secret</title>
-      <link>https://pedrojunqueira.github.io/posts/kubernetes_secrets/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/kubernetes_secrets/</link>
       <pubDate>Wed, 26 Aug 2020 06:38:52 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/kubernetes_secrets/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/kubernetes_secrets/</guid>
       <description>Creating secret imperatively
 kubectl create secret generic \  &amp;lt;secret name&amp;gt; --from-literal=&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt; kubectl explain pods --recursive | less 
 kubectl explain pods --recursive | grep -A8 envFrom
@@ -110,20 +110,20 @@ apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username
     
     <item>
       <title>Pushing image to local minishift registry</title>
-      <link>https://pedrojunqueira.github.io/posts/pushing_image_to_local_minishift_registry/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</link>
       <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/pushing_image_to_local_minishift_registry/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/pushing_image_to_local_minishift_registry/</guid>
       <description>I am learning OpenShift as I am using it more and more at work and it has been great fun and I am really enjoying the DevOps space which is giving me new super powers as a developer.
 It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases.</description>
     </item>
     
     <item>
       <title>Kubernetes Cheat Sheet</title>
-      <link>https://pedrojunqueira.github.io/posts/kubernetes-cheat-sheet/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/kubernetes-cheat-sheet/</link>
       <pubDate>Fri, 10 Jul 2020 06:02:26 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/kubernetes-cheat-sheet/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/kubernetes-cheat-sheet/</guid>
       <description>This is the most handy Kubernetes kubectl commands Pods List all pods
 kubectl get pods
 Create a pod from CLI
@@ -139,10 +139,10 @@ Create/Reconfigure a pod based on a manifest file</description>
     
     <item>
       <title>Basic CLI commands for Openshift-Minishift</title>
-      <link>https://pedrojunqueira.github.io/posts/minishift_basic_cli/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/minishift_basic_cli/</link>
       <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/minishift_basic_cli/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/minishift_basic_cli/</guid>
       <description>Here is a post with the absolute basic commands that I always forget Getting the export Path of oc CLI tool minishift oc-env
 export PATH=&amp;quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&amp;quot;
 Logging in to log in
@@ -157,10 +157,10 @@ oc adm policy add-cluster-role-to-user cluster-admin administrator</description>
     
     <item>
       <title>Data driven business vs. Business model driven by data</title>
-      <link>https://pedrojunqueira.github.io/posts/data-driven-vs-model-driven/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/data-driven-vs-model-driven/</link>
       <pubDate>Fri, 12 Jun 2020 05:56:21 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/data-driven-vs-model-driven/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/data-driven-vs-model-driven/</guid>
       <description>What business admit that is not driven by data?
 Even if some argue that most of the business make decisions on intuition at least some understanding of the data is needed such as how much is in the bank, what is the sales ytd, how many staff there are in the books, are we meeting budget.
 No one just make decisions on a whim and in my view to some degree all companies are data driven.</description>
@@ -168,10 +168,10 @@ No one just make decisions on a whim and in my view to some degree all companies
     
     <item>
       <title>Understanding Docker volumes with a practical example</title>
-      <link>https://pedrojunqueira.github.io/posts/understand-docker-volume/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/understand-docker-volume/</link>
       <pubDate>Fri, 17 Apr 2020 06:55:35 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/understand-docker-volume/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/understand-docker-volume/</guid>
       <description>Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
 This post is not a What is Docker one or an introduction.
 You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for.</description>
@@ -179,30 +179,30 @@ You can read it here or just watch this very good video from NetworkChuck then y
     
     <item>
       <title>How: to navigate on AWS S3 bucket using CLI</title>
-      <link>https://pedrojunqueira.github.io/posts/how-to-s3-cli/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/how-to-s3-cli/</link>
       <pubDate>Thu, 16 Apr 2020 05:50:27 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/how-to-s3-cli/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/how-to-s3-cli/</guid>
       <description>Using the command line interface (CLI) can be very intimidating and make one completely lost if you always dealt with graphical drag and drop, click and point interface.
 I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then cls for clear the screen and dir to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then.</description>
     </item>
     
     <item>
       <title>Why I started a blog using Hugo?</title>
-      <link>https://pedrojunqueira.github.io/posts/why-started-hugo/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/why-started-hugo/</link>
       <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/why-started-hugo/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/why-started-hugo/</guid>
       <description>This is the second attempt I started a blog and this time is different.
 I once had a blog that was not about data science but I was able to write over 150 blog posts and I had a decent readership and people following it and even launched a paid e-book that gave me some money. Not enough for me to do it full time but it was very encouraging and it kept me motivated to keep me writing.</description>
     </item>
     
     <item>
       <title>How to get a PySpark environment running on Jupyter</title>
-      <link>https://pedrojunqueira.github.io/posts/data-science-on-docker/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/data-science-on-docker/</link>
       <pubDate>Mon, 13 Apr 2020 21:35:16 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/data-science-on-docker/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/data-science-on-docker/</guid>
       <description>Python is a magical language. It is just import from * and then the magic start happening&amp;hellip;
 However, not always all run smoothly. Sometimes all that you want is to run code but as part of coding debugging is a constant battle until you get your code running as you wish.
 Besides the debugging, you need to set up your development environment that can be very very tedious. Sometime you just want to code and get your job done and you may spend hours and hours just setting up the environnement, importing packages, creating VMs, exporting environment variables, running shell scrips, going 10x to stack overflow and still struggle to make things work fine, then finally you can start writing some code.</description>
@@ -210,10 +210,10 @@ Besides the debugging, you need to set up your development environment that can 
     
     <item>
       <title>About me</title>
-      <link>https://pedrojunqueira.github.io/about/</link>
+      <link>https://pedrojunqueira.github.io/blog/about/</link>
       <pubDate>Sat, 11 Apr 2020 23:33:34 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/about/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/about/</guid>
       <description>I am Pedro Junqueira Full Stack Business Intelligence Data Analyst Scientist
 I have been a data analyst and a business analyst for couple of decades, however have not left excel spreadsheets, until around 2016 where I have been focused more on the Data Science Space, which involve more and more computer science and I rarely solve my clients problem using excel nowadays.
 Since I started working on the IT side of data I realized that it is not enough only to know statists, EDA and Machine learning to thrive, because if you really want to solve the data problems that organizations face, the rabbit hole is much deeper.</description>
@@ -221,19 +221,19 @@ Since I started working on the IT side of data I realized that it is not enough 
     
     <item>
       <title>Best Data Science Podcasts</title>
-      <link>https://pedrojunqueira.github.io/posts/best-podcasts/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/best-podcasts/</link>
       <pubDate>Sat, 11 Apr 2020 23:29:13 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/best-podcasts/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/best-podcasts/</guid>
       <description>If I am not doing an Udemy course, testing a tutorial or doing any online course in any break I get to learn as much as I can about Python, Computer Science, Software Engineering, Statistics and Data Science, I am listening to a podcast. I usually do this when I am commuting either riding my bike, on the bus or driving. A good time to listen to a podcast is when I need a break from absorbing too much content by following a course.</description>
     </item>
     
     <item>
       <title>How to create new post in hugo</title>
-      <link>https://pedrojunqueira.github.io/posts/how_to_create_new_post_hugo/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/how_to_create_new_post_hugo/</link>
       <pubDate>Thu, 09 Apr 2020 07:53:52 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/how_to_create_new_post_hugo/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/how_to_create_new_post_hugo/</guid>
       <description>Because I am not very consistent in my blog I always forget the command on how to create a new post.
 Here it is
 hugo new posts/my-first-post.md

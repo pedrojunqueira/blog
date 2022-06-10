@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ai on Pedro Junqueira</title>
-    <link>https://pedrojunqueira.github.io/tags/ai/</link>
+    <link>https://pedrojunqueira.github.io/blog/tags/ai/</link>
     <description>Recent content in ai on Pedro Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
     <lastBuildDate>Sun, 28 Feb 2021 20:55:50 +1030</lastBuildDate>
     
-	<atom:link href="https://pedrojunqueira.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pedrojunqueira.github.io/blog/tags/ai/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Why I do not want to be a Data Scientist</title>
-      <link>https://pedrojunqueira.github.io/posts/why-not-data-science/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/why-not-data-science/</link>
       <pubDate>Sun, 28 Feb 2021 20:55:50 +1030</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/why-not-data-science/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/why-not-data-science/</guid>
       <description>According to the World Economic Forum Report data scientist is one of the most sought after professional and on the rise in 2020/2021 and it will be for a while.
 In 2012 when Harvard Business Review published the article as the most sexy profession it is strange someone saying that does not want to be a data scientist?
 Why not if it is so hot and so cool and it pays so much?</description>

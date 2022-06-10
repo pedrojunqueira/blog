@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>regex on Pedro Junqueira</title>
-    <link>https://pedrojunqueira.github.io/tags/regex/</link>
+    <link>https://pedrojunqueira.github.io/blog/tags/regex/</link>
     <description>Recent content in regex on Pedro Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
     <lastBuildDate>Tue, 01 Sep 2020 20:21:51 +0930</lastBuildDate>
     
-	<atom:link href="https://pedrojunqueira.github.io/tags/regex/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pedrojunqueira.github.io/blog/tags/regex/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Python regex basics to never forget</title>
-      <link>https://pedrojunqueira.github.io/posts/python_regex_never_forget/</link>
+      <link>https://pedrojunqueira.github.io/blog/posts/python_regex_never_forget/</link>
       <pubDate>Tue, 01 Sep 2020 20:21:51 +0930</pubDate>
       
-      <guid>https://pedrojunqueira.github.io/posts/python_regex_never_forget/</guid>
+      <guid>https://pedrojunqueira.github.io/blog/posts/python_regex_never_forget/</guid>
       <description>I have to confess that regex is a weakness this is why I am writing this post.
 Whenever I can I try to avoid using regex if the problem can be used in a different way, but sometimes I have to inevitably use regex.
 to import

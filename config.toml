@@ -1,4 +1,4 @@
-baseURL = "https://pedrojunqueira.github.io"
+baseURL = "https://pedrojunqueira.github.io/blog"
 languageCode = "en-us"
 title = "Pedro Junqueira's Blog"
 publishDir  = 'docs'
@@ -35,7 +35,7 @@ theme = "hello-friend-ng"
 
     [languages.en.params.logo]
       logoText = "pedrojunqueira@home: ~$"
-      logoHomeLink = "/blog"
+      logoHomeLink = "/"
     # or
     #
     # path = "/img/your-example-logo.svg"
