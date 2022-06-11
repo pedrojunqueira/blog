@@ -23,7 +23,7 @@ oc adm policy add-cluster-role-to-user cluster-admin administrator" />
 
     <title>
         
-            Basic CLI commands for Openshift-Minishift :: Pedro Junqueira  — Data Scientist
+            Basic CLI commands for Openshift-Minishift :: Pedro Junqueira  — Data Engineer
         
     </title>
 
@@ -79,6 +79,24 @@ oc adm policy add-cluster-role-to-user cluster-admin administrator"/>
 
 
 
+    <meta property="og:title" content="Basic CLI commands for Openshift-Minishift" />
+<meta property="og:description" content="Here is a post with the absolute basic commands that I always forget Getting the export Path of oc CLI tool minishift oc-env
+export PATH=&quot;/Users/pedrojunqueira/.minishift/cache/oc/v3.11.0/darwin:$PATH&quot;
+Logging in to log in
+oc login -u &lt;user&gt; -p &lt;password&gt;
+Deploy an application from git oc new-app https://github.com/sclorg/nodejs-ex -l name=myapp
+login as sys:admin oc login -u system:admin
+get users
+oc get users
+make an user called administrator a system admin
+oc adm policy add-cluster-role-to-user cluster-admin administrator" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pedrojunqueira.github.io/blog/posts/minishift_basic_cli/" /><meta property="og:image" content="https://pedrojunqueira.github.io/blog"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-07-02T20:56:05+09:30" />
+<meta property="article:modified_time" content="2020-07-02T20:56:05+09:30" /><meta property="og:site_name" content="Pedro Junqueira" />
+
+
+
 
 
 
@@ -103,7 +121,7 @@ oc adm policy add-cluster-role-to-user cluster-admin administrator"/>
         <div class="container">
             <header class="header">
     <span class="header__inner">
-        <a href="/" style="text-decoration: none;">
+        <a href="/blog" style="text-decoration: none;">
     <div class="logo">
         
             <span class="logo__mark">></span>
@@ -121,8 +139,8 @@ oc adm policy add-cluster-role-to-user cluster-admin administrator"/>
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/blog/blog/about">About</a></li><li><a href="/blog/blog/posts">Blog</a></li>
-    </ul>
+  <ul class="menu__inner"><li><a href="https://pedrojunqueira.github.io/blog/about">About</a></li><li><a href="https://pedrojunqueira.github.io/blog/posts">Blog</a></li>
+  </ul>
 </nav>
 
                 <span class="menu-trigger">

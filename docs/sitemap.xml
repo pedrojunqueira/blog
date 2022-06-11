@@ -158,6 +158,8 @@
     <loc>https://pedrojunqueira.github.io/blog/posts/how_to_create_new_post_hugo/</loc>
     <lastmod>2020-04-09T07:53:52+09:30</lastmod>
   </url><url>
-    <loc>https://pedrojunqueira.github.io/blog/categories/</loc>
+    <loc>https://pedrojunqueira.github.io/blog/blog/</loc>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/series/</loc>
   </url>
 </urlset>

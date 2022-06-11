@@ -4,6 +4,7 @@ title = "Pedro Junqueira's Blog"
 publishDir  = 'docs'
 
 theme = "hello-friend-ng"
+paginate     = 10
 
 [params]
   dateform        = "Jan 2, 2006"
@@ -25,17 +26,22 @@ theme = "hello-friend-ng"
   # Default theme "light" or "dark"
   defaultTheme = "dark"
 
+[taxonomies]
+    category = "blog"
+    tag      = "tags"
+    series   = "series"
+
 [languages]
   [languages.en]
     title = "Pedro Junqueira"
-    subtitle = "Data Scientist"
+    subtitle = "Data Engineer"
     keywords = ""
     copyright = "pedro junqueira"
     readOtherPosts = "Read other posts"
 
     [languages.en.params.logo]
       logoText = "pedrojunqueira@home: ~$"
-      logoHomeLink = "/"
+      logoHomeLink = "/blog"
     # or
     #
     # path = "/img/your-example-logo.svg"
@@ -65,9 +71,9 @@ theme = "hello-friend-ng"
   # And you can even create generic menu
   [menu]
   [[menu.main]]
-  identifier = "about"
-  name       = "About"
-  url        = "/about"
+    identifier = "about"
+    name       = "About"
+    url        = "/about"
   [[menu.main]]
     identifier = "blog"
     name       = "Blog"
