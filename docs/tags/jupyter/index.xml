@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Mon, 13 Apr 2020 21:35:16 +0930</lastBuildDate>
-    
-	<atom:link href="https://pedrojunqueira.github.io/blog/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 13 Apr 2020 21:35:16 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to get a PySpark environment running on Jupyter</title>
       <link>https://pedrojunqueira.github.io/blog/posts/data-science-on-docker/</link>

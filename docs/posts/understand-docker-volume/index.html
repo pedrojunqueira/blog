@@ -43,14 +43,9 @@ You can read it here or just watch this very good video from NetworkChuck then y
 <meta itemprop="name" content="Understanding Docker volumes with a practical example">
 <meta itemprop="description" content="Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
 This post is not a What is Docker one or an introduction.
-You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for.">
-<meta itemprop="datePublished" content="2020-04-17T06:55:35&#43;09:30" />
-<meta itemprop="dateModified" content="2020-04-17T06:55:35&#43;09:30" />
-<meta itemprop="wordCount" content="1520">
-<meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
-
-
-
+You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for."><meta itemprop="datePublished" content="2020-04-17T06:55:35+09:30" />
+<meta itemprop="dateModified" content="2020-04-17T06:55:35+09:30" />
+<meta itemprop="wordCount" content="1521"><meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
 <meta itemprop="keywords" content="docker,postgresql,sql," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://pedrojunqueira.github.io/blog"/>
@@ -187,7 +182,7 @@ You can read it here or just watch this very good video from NetworkChuck then y
 <p>I will create 3 containers with a Postgresql image running in different ports in the development machine, however all those 3 containers you share the same volume i.e., the same data. The example is just for illustration of how volumes work.</p>
 <p>You do <strong>not</strong> need to have a Postgresql instance installed on your host/development system and all that you need is Docker installed.</p>
 <p>Just check if you have Docker already:</p>
-<pre><code>$docker -v
+<pre tabindex="0"><code>$docker -v
 Docker version 19.03.8, build afacb8b
 </code></pre><p>If not it is easy to install <a href="https://docs.docker.com/get-docker/">Docker</a>.</p>
 <p>For this lets create a folder to test those concepts</p>
@@ -197,15 +192,15 @@ then cd into it
 <p>create a shell script file so it will save some typing</p>
 <p><code>touch commands.sh</code></p>
 <p>Then write on the .sh file</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span>
-docker run --name psql1 -p 5435:5432 -d <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    postgres
-</code></pre></div><p>What the command this sequence of command do is</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>docker run --name psql1 -p 5435:5432 -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    postgres
+</span></span></code></pre></div><p>What the command this sequence of command do is</p>
 <p><code>run</code> to run a countainer
 <code>--name</code> flag to name the container psql1
 <code>-p</code> determines the port where &lt;host_port&gt;:&lt;container_port&gt;
@@ -217,44 +212,44 @@ docker run --name psql1 -p 5435:5432 -d <span style="color:#ae81ff">\
 <p>then <code>$ ./commands.sh</code></p>
 <p>If you do not have a postgres in your cache it is going to automatically download from Docker Hub and build the image then run the container</p>
 <p>Run the following command to check it container is running</p>
-<pre><code>$ docker ps
+<pre tabindex="0"><code>$ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-c2081d77d376        postgres            &quot;docker-entrypoint.s…&quot;   24 seconds ago      Up 23 seconds       0.0.0.0:5435-&gt;5432/tcp   psql1
+c2081d77d376        postgres            &#34;docker-entrypoint.s…&#34;   24 seconds ago      Up 23 seconds       0.0.0.0:5435-&gt;5432/tcp   psql1
 </code></pre><p>you will see something like the above</p>
 <p>Then check if the volume was created</p>
-<pre><code>$ docker volume ls
+<pre tabindex="0"><code>$ docker volume ls
 DRIVER              VOLUME NAME
 local               pgdata
 </code></pre><p>You can use any client to check it and lets do it now.</p>
 <p>First from inside the container</p>
 <p><code>$ docker exec -it psql1 psql -p 5432  -h 0.0.0.0 -U postgres</code></p>
-<pre><code>$ docker exec -it psql1 psql -h 0.0.0.0 -U postgres
+<pre tabindex="0"><code>$ docker exec -it psql1 psql -h 0.0.0.0 -U postgres
 psql (12.2 (Debian 12.2-2.pgdg100+1))
-Type &quot;help&quot; for help.
+Type &#34;help&#34; for help.
 
 postgres=#
 </code></pre><p>Now you are inside the container using the psql client</p>
 <p>write the command <code>\l</code> to list the database then connect to the exampledb by</p>
-<pre><code>postgres-# \c exampledb;
-You are now connected to database &quot;exampledb&quot; as user &quot;postgres&quot;.
+<pre tabindex="0"><code>postgres-# \c exampledb;
+You are now connected to database &#34;exampledb&#34; as user &#34;postgres&#34;.
 </code></pre><p>create a table</p>
-<pre><code>CREATE TABLE account(
+<pre tabindex="0"><code>CREATE TABLE account(
 	user_id serial PRIMARY KEY,
 	username VARCHAR (50) UNIQUE NOT NULL,
 	email VARCHAR (355) UNIQUE NOT NULL
 );
 </code></pre><p><code>dt</code> to list tables</p>
-<pre><code>exampledb=# \dt
+<pre tabindex="0"><code>exampledb=# \dt
           List of relations
  Schema |  Name   | Type  |  Owner   
 --------+---------+-------+----------
  public | account | table | postgres
 (1 row)
 </code></pre><p>lets add some data</p>
-<pre><code>INSERT INTO account (username, email) 
-values ('John', 'john@email.com');
+<pre tabindex="0"><code>INSERT INTO account (username, email) 
+values (&#39;John&#39;, &#39;john@email.com&#39;);
 </code></pre><p>then check the data by <code>SELECT</code> statement</p>
-<pre><code>exampledb=# select * from account;
+<pre tabindex="0"><code>exampledb=# select * from account;
  user_id | username |     email      
 ---------+----------+----------------
        1 | John     | john@email.com
@@ -262,74 +257,72 @@ values ('John', 'john@email.com');
 </code></pre><p>ok now quit <code>\q</code></p>
 <p>Now that the fun starts</p>
 <p>change the .sh scrip to add more containers</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --name psql2 -p 5437:5432 -d <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    postgres
-
-</code></pre></div><p>everything is the same but the name of the container and the port</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --name psql2 -p 5437:5432 -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    postgres
+</span></span></code></pre></div><p>everything is the same but the name of the container and the port</p>
 <p>note that both container are sharing the SAME volume</p>
 <p>run the bash script again</p>
 <p><code>./commands.sh</code></p>
 <p>note that there are 2 containers running</p>
-<pre><code>$ docker ps
+<pre tabindex="0"><code>$ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-e504b08a8d2a        postgres            &quot;docker-entrypoint.s…&quot;   3 seconds ago       Up 3 seconds        0.0.0.0:5437-&gt;5432/tcp   psql2
-c2081d77d376        postgres            &quot;docker-entrypoint.s…&quot;   18 minutes ago      Up 18 minutes       0.0.0.0:5435-&gt;5432/tcp   psql1
+e504b08a8d2a        postgres            &#34;docker-entrypoint.s…&#34;   3 seconds ago       Up 3 seconds        0.0.0.0:5437-&gt;5432/tcp   psql2
+c2081d77d376        postgres            &#34;docker-entrypoint.s…&#34;   18 minutes ago      Up 18 minutes       0.0.0.0:5435-&gt;5432/tcp   psql1
 </code></pre><p>and only one volume</p>
-<pre><code>$ docker volume ls
+<pre tabindex="0"><code>$ docker volume ls
 DRIVER              VOLUME NAME
 local               pgdata
 </code></pre><p>Now lets get inside the container psql2 and connect to the database</p>
 <p><code>docker exec -it psql2 psql -p 5432  -h 0.0.0.0 -U postgres</code></p>
 <p>connect to the database <code>\c exampledb;</code></p>
 <p>query the account table</p>
-<pre><code>exampledb=# select * from account;
+<pre tabindex="0"><code>exampledb=# select * from account;
  user_id | username |     email      
 ---------+----------+----------------
        1 | John     | john@email.com
 (1 row)
 </code></pre><p>now lets create another record</p>
-<pre><code>INSERT INTO account (username, email) 
-values ('Jane', 'jane@email.com');
+<pre tabindex="0"><code>INSERT INTO account (username, email) 
+values (&#39;Jane&#39;, &#39;jane@email.com&#39;);
 </code></pre><p>quit <code>\q</code></p>
 <p>Now lets stop the containers and remove them</p>
-<pre><code>$ docker stop psql1
+<pre tabindex="0"><code>$ docker stop psql1
 $ docker stop psql2
 $ docker rm psql1
 $ docker rm psql2
 </code></pre><p>check if they where removed</p>
-<pre><code>$ docker ps
+<pre tabindex="0"><code>$ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 </code></pre><p>We did not removed the volume</p>
-<pre><code>$ docker volume ls
+<pre tabindex="0"><code>$ docker volume ls
 DRIVER              VOLUME NAME
 local               pgdata
 </code></pre><p>We are now creating another container called psql3 and &ldquo;connected&rdquo; to the same volume</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span>
-docker run --name psql3 -p 5439:5432 -d <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    postgres
-</code></pre></div><p>Now instead of connecting inside the container we are connecting it from command line from the host machine.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>docker run --name psql3 -p 5439:5432 -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    postgres
+</span></span></code></pre></div><p>Now instead of connecting inside the container we are connecting it from command line from the host machine.
 In this case you need to have either the psql cli installed in your system or use any other postgersql client tool.
 I now need to use the port <code>-p 5439</code> because it is the port in the host system that is bound to the default postgres port 5432.</p>
-<pre><code>$ psql -p 5439  -h localhost -U postgres
+<pre tabindex="0"><code>$ psql -p 5439  -h localhost -U postgres
 Password for user postgres: 
 psql (12.1, server 12.2 (Debian 12.2-2.pgdg100+1))
-Type &quot;help&quot; for help.
+Type &#34;help&#34; for help.
 
 postgres=# 
-
 </code></pre><p>now it is the hour of reckoning and lets check if we can access the data</p>
-<pre><code>postgres=# \c exampledb;
+<pre tabindex="0"><code>postgres=# \c exampledb;
 psql (12.1, server 12.2 (Debian 12.2-2.pgdg100+1))
-You are now connected to database &quot;exampledb&quot; as user &quot;postgres&quot;.
+You are now connected to database &#34;exampledb&#34; as user &#34;postgres&#34;.
 exampledb=# \dt
           List of relations
  Schema |  Name   | Type  |  Owner   
@@ -349,7 +342,7 @@ exampledb=# select * from account;
 <p>to clean up your system we can</p>
 <p><code>\q</code> get out of the psql cli tool.</p>
 <p>Stop and remove the containers and volume.</p>
-<pre><code>$ docker stop psql3
+<pre tabindex="0"><code>$ docker stop psql3
 $ docker rm psql3
 $ docker volume rm pgdata
 $ docker volume ls
@@ -382,7 +375,7 @@ $ docker volume ls
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        1520 Words
+        1521 Words
       </p>
 
       <p>
@@ -454,7 +447,7 @@ $ docker volume ls
 
 
 
-<script type="text/javascript" src="/blog/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+<script type="text/javascript" src="/blog/bundle.min.a2c5b062c87998f04d1b5dfb6a89a1b2d79786c21d0cb63a05e8a2082984b64b77d80955e3b97eab17273775162ba372511b711fea2f7608f216e68a67bb22d6.js" integrity="sha512-osWwYsh5mPBNG137aomhsteXhsIdDLY6BeiiCCmEtkt32AlV47l&#43;qxcnN3UWK6NyURtxH&#43;ovdgjyFuaKZ7si1g=="></script>
 
 
 

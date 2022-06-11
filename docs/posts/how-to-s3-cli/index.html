@@ -41,14 +41,9 @@ I grew up in the 80s and my first interactions with computer was always through 
 
 <meta itemprop="name" content="How: to navigate on AWS S3 bucket using CLI">
 <meta itemprop="description" content="Using the command line interface (CLI) can be very intimidating and make one completely lost if you always dealt with graphical drag and drop, click and point interface.
-I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then cls for clear the screen and dir to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then.">
-<meta itemprop="datePublished" content="2020-04-16T05:50:27&#43;09:30" />
-<meta itemprop="dateModified" content="2020-04-16T05:50:27&#43;09:30" />
-<meta itemprop="wordCount" content="711">
-<meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
-
-
-
+I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then cls for clear the screen and dir to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then."><meta itemprop="datePublished" content="2020-04-16T05:50:27+09:30" />
+<meta itemprop="dateModified" content="2020-04-16T05:50:27+09:30" />
+<meta itemprop="wordCount" content="711"><meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
 <meta itemprop="keywords" content="s3,aws,cli,bash,cloud," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://pedrojunqueira.github.io/blog"/>
@@ -172,12 +167,12 @@ I grew up in the 80s and my first interactions with computer was always through 
 <ul>
 <li>list your buckets</li>
 </ul>
-<pre><code>$ aws s3 ls
+<pre tabindex="0"><code>$ aws s3 ls
 2013-04-22 20:47:26 veladelivery
 </code></pre><ul>
 <li>list the directory tree of a specific bucket</li>
 </ul>
-<pre><code>$ aws s3 ls s3://veladelivery
+<pre tabindex="0"><code>$ aws s3 ls s3://veladelivery
                            PRE FSWM/
                            PRE GCDBT72635G/
                            PRE GCDBT8547S/
@@ -185,14 +180,14 @@ I grew up in the 80s and my first interactions with computer was always through 
                            PRE backtest/
                            PRE freereport/
 </code></pre><ul>
-<li>if you have spaces in file path name then you need to use &quot;&rdquo; quotes</li>
+<li>if you have spaces in file path name then you need to use &quot;&quot; quotes</li>
 </ul>
-<pre><code>$ aws s3 ls &quot;s3://veladelivery/FSWM&quot;
+<pre tabindex="0"><code>$ aws s3 ls &#34;s3://veladelivery/FSWM&#34;
                            PRE FSWM/
 </code></pre><ul>
 <li>important that a forward slash <code>/</code> is needed at the end of the command to list the files in the directory</li>
 </ul>
-<pre><code>$ aws s3 ls &quot;s3://veladelivery/FSWM/&quot;
+<pre tabindex="0"><code>$ aws s3 ls &#34;s3://veladelivery/FSWM/&#34;
 2016-05-19 06:21:24          0 
 2016-08-18 14:51:39   10298199 15.mp4
 2016-08-18 14:52:27   13516259 17.mp4
@@ -209,7 +204,7 @@ I grew up in the 80s and my first interactions with computer was always through 
 </code></pre><h2 id="2-cp">2. cp</h2>
 <p>Usually you want to copy a file from a S3 bucket to your local machine or vice versa then will give example for copy to and one for copy from</p>
 <p><strong>copying from S3 to your local machine</strong></p>
-<pre><code>$ aws s3 cp &quot;s3://veladelivery/FSWM/Achieve Financial Freedom_V2.pdf&quot; /Users/pedrojunqueira/Desktop
+<pre tabindex="0"><code>$ aws s3 cp &#34;s3://veladelivery/FSWM/Achieve Financial Freedom_V2.pdf&#34; /Users/pedrojunqueira/Desktop
 download: s3://veladelivery/FSWM/Achieve Financial Freedom_V2.pdf to ../Achieve Financial Freedom_V2.pdf
 </code></pre><p>Note that the to path does not necessarily need to have the file name</p>
 <p>alternatively this command would have worked the same</p>
@@ -220,7 +215,7 @@ download: s3://veladelivery/FSWM/Achieve Financial Freedom_V2.pdf to ../Achieve 
 <p>the pattern is</p>
 <p><code>aws s3 sync &lt;origin path&gt; &lt;destination path&gt;</code></p>
 <p>here is an example</p>
-<pre><code>$ aws s3 sync s3://veladelivery/backtest /Users/pedrojunqueira/Desktop/mys3bucket
+<pre tabindex="0"><code>$ aws s3 sync s3://veladelivery/backtest /Users/pedrojunqueira/Desktop/mys3bucket
 download: s3://veladelivery/backtest/GCDBT.zip to mys3bucket/GCDBT.zip
 </code></pre><p>in the example above even if I did not have a path /mys3bucket aws would have created one and synced all the content down from the origin path /backtest to that folder. I used different names but a good convention would be to use the same name, but you can name it whatever you want.</p>
 <p>This is just a quick example of what you may need but basically it follows the linux commands for more information look at the <a href="https://docs.aws.amazon.com/cli/latest/reference/s3/">documentation</a>.</p>
@@ -325,7 +320,7 @@ download: s3://veladelivery/backtest/GCDBT.zip to mys3bucket/GCDBT.zip
 
 
 
-<script type="text/javascript" src="/blog/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+<script type="text/javascript" src="/blog/bundle.min.a2c5b062c87998f04d1b5dfb6a89a1b2d79786c21d0cb63a05e8a2082984b64b77d80955e3b97eab17273775162ba372511b711fea2f7608f216e68a67bb22d6.js" integrity="sha512-osWwYsh5mPBNG137aomhsteXhsIdDLY6BeiiCCmEtkt32AlV47l&#43;qxcnN3UWK6NyURtxH&#43;ovdgjyFuaKZ7si1g=="></script>
 
 
 

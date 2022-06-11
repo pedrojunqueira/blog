@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Thu, 27 Aug 2020 12:01:22 +0930</lastBuildDate>
-    
-	<atom:link href="https://pedrojunqueira.github.io/blog/tags/requests/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 27 Aug 2020 12:01:22 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/requests/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to download data from Strava with Python</title>
       <link>https://pedrojunqueira.github.io/blog/posts/how_to_download_data_strava/</link>

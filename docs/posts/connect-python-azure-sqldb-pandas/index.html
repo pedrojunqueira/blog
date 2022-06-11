@@ -39,14 +39,9 @@
 
 
 <meta itemprop="name" content="Connect Python Azure SQL DB using Pandas">
-<meta itemprop="description" content="The other day I wanted to connect pandas to Azure SQL DB and boy took me longer than I wanted. In the end I solved my problem. Although, connecting to DBs always involves more complex things like DB drives and OS dependencies the part I struggled the most was with the connection string 😅. Microsoft, in its documentation, which by the way is good, gives good example and steps on setting up the environnement and how to connect through pyodbc.">
-<meta itemprop="datePublished" content="2022-05-21T20:58:05&#43;09:30" />
-<meta itemprop="dateModified" content="2022-05-21T20:58:05&#43;09:30" />
-<meta itemprop="wordCount" content="526">
-<meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
-
-
-
+<meta itemprop="description" content="The other day I wanted to connect pandas to Azure SQL DB and boy took me longer than I wanted. In the end I solved my problem. Although, connecting to DBs always involves more complex things like DB drives and OS dependencies the part I struggled the most was with the connection string 😅. Microsoft, in its documentation, which by the way is good, gives good example and steps on setting up the environnement and how to connect through pyodbc."><meta itemprop="datePublished" content="2022-05-21T20:58:05+09:30" />
+<meta itemprop="dateModified" content="2022-05-21T20:58:05+09:30" />
+<meta itemprop="wordCount" content="527"><meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
 <meta itemprop="keywords" content="sql,azure,python,linux," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://pedrojunqueira.github.io/blog"/>
@@ -159,97 +154,95 @@ Microsoft, in its <a href="https://docs.microsoft.com/en-us/sql/connect/python/p
 <h4 id="sql-server-driver">SQL server driver.</h4>
 <p>To install in linux the driver &ldquo;Microsoft ODBC 18&rdquo; just follow this <a href="https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15#18">instructions</a></p>
 <p>for <a href="https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15#ubuntu18">Ubuntu</a> here is the script</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">if</span> ! <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;18.04 20.04 21.04&#34;</span> <span style="color:#f92672">==</span> *<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>* <span style="color:#f92672">]]</span>;
-<span style="color:#66d9ef">then</span>
-    echo <span style="color:#e6db74">&#34;Ubuntu </span><span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span><span style="color:#e6db74"> is not currently supported.&#34;</span>;
-    exit;
-<span style="color:#66d9ef">fi</span>
-
-sudo su
-curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-
-curl https://packages.microsoft.com/config/ubuntu/<span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span>/prod.list &gt; /etc/apt/sources.list.d/mssql-release.list
-
-exit
-sudo apt-get update
-sudo ACCEPT_EULA<span style="color:#f92672">=</span>Y apt-get install -y msodbcsql18
-<span style="color:#75715e"># optional: for bcp and sqlcmd</span>
-sudo ACCEPT_EULA<span style="color:#f92672">=</span>Y apt-get install -y mssql-tools18
-echo <span style="color:#e6db74">&#39;export PATH=&#34;$PATH:/opt/mssql-tools18/bin&#34;&#39;</span> &gt;&gt; ~/.bashrc
-source ~/.bashrc
-<span style="color:#75715e"># optional: for unixODBC development headers</span>
-sudo apt-get install -y unixodbc-dev
-
-</code></pre></div><h4 id="python-environment">Python environment</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ! <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;18.04 20.04 21.04&#34;</span> <span style="color:#f92672">==</span> *<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>* <span style="color:#f92672">]]</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;Ubuntu </span><span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span><span style="color:#e6db74"> is not currently supported.&#34;</span>;
+</span></span><span style="display:flex;"><span>    exit;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo su
+</span></span><span style="display:flex;"><span>curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>curl https://packages.microsoft.com/config/ubuntu/<span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span>/prod.list &gt; /etc/apt/sources.list.d/mssql-release.list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>exit
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo ACCEPT_EULA<span style="color:#f92672">=</span>Y apt-get install -y msodbcsql18
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># optional: for bcp and sqlcmd</span>
+</span></span><span style="display:flex;"><span>sudo ACCEPT_EULA<span style="color:#f92672">=</span>Y apt-get install -y mssql-tools18
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;export PATH=&#34;$PATH:/opt/mssql-tools18/bin&#34;&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span>source ~/.bashrc
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># optional: for unixODBC development headers</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install -y unixodbc-dev
+</span></span></code></pre></div><h4 id="python-environment">Python environment</h4>
 <p>for the examples below install <code>pyodbc</code> <code>sqlalchemy</code> and <code>pandas</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install pyodbc SQLAlchemy pandas
-</code></pre></div><h2 id="2-connect">2. Connect</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install pyodbc SQLAlchemy pandas
+</span></span></code></pre></div><h2 id="2-connect">2. Connect</h2>
 <p>Now comes the easy&hellip; part&hellip; the code</p>
 <h3 id="connecting-using-pyodbc">Connecting using <code>pyodbc</code></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
-
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> pyodbc
-
-server <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-server-name&gt;.database.windows.net&#39;</span>
-database <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-db-name&gt;&#39;</span>
-driver<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{ODBC Driver 18 for SQL Server}&#39;</span>
-
-username <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_USERNAME&#39;</span>)
-password <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_PASSWORD&#39;</span>)
-
-connection_string <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;DRIVER={driver};SERVER=tcp:{server};PORT=1433;DATABASE={database};UID={username};PWD={password}&#39;</span>
-
-<span style="color:#75715e"># query system views</span>
-
-<span style="color:#66d9ef">with</span> pyodbc<span style="color:#f92672">.</span>connect(connection_string) <span style="color:#66d9ef">as</span> conn:
-    query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;
-</span><span style="color:#e6db74">            SELECT
-</span><span style="color:#e6db74">                [name]
-</span><span style="color:#e6db74">                ,[database_id]
-</span><span style="color:#e6db74">            FROM [sys].[databases];
-</span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
-
-    df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(sql<span style="color:#f92672">=</span>query, con<span style="color:#f92672">=</span>conn)
-    <span style="color:#66d9ef">print</span>(df<span style="color:#f92672">.</span>head())
-
-</code></pre></div><p>This will print to the output the first 10 rows of the query result of the data frame.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pyodbc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>server <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-server-name&gt;.database.windows.net&#39;</span>
+</span></span><span style="display:flex;"><span>database <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-db-name&gt;&#39;</span>
+</span></span><span style="display:flex;"><span>driver<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{ODBC Driver 18 for SQL Server}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>username <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_USERNAME&#39;</span>)
+</span></span><span style="display:flex;"><span>password <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_PASSWORD&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>connection_string <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;DRIVER=</span><span style="color:#e6db74">{</span>driver<span style="color:#e6db74">}</span><span style="color:#e6db74">;SERVER=tcp:</span><span style="color:#e6db74">{</span>server<span style="color:#e6db74">}</span><span style="color:#e6db74">;PORT=1433;DATABASE=</span><span style="color:#e6db74">{</span>database<span style="color:#e6db74">}</span><span style="color:#e6db74">;UID=</span><span style="color:#e6db74">{</span>username<span style="color:#e6db74">}</span><span style="color:#e6db74">;PWD=</span><span style="color:#e6db74">{</span>password<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># query system views</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> pyodbc<span style="color:#f92672">.</span>connect(connection_string) <span style="color:#66d9ef">as</span> conn:
+</span></span><span style="display:flex;"><span>    query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            SELECT
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                [name]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                ,[database_id]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            FROM [sys].[databases];
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(sql<span style="color:#f92672">=</span>query, con<span style="color:#f92672">=</span>conn)
+</span></span><span style="display:flex;"><span>    print(df<span style="color:#f92672">.</span>head())
+</span></span></code></pre></div><p>This will print to the output the first 10 rows of the query result of the data frame.</p>
 <p>It works fine but <code>pandas</code> will issue the following warning</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">UserWarning: pandas only support SQLAlchemy connectable<span style="color:#f92672">(</span>engine/connection<span style="color:#f92672">)</span> ordatabase string URI or sqlite3 DBAPI2 connectionother DBAPI2 objects are not tested, please consider using SQLAlchemy
-</code></pre></div><h3 id="connecting-using-sqlalchemy">Connecting using <code>sqlalchemy</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>UserWarning: pandas only support SQLAlchemy connectable<span style="color:#f92672">(</span>engine/connection<span style="color:#f92672">)</span> ordatabase string URI or sqlite3 DBAPI2 connectionother DBAPI2 objects are not tested, please consider using SQLAlchemy
+</span></span></code></pre></div><h3 id="connecting-using-sqlalchemy">Connecting using <code>sqlalchemy</code></h3>
 <p>The documentation in SQLAlchemy does not goes great length explaining the connection string with SQL Server DB and after a few stack overflow posts here is a working code.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
-
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
-
-server <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-server-name&gt;.database.windows.net&#39;</span>
-database <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-db-name&gt;&#39;</span>
-driver<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{ODBC Driver 18 for SQL Server}&#39;</span>
-
-username <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_USERNAME&#39;</span>)
-password <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_PASSWORD&#39;</span>)
-
-odbc_params <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;DRIVER={driver};SERVER=tcp:{server};PORT=1433;DATABASE={database};UID={username};PWD={password}&#39;</span>
-
-connection_string <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;mssql+pyodbc:///?odbc_connect={odbc_params}&#39;</span>
-
-engine <span style="color:#f92672">=</span> create_engine(connection_string)
-
-<span style="color:#75715e"># query sys.databases view</span>
-
-query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;
-</span><span style="color:#e6db74">        SELECT
-</span><span style="color:#e6db74">               [name]
-</span><span style="color:#e6db74">              ,[database_id]
-</span><span style="color:#e6db74">       FROM [sys].[databases];
-</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
-
-df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(query, engine)
-<span style="color:#66d9ef">print</span>(df<span style="color:#f92672">.</span>head())
-
-engine<span style="color:#f92672">.</span>dispose()
-</code></pre></div><p>It is very similar. You just need to &ldquo;attach&rdquo; the same pyodbc string after <code>'mssql+pyodbc:///?odbc_connect='</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>server <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-server-name&gt;.database.windows.net&#39;</span>
+</span></span><span style="display:flex;"><span>database <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-db-name&gt;&#39;</span>
+</span></span><span style="display:flex;"><span>driver<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{ODBC Driver 18 for SQL Server}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>username <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_USERNAME&#39;</span>)
+</span></span><span style="display:flex;"><span>password <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_PASSWORD&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>odbc_params <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;DRIVER=</span><span style="color:#e6db74">{</span>driver<span style="color:#e6db74">}</span><span style="color:#e6db74">;SERVER=tcp:</span><span style="color:#e6db74">{</span>server<span style="color:#e6db74">}</span><span style="color:#e6db74">;PORT=1433;DATABASE=</span><span style="color:#e6db74">{</span>database<span style="color:#e6db74">}</span><span style="color:#e6db74">;UID=</span><span style="color:#e6db74">{</span>username<span style="color:#e6db74">}</span><span style="color:#e6db74">;PWD=</span><span style="color:#e6db74">{</span>password<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>connection_string <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;mssql+pyodbc:///?odbc_connect=</span><span style="color:#e6db74">{</span>odbc_params<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>engine <span style="color:#f92672">=</span> create_engine(connection_string)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># query sys.databases view</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        SELECT
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               [name]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              ,[database_id]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       FROM [sys].[databases];
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(query, engine)
+</span></span><span style="display:flex;"><span>print(df<span style="color:#f92672">.</span>head())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>engine<span style="color:#f92672">.</span>dispose()
+</span></span></code></pre></div><p>It is very similar. You just need to &ldquo;attach&rdquo; the same pyodbc string after <code>'mssql+pyodbc:///?odbc_connect='</code></p>
 <p>for more detail on sql and <code>pandas</code> the
 <code>pandas</code> <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html">documentation</a> is very good.</p>
 <p>this is it.</p>
@@ -283,7 +276,7 @@ engine<span style="color:#f92672">.</span>dispose()
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        526 Words
+        527 Words
       </p>
 
       <p>
@@ -355,7 +348,7 @@ engine<span style="color:#f92672">.</span>dispose()
 
 
 
-<script type="text/javascript" src="/blog/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+<script type="text/javascript" src="/blog/bundle.min.a2c5b062c87998f04d1b5dfb6a89a1b2d79786c21d0cb63a05e8a2082984b64b77d80955e3b97eab17273775162ba372511b711fea2f7608f216e68a67bb22d6.js" integrity="sha512-osWwYsh5mPBNG137aomhsteXhsIdDLY6BeiiCCmEtkt32AlV47l&#43;qxcnN3UWK6NyURtxH&#43;ovdgjyFuaKZ7si1g=="></script>
 
 
 

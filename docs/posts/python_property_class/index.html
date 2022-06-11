@@ -45,14 +45,9 @@ My intermediate knowledge and experience already gave me lots of power but when 
 <meta itemprop="description" content="About 2 months ago I considered my self an intermediate python user.
 This level of knowledge was enough to work on pandas data transformation and use most of the data science API.
 However, when it comes to software engineering and developing production, tested code I realized that there was a lot to learn about programming concepts and how that would work with python.
-My intermediate knowledge and experience already gave me lots of power but when I started to dig into source code and also at work when I had to browse to some large code base I felt that I did not know lots of things in python and had to get my s*** together and become a proficient advanced and fluent python user.">
-<meta itemprop="datePublished" content="2020-09-16T06:03:39&#43;09:30" />
-<meta itemprop="dateModified" content="2020-09-16T06:03:39&#43;09:30" />
-<meta itemprop="wordCount" content="930">
-<meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
-
-
-
+My intermediate knowledge and experience already gave me lots of power but when I started to dig into source code and also at work when I had to browse to some large code base I felt that I did not know lots of things in python and had to get my s*** together and become a proficient advanced and fluent python user."><meta itemprop="datePublished" content="2020-09-16T06:03:39+09:30" />
+<meta itemprop="dateModified" content="2020-09-16T06:03:39+09:30" />
+<meta itemprop="wordCount" content="930"><meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
 <meta itemprop="keywords" content="python," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://pedrojunqueira.github.io/blog"/>
@@ -168,187 +163,184 @@ My intermediate knowledge and experience already gave me lots of power but when 
 <p>The documentation doc string in python is very good actually. Lets print it.</p>
 <p><code>help(property)</code></p>
 <p>Here is an exert of it with a quick example to get you started.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
-
-
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getx</span>(self):
-    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x
-
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setx</span>(self, value):
-    self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value
-
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delx</span>(self): 
-    <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
-
-  x <span style="color:#f92672">=</span> property(getx, setx, delx, <span style="color:#e6db74">&#34;I&#39;m the &#39;x&#39; property.&#34;</span>)
-
-</code></pre></div><p>The property class take 4 arguments and returns the property attribute</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getx</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setx</span>(self, value):
+</span></span><span style="display:flex;"><span>    self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delx</span>(self): 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  x <span style="color:#f92672">=</span> property(getx, setx, delx, <span style="color:#e6db74">&#34;I&#39;m the &#39;x&#39; property.&#34;</span>)
+</span></span></code></pre></div><p>The property class take 4 arguments and returns the property attribute</p>
 <p><code>property(fget=None, fset=None, fdel=None , doc=None) -&gt; property attribute</code></p>
 <p><code>fget</code> is a function to be used for getting an attribute value, and likewise</p>
 <p><code>fset</code> is a function for setting</p>
 <p>and <code>fdel</code> a function for deleting,
 an attribute.</p>
 <p>The decorator alternative makes it simpler</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
-
-<span style="color:#a6e22e">@property</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
-  <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
-  <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
-
-<span style="color:#a6e22e">@x.setter</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
-  self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value
-
-<span style="color:#a6e22e">@x.deleter</span> 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
-  <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
-
-</code></pre></div><p>This where just template examples. Lets now write our temperature class that I took from <a href="https://www.programiz.com/python-programming/property">programviz</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#75715e"># Using @property decorator</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Celsius</span>:
-    <span style="color:#66d9ef">def</span> __init__(self, temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
-        self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">=</span> temperature
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_fahrenheit</span>(self):
-        <span style="color:#66d9ef">return</span> (self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.8</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">32</span>
-
-    <span style="color:#a6e22e">@property</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self):
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Getting value...&#34;</span>)
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_temperature
-
-    <span style="color:#a6e22e">@temperature.setter</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self, value):
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Setting value...&#34;</span>)
-        <span style="color:#66d9ef">if</span> value <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">273.15</span>:
-            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Temperature below -273 is not possible&#34;</span>)
-        self<span style="color:#f92672">.</span>_temperature <span style="color:#f92672">=</span> value
-
-
-<span style="color:#75715e"># create an object</span>
-human <span style="color:#f92672">=</span> Celsius(<span style="color:#ae81ff">37</span>)
-
-<span style="color:#66d9ef">print</span>(human<span style="color:#f92672">.</span>temperature) 
-
-<span style="color:#66d9ef">print</span>(human<span style="color:#f92672">.</span>to_fahrenheit())
-
-coldest_thing <span style="color:#f92672">=</span> Celsius(<span style="color:#f92672">-</span><span style="color:#ae81ff">300</span>) <span style="color:#75715e"># this is going to raise an exception as it is below 273.15</span>
-
-<span style="color:#75715e"># output of the program (commented out)</span>
-
-<span style="color:#f92672">&gt;</span> Setting value<span style="color:#f92672">...</span>
-<span style="color:#f92672">&gt;</span> Getting value<span style="color:#f92672">...</span>
-<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">37</span>
-<span style="color:#f92672">&gt;</span> Getting value<span style="color:#f92672">...</span>
-<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">98.60000000000001</span>
-<span style="color:#f92672">&gt;</span> Setting value<span style="color:#f92672">...</span>
-
-
-Traceback (most recent call last):
-  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">28</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
-    coldest_thing <span style="color:#f92672">=</span> Celsius(<span style="color:#f92672">-</span><span style="color:#ae81ff">300</span>)
-  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">3</span>, <span style="color:#f92672">in</span> __init__
-    self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">=</span> temperature
-  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">17</span>, <span style="color:#f92672">in</span> temperature
-    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Temperature below -273 is not possible&#34;</span>)
-<span style="color:#a6e22e">ValueError</span>: Temperature below <span style="color:#f92672">-</span><span style="color:#ae81ff">273</span> <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> possible
-
-</code></pre></div><p>Note that when an instance of class initialize it firsts sets the value then it gets.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@property</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
+</span></span><span style="display:flex;"><span>  self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>deleter 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+</span></span></code></pre></div><p>This where just template examples. Lets now write our temperature class that I took from <a href="https://www.programiz.com/python-programming/property">programviz</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Using @property decorator</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Celsius</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">=</span> temperature
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_fahrenheit</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.8</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">32</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Getting value...&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_temperature
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@temperature</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self, value):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Setting value...&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> value <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">273.15</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Temperature below -273 is not possible&#34;</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_temperature <span style="color:#f92672">=</span> value
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># create an object</span>
+</span></span><span style="display:flex;"><span>human <span style="color:#f92672">=</span> Celsius(<span style="color:#ae81ff">37</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(human<span style="color:#f92672">.</span>temperature) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(human<span style="color:#f92672">.</span>to_fahrenheit())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>coldest_thing <span style="color:#f92672">=</span> Celsius(<span style="color:#f92672">-</span><span style="color:#ae81ff">300</span>) <span style="color:#75715e"># this is going to raise an exception as it is below 273.15</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># output of the program (commented out)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> Setting value<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> Getting value<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">37</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> Getting value<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">98.60000000000001</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> Setting value<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">28</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    coldest_thing <span style="color:#f92672">=</span> Celsius(<span style="color:#f92672">-</span><span style="color:#ae81ff">300</span>)
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">3</span>, <span style="color:#f92672">in</span> __init__
+</span></span><span style="display:flex;"><span>    self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">=</span> temperature
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">17</span>, <span style="color:#f92672">in</span> temperature
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Temperature below -273 is not possible&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ValueError</span>: Temperature below <span style="color:#f92672">-</span><span style="color:#ae81ff">273</span> <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> possible
+</span></span></code></pre></div><p>Note that when an instance of class initialize it firsts sets the value then it gets.</p>
 <p>I got confused with this as sometimes I used the property to set an immutable property but on the example it made it mutable with the <code>@temperature.setter</code> decorator.</p>
 <p>If you pay attention to the example on the documentation it does not initiate with a default value and the <code>x</code>. So let&rsquo;s implement it as in the help example</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
-
-    <span style="color:#a6e22e">@property</span> 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
-        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
-
-    <span style="color:#a6e22e">@x.setter</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
-        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
-
-    <span style="color:#a6e22e">@x.deleter</span> 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
-        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
-
-c <span style="color:#f92672">=</span> C(<span style="color:#ae81ff">3</span>)
-
-<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
-
-<span style="color:#75715e"># output</span>
-
-Traceback (most recent call last):
-  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">19</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
-    <span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
-  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">6</span>, <span style="color:#f92672">in</span> x
-    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
-<span style="color:#a6e22e">AttributeError</span>: <span style="color:#e6db74">&#39;C&#39;</span> object has no attribute <span style="color:#e6db74">&#39;_x&#39;</span>
-</code></pre></div><p>So if we add the <code>__init__</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self, x<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
-        self<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> x
-
-    <span style="color:#a6e22e">@property</span> 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
-        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
-
-    <span style="color:#a6e22e">@x.setter</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
-        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
-
-    <span style="color:#a6e22e">@x.deleter</span> 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
-        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
-
-
-c <span style="color:#f92672">=</span> C(<span style="color:#ae81ff">3</span>)
-
-<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
-
-c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
-
-<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
-
-<span style="color:#75715e"># output</span>
-
-<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>
-<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">23</span>
-</code></pre></div><p>Actually what happened is that when it <code>__init__</code> the instance it set the value to the default value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>deleter 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> C(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(c<span style="color:#f92672">.</span>x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># output</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">19</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    print(c<span style="color:#f92672">.</span>x)
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">6</span>, <span style="color:#f92672">in</span> x
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">AttributeError</span>: <span style="color:#e6db74">&#39;C&#39;</span> object has no attribute <span style="color:#e6db74">&#39;_x&#39;</span>
+</span></span></code></pre></div><p>So if we add the <code>__init__</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, x<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>deleter 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> C(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(c<span style="color:#f92672">.</span>x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(c<span style="color:#f92672">.</span>x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># output</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">23</span>
+</span></span></code></pre></div><p>Actually what happened is that when it <code>__init__</code> the instance it set the value to the default value.</p>
 <p>If you want to make it immutable like having a value that does not change just only implement set method.</p>
 <p>Let&rsquo;s demonstrate it</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self):
-        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
-
-    <span style="color:#a6e22e">@property</span> 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
-        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
-
-c <span style="color:#f92672">=</span> C()
-
-<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
-
-c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
-
-<span style="color:#75715e"># output</span>
-
-<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">42</span>
-
-Traceback (most recent call last):
-  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">24</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
-    c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
-<span style="color:#a6e22e">AttributeError</span>: can<span style="color:#e6db74">&#39;t set attribute</span>
-</code></pre></div><p>Note that this time on the <code>__init__</code> I set the value <code>42</code> to the <code>_x</code> underscore version to set it to a value at initialization and never allow it to change.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> C()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(c<span style="color:#f92672">.</span>x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># output</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">24</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">AttributeError</span>: can<span style="color:#e6db74">&#39;t set attribute</span>
+</span></span></code></pre></div><p>Note that this time on the <code>__init__</code> I set the value <code>42</code> to the <code>_x</code> underscore version to set it to a value at initialization and never allow it to change.</p>
 <p>I think this is it for property.</p>
 <p>If you inspect source code in GitHub you will see it a lot and now you know what is going on when you see it.</p>
 
@@ -448,7 +440,7 @@ Traceback (most recent call last):
 
 
 
-<script type="text/javascript" src="/blog/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+<script type="text/javascript" src="/blog/bundle.min.a2c5b062c87998f04d1b5dfb6a89a1b2d79786c21d0cb63a05e8a2082984b64b77d80955e3b97eab17273775162ba372511b711fea2f7608f216e68a67bb22d6.js" integrity="sha512-osWwYsh5mPBNG137aomhsteXhsIdDLY6BeiiCCmEtkt32AlV47l&#43;qxcnN3UWK6NyURtxH&#43;ovdgjyFuaKZ7si1g=="></script>
 
 
 

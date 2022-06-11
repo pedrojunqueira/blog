@@ -43,14 +43,9 @@ Strava does not make it easy for the normal human being that no nothing about co
 <meta itemprop="name" content="How to download data from Strava with Python">
 <meta itemprop="description" content="I am a cyclist enthusiast and you may be if you are reading this blog post.
 Strava has a nice API which gives access to the data recorded on the application.
-Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer. The API, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user.">
-<meta itemprop="datePublished" content="2020-08-27T12:01:22&#43;09:30" />
-<meta itemprop="dateModified" content="2020-08-27T12:01:22&#43;09:30" />
-<meta itemprop="wordCount" content="789">
-<meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
-
-
-
+Strava does not make it easy for the normal human being that no nothing about coding to access the data, on the other hand it makes it amazing for someone that knows code and is a developer. The API, which stands for Application Programming Interface allows to interact with Strava application and do lots of operations like extract data and also post, if enough permission is given by the user."><meta itemprop="datePublished" content="2020-08-27T12:01:22+09:30" />
+<meta itemprop="dateModified" content="2020-08-27T12:01:22+09:30" />
+<meta itemprop="wordCount" content="789"><meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
 <meta itemprop="keywords" content="api,python,pandas,requests,strava," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://pedrojunqueira.github.io/blog"/>
@@ -162,24 +157,24 @@ The  <a href="https://en.wikipedia.org/wiki/API">API</a>, which stands for Appli
 <ol>
 <li>Import the packages</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
-<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
-<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
-
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
-</code></pre></div><ol start="2">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
+</span></span></code></pre></div><ol start="2">
 <li>Get your secrets from environment variables</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
-client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
-</code></pre></div><p>To make API calls to Strava you need to have a registered application. This can be easily done on your <a href="https://developers.strava.com/docs/getting-started/#account">Strava account</a>. Here is the instructions to get your CLIENT_ID and CLIENT_SECRET. Please keep this with you.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
+</span></span><span style="display:flex;"><span>client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
+</span></span></code></pre></div><p>To make API calls to Strava you need to have a registered application. This can be easily done on your <a href="https://developers.strava.com/docs/getting-started/#account">Strava account</a>. Here is the instructions to get your CLIENT_ID and CLIENT_SECRET. Please keep this with you.</p>
 <ol start="3">
 <li>Generate a token by Authenticating with Strava oauth2</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
-access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
-</code></pre></div><p>This was a part that it took me a while to get my head around. Strava improved the documentation a lot since the first time I read. They even drew a chart flow for <a href="https://developers.strava.com/docs/getting-started/#oauth">absolute dummies</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
+</span></span><span style="display:flex;"><span>access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
+</span></span></code></pre></div><p>This was a part that it took me a while to get my head around. Strava improved the documentation a lot since the first time I read. They even drew a chart flow for <a href="https://developers.strava.com/docs/getting-started/#oauth">absolute dummies</a>.</p>
 <p>What it actually does is a 2 way authentication.</p>
 <p>First you make a request to have access to a athlete data then the athlete log to his account by giving you permission you asked for on the request then it return you a JSON with a temporary access token and a refresh token where you then can make calls to the API and get data.
 The permission given to you is based on the context you asked (e.g. only read or read and write)
@@ -187,53 +182,53 @@ In this example you would be doing it with your own account and I am sure you wi
 <ol start="4">
 <li>Create a client object and call get_logged_in_athlete_activities methods</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
-date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
-activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
-</code></pre></div><p>Now that you have the token you can create a client object from the StravaIO class which handles the session and you can then call the method that fetch the athlete activity. For more details about the class here is the <a href="https://github.com/sladkovm/stravaio/blob/master/stravaio.py">source code</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
+</span></span><span style="display:flex;"><span>date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
+</span></span><span style="display:flex;"><span>activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
+</span></span></code></pre></div><p>Now that you have the token you can create a client object from the StravaIO class which handles the session and you can then call the method that fetch the athlete activity. For more details about the class here is the <a href="https://github.com/sladkovm/stravaio/blob/master/stravaio.py">source code</a></p>
 <ol start="5">
 <li>Finally transform into a pandas DataFrame and export to csv or other format you like.</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df_data <span style="color:#f92672">=</span> defaultdict(list)
-
-<span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
-    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
-        df_data[k]<span style="color:#f92672">.</span>append(v)
-
-df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
-
-df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
-</code></pre></div><p>The <code>activity</code> variable is a <code>Stravaio</code> object which has a method <code>to_dict()</code> that makes life much easier.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_data <span style="color:#f92672">=</span> defaultdict(list)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>        df_data[k]<span style="color:#f92672">.</span>append(v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span></code></pre></div><p>The <code>activity</code> variable is a <code>Stravaio</code> object which has a method <code>to_dict()</code> that makes life much easier.
 It returns a list of dictionaries. This is perfect scenario to use defaultdict as a list so it can be easily ingested by pandas</p>
 <p>Here is the full script</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
-<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
-<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
-
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
-
-
-client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
-client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
-
-token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
-access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
-
-client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
-date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
-activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
-
-df_data <span style="color:#f92672">=</span> defaultdict(list)
-
-<span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
-    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
-        df_data[k]<span style="color:#f92672">.</span>append(v)
-
-df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
-
-df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
-</code></pre></div><p>Even though the above script is relatively simple it is not for the common citizen that does not code and is not enthusiast about Python like you and me</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
+</span></span><span style="display:flex;"><span>client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
+</span></span><span style="display:flex;"><span>access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
+</span></span><span style="display:flex;"><span>date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
+</span></span><span style="display:flex;"><span>activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df_data <span style="color:#f92672">=</span> defaultdict(list)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>        df_data[k]<span style="color:#f92672">.</span>append(v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span></code></pre></div><p>Even though the above script is relatively simple it is not for the common citizen that does not code and is not enthusiast about Python like you and me</p>
 <p>For this I am currently developing a Web app that downloads your data into a csv file in 3 simple clicks.</p>
 <p>You can access it <a href="http://www.download-data.com/">here</a>.</p>
 
@@ -337,7 +332,7 @@ df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my
 
 
 
-<script type="text/javascript" src="/blog/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+<script type="text/javascript" src="/blog/bundle.min.a2c5b062c87998f04d1b5dfb6a89a1b2d79786c21d0cb63a05e8a2082984b64b77d80955e3b97eab17273775162ba372511b711fea2f7608f216e68a67bb22d6.js" integrity="sha512-osWwYsh5mPBNG137aomhsteXhsIdDLY6BeiiCCmEtkt32AlV47l&#43;qxcnN3UWK6NyURtxH&#43;ovdgjyFuaKZ7si1g=="></script>
 
 
 

@@ -6,12 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
 <meta name="description" content="Creating secret imperatively
-kubectl create secret generic \  &amp;lt;secret name&amp;gt; --from-literal=&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt; kubectl explain pods --recursive | less 
-kubectl explain pods --recursive | grep -A8 envFrom
+kubectl create secret generic \ &amp;lt;secret name&amp;gt; --from-literal=&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt; kubectl explain pods --recursive | less kubectl explain pods --recursive | grep -A8 envFrom
 create secrete base64
-$ echo -n &amp;quot;secret&amp;quot; | base64 c2VjcmV0 decode
-$ echo -n &amp;quot;c2VjcmV0&amp;quot; | base64 --decode secret Secret definition file
-apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod" />
+$ echo -n &amp;#34;secret&amp;#34; | base64 c2VjcmV0 decode
+$ echo -n &amp;#34;c2VjcmV0&amp;#34; | base64 --decode secret Secret definition file
+apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod
+apiVersion: v1 kind: Pod metadata: name: secret-test-pod spec: containers: - name: test-container image: nginx volumeMounts: # name must match the volume name below - name: secret-volume mountPath: /etc/secret-volume # The secret data is exposed to Containers in the Pod through a Volume." />
 <meta name="keywords" content=", kubernetes" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -46,31 +46,26 @@ apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username
 
 <meta itemprop="name" content="How to create a Kubernetes Secret">
 <meta itemprop="description" content="Creating secret imperatively
-kubectl create secret generic \  &lt;secret name&gt; --from-literal=&lt;key&gt;=&lt;value&gt; kubectl explain pods --recursive | less 
-kubectl explain pods --recursive | grep -A8 envFrom
+kubectl create secret generic \ &lt;secret name&gt; --from-literal=&lt;key&gt;=&lt;value&gt; kubectl explain pods --recursive | less kubectl explain pods --recursive | grep -A8 envFrom
 create secrete base64
-$ echo -n &quot;secret&quot; | base64 c2VjcmV0 decode
-$ echo -n &quot;c2VjcmV0&quot; | base64 --decode secret Secret definition file
-apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod">
-<meta itemprop="datePublished" content="2020-08-26T06:38:52&#43;09:30" />
-<meta itemprop="dateModified" content="2020-08-26T06:38:52&#43;09:30" />
-<meta itemprop="wordCount" content="141">
-<meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
-
-
-
+$ echo -n &#34;secret&#34; | base64 c2VjcmV0 decode
+$ echo -n &#34;c2VjcmV0&#34; | base64 --decode secret Secret definition file
+apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod
+apiVersion: v1 kind: Pod metadata: name: secret-test-pod spec: containers: - name: test-container image: nginx volumeMounts: # name must match the volume name below - name: secret-volume mountPath: /etc/secret-volume # The secret data is exposed to Containers in the Pod through a Volume."><meta itemprop="datePublished" content="2020-08-26T06:38:52+09:30" />
+<meta itemprop="dateModified" content="2020-08-26T06:38:52+09:30" />
+<meta itemprop="wordCount" content="141"><meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
 <meta itemprop="keywords" content="kubernetes," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://pedrojunqueira.github.io/blog"/>
 
 <meta name="twitter:title" content="How to create a Kubernetes Secret"/>
 <meta name="twitter:description" content="Creating secret imperatively
-kubectl create secret generic \  &lt;secret name&gt; --from-literal=&lt;key&gt;=&lt;value&gt; kubectl explain pods --recursive | less 
-kubectl explain pods --recursive | grep -A8 envFrom
+kubectl create secret generic \ &lt;secret name&gt; --from-literal=&lt;key&gt;=&lt;value&gt; kubectl explain pods --recursive | less kubectl explain pods --recursive | grep -A8 envFrom
 create secrete base64
-$ echo -n &quot;secret&quot; | base64 c2VjcmV0 decode
-$ echo -n &quot;c2VjcmV0&quot; | base64 --decode secret Secret definition file
-apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod"/>
+$ echo -n &#34;secret&#34; | base64 c2VjcmV0 decode
+$ echo -n &#34;c2VjcmV0&#34; | base64 --decode secret Secret definition file
+apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod
+apiVersion: v1 kind: Pod metadata: name: secret-test-pod spec: containers: - name: test-container image: nginx volumeMounts: # name must match the volume name below - name: secret-volume mountPath: /etc/secret-volume # The secret data is exposed to Containers in the Pod through a Volume."/>
 
 
 
@@ -162,58 +157,58 @@ apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username
 
       <div class="post-content">
         <p>Creating secret imperatively</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    &lt;secret name&gt; --from-literal<span style="color:#f92672">=</span>&lt;key&gt;<span style="color:#f92672">=</span>&lt;value&gt;
-</code></pre></div><p><code>kubectl explain pods --recursive | less </code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl create secret generic <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    &lt;secret name&gt; --from-literal<span style="color:#f92672">=</span>&lt;key&gt;<span style="color:#f92672">=</span>&lt;value&gt;
+</span></span></code></pre></div><p><code>kubectl explain pods --recursive | less </code></p>
 <p><code>kubectl explain pods --recursive | grep -A8 envFrom</code></p>
 <p>create secrete base64</p>
-<pre><code>$ echo -n &quot;secret&quot; | base64
+<pre tabindex="0"><code>$ echo -n &#34;secret&#34; | base64
 c2VjcmV0
 </code></pre><p>decode</p>
-<pre><code>$ echo -n &quot;c2VjcmV0&quot; | base64 --decode
+<pre tabindex="0"><code>$ echo -n &#34;c2VjcmV0&#34; | base64 --decode
 secret
 </code></pre><p>Secret definition file</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: Secret
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: mysecret
-<span style="color:#66d9ef">type</span>: Opaque
-<span style="color:#66d9ef">data</span>:
-  <span style="color:#66d9ef">username</span>: YWRtaW4=
-  <span style="color:#66d9ef">password</span>: MWYyZDFlMmU2N2Rm
-  
-</code></pre></div><p>injecting in through a volume in a pod</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: Pod
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: secret-test-pod
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">containers</span>:
-    - <span style="color:#66d9ef">name</span>: test-container
-      <span style="color:#66d9ef">image</span>: nginx
-      <span style="color:#66d9ef">volumeMounts</span>:
-        <span style="color:#75715e"># name must match the volume name below</span>
-        - <span style="color:#66d9ef">name</span>: secret-volume
-          <span style="color:#66d9ef">mountPath</span>: /etc/secret-volume
-  <span style="color:#75715e"># The secret data is exposed to Containers in the Pod through a Volume.</span>
-  <span style="color:#66d9ef">volumes</span>:
-    - <span style="color:#66d9ef">name</span>: secret-volume
-      <span style="color:#66d9ef">secret</span>:
-        <span style="color:#66d9ef">secretName</span>: mysecret        
-</code></pre></div><p>Injecing as environment variable</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">
-<span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: Pod
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: envfrom-secret
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">containers</span>:
-  - <span style="color:#66d9ef">name</span>: envars-test-container
-    <span style="color:#66d9ef">image</span>: nginx
-    <span style="color:#66d9ef">envFrom</span>:
-    - <span style="color:#66d9ef">secretRef</span>:
-        <span style="color:#66d9ef">name</span>: test-secret
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysecret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">Opaque</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">username</span>: <span style="color:#ae81ff">YWRtaW4=</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">password</span>: <span style="color:#ae81ff">MWYyZDFlMmU2N2Rm</span>
+</span></span><span style="display:flex;"><span>  
+</span></span></code></pre></div><p>injecting in through a volume in a pod</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">secret-test-pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">test-container</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumeMounts</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># name must match the volume name below</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">secret-volume</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/etc/secret-volume</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># The secret data is exposed to Containers in the Pod through a Volume.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">secret-volume</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">secret</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">secretName</span>: <span style="color:#ae81ff">mysecret        </span>
+</span></span></code></pre></div><p>Injecing as environment variable</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">envfrom-secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">envars-test-container</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">envFrom</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">secretRef</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">test-secret</span>
+</span></span></code></pre></div>
       </div>
     </article>
 
@@ -310,7 +305,7 @@ secret
 
 
 
-<script type="text/javascript" src="/blog/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+<script type="text/javascript" src="/blog/bundle.min.a2c5b062c87998f04d1b5dfb6a89a1b2d79786c21d0cb63a05e8a2082984b64b77d80955e3b97eab17273775162ba372511b711fea2f7608f216e68a67bb22d6.js" integrity="sha512-osWwYsh5mPBNG137aomhsteXhsIdDLY6BeiiCCmEtkt32AlV47l&#43;qxcnN3UWK6NyURtxH&#43;ovdgjyFuaKZ7si1g=="></script>
 
 
 

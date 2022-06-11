@@ -41,14 +41,9 @@ It is not the intent of this post explain OpenShift but in summary is a RedHat p
 
 <meta itemprop="name" content="Pushing image to local minishift registry">
 <meta itemprop="description" content="I am learning OpenShift as I am using it more and more at work and it has been great fun and I am really enjoying the DevOps space which is giving me new super powers as a developer.
-It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases.">
-<meta itemprop="datePublished" content="2020-08-09T07:52:24&#43;09:30" />
-<meta itemprop="dateModified" content="2020-08-09T07:52:24&#43;09:30" />
-<meta itemprop="wordCount" content="350">
-<meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
-
-
-
+It is not the intent of this post explain OpenShift but in summary is a RedHat product to manage a Kubernetes cluster. There are some peculiarities of OpenShift but it is pretty much Kubernetes in 98% of cases."><meta itemprop="datePublished" content="2020-08-09T07:52:24+09:30" />
+<meta itemprop="dateModified" content="2020-08-09T07:52:24+09:30" />
+<meta itemprop="wordCount" content="350"><meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
 <meta itemprop="keywords" content="kubernetes,openshift,docker,DevOps," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://pedrojunqueira.github.io/blog"/>
@@ -163,11 +158,11 @@ It is not the intent of this post explain OpenShift but in summary is a RedHat p
 <li>Configure <a href="https://docs.okd.io/3.11/minishift/using/docker-daemon.html">Minishift Docker Daemon</a></li>
 </ol>
 <p><code>minishift docker-env</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export DOCKER_TLS_VERIFY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>
-export DOCKER_HOST<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tcp://192.168.99.101:2376&#34;</span>
-export DOCKER_CERT_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/Users/john/.minishift/certs&#34;</span>
-export DOCKER_API_VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.24&#34;</span>
-</code></pre></div><p>Run this command to configure your shell:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export DOCKER_TLS_VERIFY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>export DOCKER_HOST<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tcp://192.168.99.101:2376&#34;</span>
+</span></span><span style="display:flex;"><span>export DOCKER_CERT_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/Users/john/.minishift/certs&#34;</span>
+</span></span><span style="display:flex;"><span>export DOCKER_API_VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.24&#34;</span>
+</span></span></code></pre></div><p>Run this command to configure your shell:</p>
 <p><code>eval $(minishift docker-env)</code></p>
 <p>to test check processes</p>
 <p><code>docker ps</code></p>
@@ -297,7 +292,7 @@ export DOCKER_API_VERSION<span style="color:#f92672">=</span><span style="color:
 
 
 
-<script type="text/javascript" src="/blog/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+<script type="text/javascript" src="/blog/bundle.min.a2c5b062c87998f04d1b5dfb6a89a1b2d79786c21d0cb63a05e8a2082984b64b77d80955e3b97eab17273775162ba372511b711fea2f7608f216e68a67bb22d6.js" integrity="sha512-osWwYsh5mPBNG137aomhsteXhsIdDLY6BeiiCCmEtkt32AlV47l&#43;qxcnN3UWK6NyURtxH&#43;ovdgjyFuaKZ7si1g=="></script>
 
 
 

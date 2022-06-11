@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Fri, 10 Jun 2022 21:16:44 +0930</lastBuildDate>
-    
-	<atom:link href="https://pedrojunqueira.github.io/blog/tags/python/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 10 Jun 2022 21:16:44 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Understand how objects behave in memory Python</title>
       <link>https://pedrojunqueira.github.io/blog/posts/object-pointer-python/</link>

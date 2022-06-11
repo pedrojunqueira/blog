@@ -22,68 +22,65 @@ I often see mini examples on twitter about a code snippet of how objects behave 
 <p>I came across a interesting one.</p>
 <p>I often see mini examples on twitter about a code snippet of how objects behave in Python and some unintended consequences may cause your code to do things you were not expecting, yet it totally makes sense.</p>
 <p>Here is a simple version of the example of how objects behave.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-obj_a <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
-obj_b <span style="color:#f92672">=</span> obj_a
-obj_b<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">4</span>)
-<span style="color:#66d9ef">print</span>(obj_a)
-
-</code></pre></div><p>This will print</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>1, 2, 3, 4<span style="color:#f92672">]</span>
-</code></pre></div><p>Simply because the objects in memory are the same.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>obj_a <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>obj_b <span style="color:#f92672">=</span> obj_a
+</span></span><span style="display:flex;"><span>obj_b<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>print(obj_a)
+</span></span></code></pre></div><p>This will print</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>1, 2, 3, 4<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>Simply because the objects in memory are the same.</p>
 <p>In python you can check this by passing the object to the build-in function <code>id</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#66d9ef">assert</span> id(obj_a) <span style="color:#f92672">==</span> id(obj_b)
-
-</code></pre></div><p>I used to see this then meh 🤷‍♂️ interesting to know.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> id(obj_a) <span style="color:#f92672">==</span> id(obj_b)
+</span></span></code></pre></div><p>I used to see this then meh 🤷‍♂️ interesting to know.</p>
 <p>This is good thing to be aware because in a program you can have objects being executed in one part of your program and affecting others that you do not want.</p>
 <p>This week I spent a great amount of time to figure out a bug 🐛 in a program and here a snippet that reproduces the issue.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bizarre_list <span style="color:#f92672">=</span> []
-my_dict <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;key&#34;</span>: [] }
-
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
-    bizarre_list<span style="color:#f92672">.</span>append(i)
-    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>:
-        <span style="color:#66d9ef">print</span>(bizarre_list)
-        my_dict[<span style="color:#e6db74">&#34;key&#34;</span>]<span style="color:#f92672">.</span>append(bizarre_list)
-
-<span style="color:#66d9ef">print</span>(bizarre_list)
-
-<span style="color:#66d9ef">print</span>(my_dict)
-</code></pre></div><p>output</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6<span style="color:#f92672">]</span>
-<span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9<span style="color:#f92672">]</span>
-<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;key&#39;</span>: <span style="color:#f92672">[[</span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9<span style="color:#f92672">]]}</span>
-</code></pre></div><p>When I appended the <code>list</code> to the <code>dict</code> value <code>list</code>. After I done that it kept on adding items to the list in both the <code>dict</code> and the <code>bizarre_list</code>. This is what python does because they just are the same object, but I wanted a different behavior. The intention is to the <code>list</code> be at the state in iteration <code>i == 6</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>bizarre_list <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>my_dict <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;key&#34;</span>: [] }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>    bizarre_list<span style="color:#f92672">.</span>append(i)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>:
+</span></span><span style="display:flex;"><span>        print(bizarre_list)
+</span></span><span style="display:flex;"><span>        my_dict[<span style="color:#e6db74">&#34;key&#34;</span>]<span style="color:#f92672">.</span>append(bizarre_list)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(bizarre_list)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(my_dict)
+</span></span></code></pre></div><p>output</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span><span style="color:#e6db74">&#39;key&#39;</span>: <span style="color:#f92672">[[</span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9<span style="color:#f92672">]]}</span>
+</span></span></code></pre></div><p>When I appended the <code>list</code> to the <code>dict</code> value <code>list</code>. After I done that it kept on adding items to the list in both the <code>dict</code> and the <code>bizarre_list</code>. This is what python does because they just are the same object, but I wanted a different behavior. The intention is to the <code>list</code> be at the state in iteration <code>i == 6</code></p>
 <p>To achieve this just use the python module <code>copy</code> and the function <code>deepcopy</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#f92672">from</span> copy <span style="color:#f92672">import</span> deepcopy
-
-bizarre_list <span style="color:#f92672">=</span> []
-my_dict <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;key&#34;</span>: [] }
-
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
-    bizarre_list<span style="color:#f92672">.</span>append(i)
-    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>:
-        <span style="color:#66d9ef">print</span>(bizarre_list)
-        bizarre_list_snapshot <span style="color:#f92672">=</span> deepcopy(bizarre_list)
-        my_dict[<span style="color:#e6db74">&#34;key&#34;</span>]<span style="color:#f92672">.</span>append(bizarre_list_snapshot)
-
-<span style="color:#66d9ef">print</span>(bizarre_list)
-
-<span style="color:#66d9ef">print</span>(my_dict)
-
-</code></pre></div><p>output</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6<span style="color:#f92672">]</span>
-<span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9<span style="color:#f92672">]</span>
-<span style="color:#f92672">{</span><span style="color:#e6db74">&#39;key&#39;</span>: <span style="color:#f92672">[[</span>0, 1, 2, 3, 4, 5, 6<span style="color:#f92672">]]}</span>
-</code></pre></div><p>What deepcopy does is to copy the object and save it in another place in memory</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;bizarre_list ID: {id(bizarre_list)}&#34;</span>)
-<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;dict list ID: {id(my_dict[&#39;key&#39;][0])}&#34;</span>)
-</code></pre></div><p>output</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bizarre_list ID: <span style="color:#ae81ff">140154658362112</span>
-dict list ID: <span style="color:#ae81ff">140154658425344</span>
-</code></pre></div><p>This is it for this post.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> copy <span style="color:#f92672">import</span> deepcopy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bizarre_list <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>my_dict <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;key&#34;</span>: [] }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>    bizarre_list<span style="color:#f92672">.</span>append(i)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>:
+</span></span><span style="display:flex;"><span>        print(bizarre_list)
+</span></span><span style="display:flex;"><span>        bizarre_list_snapshot <span style="color:#f92672">=</span> deepcopy(bizarre_list)
+</span></span><span style="display:flex;"><span>        my_dict[<span style="color:#e6db74">&#34;key&#34;</span>]<span style="color:#f92672">.</span>append(bizarre_list_snapshot)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(bizarre_list)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(my_dict)
+</span></span></code></pre></div><p>output</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span><span style="color:#e6db74">&#39;key&#39;</span>: <span style="color:#f92672">[[</span>0, 1, 2, 3, 4, 5, 6<span style="color:#f92672">]]}</span>
+</span></span></code></pre></div><p>What deepcopy does is to copy the object and save it in another place in memory</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;bizarre_list ID: </span><span style="color:#e6db74">{</span>id(bizarre_list)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;dict list ID: </span><span style="color:#e6db74">{</span>id(my_dict[<span style="color:#e6db74">&#39;key&#39;</span>][<span style="color:#ae81ff">0</span>])<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><p>output</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bizarre_list ID: <span style="color:#ae81ff">140154658362112</span>
+</span></span><span style="display:flex;"><span>dict list ID: <span style="color:#ae81ff">140154658425344</span>
+</span></span></code></pre></div><p>This is it for this post.</p>
 <p>cheers</p>
 <p>Pedro</p>
 ]]></content>
@@ -112,97 +109,95 @@ Microsoft, in its <a href="https://docs.microsoft.com/en-us/sql/connect/python/p
 <h4 id="sql-server-driver">SQL server driver.</h4>
 <p>To install in linux the driver &ldquo;Microsoft ODBC 18&rdquo; just follow this <a href="https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15#18">instructions</a></p>
 <p>for <a href="https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15#ubuntu18">Ubuntu</a> here is the script</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">if</span> ! <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;18.04 20.04 21.04&#34;</span> <span style="color:#f92672">==</span> *<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>* <span style="color:#f92672">]]</span>;
-<span style="color:#66d9ef">then</span>
-    echo <span style="color:#e6db74">&#34;Ubuntu </span><span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span><span style="color:#e6db74"> is not currently supported.&#34;</span>;
-    exit;
-<span style="color:#66d9ef">fi</span>
-
-sudo su
-curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-
-curl https://packages.microsoft.com/config/ubuntu/<span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span>/prod.list &gt; /etc/apt/sources.list.d/mssql-release.list
-
-exit
-sudo apt-get update
-sudo ACCEPT_EULA<span style="color:#f92672">=</span>Y apt-get install -y msodbcsql18
-<span style="color:#75715e"># optional: for bcp and sqlcmd</span>
-sudo ACCEPT_EULA<span style="color:#f92672">=</span>Y apt-get install -y mssql-tools18
-echo <span style="color:#e6db74">&#39;export PATH=&#34;$PATH:/opt/mssql-tools18/bin&#34;&#39;</span> &gt;&gt; ~/.bashrc
-source ~/.bashrc
-<span style="color:#75715e"># optional: for unixODBC development headers</span>
-sudo apt-get install -y unixodbc-dev
-
-</code></pre></div><h4 id="python-environment">Python environment</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ! <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;18.04 20.04 21.04&#34;</span> <span style="color:#f92672">==</span> *<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>* <span style="color:#f92672">]]</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;Ubuntu </span><span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span><span style="color:#e6db74"> is not currently supported.&#34;</span>;
+</span></span><span style="display:flex;"><span>    exit;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo su
+</span></span><span style="display:flex;"><span>curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>curl https://packages.microsoft.com/config/ubuntu/<span style="color:#66d9ef">$(</span>lsb_release -rs<span style="color:#66d9ef">)</span>/prod.list &gt; /etc/apt/sources.list.d/mssql-release.list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>exit
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo ACCEPT_EULA<span style="color:#f92672">=</span>Y apt-get install -y msodbcsql18
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># optional: for bcp and sqlcmd</span>
+</span></span><span style="display:flex;"><span>sudo ACCEPT_EULA<span style="color:#f92672">=</span>Y apt-get install -y mssql-tools18
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;export PATH=&#34;$PATH:/opt/mssql-tools18/bin&#34;&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span>source ~/.bashrc
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># optional: for unixODBC development headers</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install -y unixodbc-dev
+</span></span></code></pre></div><h4 id="python-environment">Python environment</h4>
 <p>for the examples below install <code>pyodbc</code> <code>sqlalchemy</code> and <code>pandas</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install pyodbc SQLAlchemy pandas
-</code></pre></div><h2 id="2-connect">2. Connect</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install pyodbc SQLAlchemy pandas
+</span></span></code></pre></div><h2 id="2-connect">2. Connect</h2>
 <p>Now comes the easy&hellip; part&hellip; the code</p>
 <h3 id="connecting-using-pyodbc">Connecting using <code>pyodbc</code></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
-
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> pyodbc
-
-server <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-server-name&gt;.database.windows.net&#39;</span>
-database <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-db-name&gt;&#39;</span>
-driver<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{ODBC Driver 18 for SQL Server}&#39;</span>
-
-username <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_USERNAME&#39;</span>)
-password <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_PASSWORD&#39;</span>)
-
-connection_string <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;DRIVER={driver};SERVER=tcp:{server};PORT=1433;DATABASE={database};UID={username};PWD={password}&#39;</span>
-
-<span style="color:#75715e"># query system views</span>
-
-<span style="color:#66d9ef">with</span> pyodbc<span style="color:#f92672">.</span>connect(connection_string) <span style="color:#66d9ef">as</span> conn:
-    query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;
-</span><span style="color:#e6db74">            SELECT
-</span><span style="color:#e6db74">                [name]
-</span><span style="color:#e6db74">                ,[database_id]
-</span><span style="color:#e6db74">            FROM [sys].[databases];
-</span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
-
-    df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(sql<span style="color:#f92672">=</span>query, con<span style="color:#f92672">=</span>conn)
-    <span style="color:#66d9ef">print</span>(df<span style="color:#f92672">.</span>head())
-
-</code></pre></div><p>This will print to the output the first 10 rows of the query result of the data frame.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pyodbc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>server <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-server-name&gt;.database.windows.net&#39;</span>
+</span></span><span style="display:flex;"><span>database <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-db-name&gt;&#39;</span>
+</span></span><span style="display:flex;"><span>driver<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{ODBC Driver 18 for SQL Server}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>username <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_USERNAME&#39;</span>)
+</span></span><span style="display:flex;"><span>password <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_PASSWORD&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>connection_string <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;DRIVER=</span><span style="color:#e6db74">{</span>driver<span style="color:#e6db74">}</span><span style="color:#e6db74">;SERVER=tcp:</span><span style="color:#e6db74">{</span>server<span style="color:#e6db74">}</span><span style="color:#e6db74">;PORT=1433;DATABASE=</span><span style="color:#e6db74">{</span>database<span style="color:#e6db74">}</span><span style="color:#e6db74">;UID=</span><span style="color:#e6db74">{</span>username<span style="color:#e6db74">}</span><span style="color:#e6db74">;PWD=</span><span style="color:#e6db74">{</span>password<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># query system views</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> pyodbc<span style="color:#f92672">.</span>connect(connection_string) <span style="color:#66d9ef">as</span> conn:
+</span></span><span style="display:flex;"><span>    query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            SELECT
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                [name]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                ,[database_id]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            FROM [sys].[databases];
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(sql<span style="color:#f92672">=</span>query, con<span style="color:#f92672">=</span>conn)
+</span></span><span style="display:flex;"><span>    print(df<span style="color:#f92672">.</span>head())
+</span></span></code></pre></div><p>This will print to the output the first 10 rows of the query result of the data frame.</p>
 <p>It works fine but <code>pandas</code> will issue the following warning</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">UserWarning: pandas only support SQLAlchemy connectable<span style="color:#f92672">(</span>engine/connection<span style="color:#f92672">)</span> ordatabase string URI or sqlite3 DBAPI2 connectionother DBAPI2 objects are not tested, please consider using SQLAlchemy
-</code></pre></div><h3 id="connecting-using-sqlalchemy">Connecting using <code>sqlalchemy</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>UserWarning: pandas only support SQLAlchemy connectable<span style="color:#f92672">(</span>engine/connection<span style="color:#f92672">)</span> ordatabase string URI or sqlite3 DBAPI2 connectionother DBAPI2 objects are not tested, please consider using SQLAlchemy
+</span></span></code></pre></div><h3 id="connecting-using-sqlalchemy">Connecting using <code>sqlalchemy</code></h3>
 <p>The documentation in SQLAlchemy does not goes great length explaining the connection string with SQL Server DB and after a few stack overflow posts here is a working code.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
-
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
-
-server <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-server-name&gt;.database.windows.net&#39;</span>
-database <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-db-name&gt;&#39;</span>
-driver<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{ODBC Driver 18 for SQL Server}&#39;</span>
-
-username <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_USERNAME&#39;</span>)
-password <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_PASSWORD&#39;</span>)
-
-odbc_params <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;DRIVER={driver};SERVER=tcp:{server};PORT=1433;DATABASE={database};UID={username};PWD={password}&#39;</span>
-
-connection_string <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;mssql+pyodbc:///?odbc_connect={odbc_params}&#39;</span>
-
-engine <span style="color:#f92672">=</span> create_engine(connection_string)
-
-<span style="color:#75715e"># query sys.databases view</span>
-
-query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;
-</span><span style="color:#e6db74">        SELECT
-</span><span style="color:#e6db74">               [name]
-</span><span style="color:#e6db74">              ,[database_id]
-</span><span style="color:#e6db74">       FROM [sys].[databases];
-</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
-
-df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(query, engine)
-<span style="color:#66d9ef">print</span>(df<span style="color:#f92672">.</span>head())
-
-engine<span style="color:#f92672">.</span>dispose()
-</code></pre></div><p>It is very similar. You just need to &ldquo;attach&rdquo; the same pyodbc string after <code>'mssql+pyodbc:///?odbc_connect='</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>server <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-server-name&gt;.database.windows.net&#39;</span>
+</span></span><span style="display:flex;"><span>database <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;my-db-name&gt;&#39;</span>
+</span></span><span style="display:flex;"><span>driver<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{ODBC Driver 18 for SQL Server}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>username <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_USERNAME&#39;</span>)
+</span></span><span style="display:flex;"><span>password <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_PASSWORD&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>odbc_params <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;DRIVER=</span><span style="color:#e6db74">{</span>driver<span style="color:#e6db74">}</span><span style="color:#e6db74">;SERVER=tcp:</span><span style="color:#e6db74">{</span>server<span style="color:#e6db74">}</span><span style="color:#e6db74">;PORT=1433;DATABASE=</span><span style="color:#e6db74">{</span>database<span style="color:#e6db74">}</span><span style="color:#e6db74">;UID=</span><span style="color:#e6db74">{</span>username<span style="color:#e6db74">}</span><span style="color:#e6db74">;PWD=</span><span style="color:#e6db74">{</span>password<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>connection_string <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;mssql+pyodbc:///?odbc_connect=</span><span style="color:#e6db74">{</span>odbc_params<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>engine <span style="color:#f92672">=</span> create_engine(connection_string)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># query sys.databases view</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        SELECT
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               [name]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              ,[database_id]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">       FROM [sys].[databases];
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(query, engine)
+</span></span><span style="display:flex;"><span>print(df<span style="color:#f92672">.</span>head())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>engine<span style="color:#f92672">.</span>dispose()
+</span></span></code></pre></div><p>It is very similar. You just need to &ldquo;attach&rdquo; the same pyodbc string after <code>'mssql+pyodbc:///?odbc_connect='</code></p>
 <p>for more detail on sql and <code>pandas</code> the
 <code>pandas</code> <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html">documentation</a> is very good.</p>
 <p>this is it.</p>
@@ -313,187 +308,184 @@ My intermediate knowledge and experience already gave me lots of power but when 
 <p>The documentation doc string in python is very good actually. Lets print it.</p>
 <p><code>help(property)</code></p>
 <p>Here is an exert of it with a quick example to get you started.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
-
-
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getx</span>(self):
-    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x
-
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setx</span>(self, value):
-    self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value
-
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delx</span>(self): 
-    <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
-
-  x <span style="color:#f92672">=</span> property(getx, setx, delx, <span style="color:#e6db74">&#34;I&#39;m the &#39;x&#39; property.&#34;</span>)
-
-</code></pre></div><p>The property class take 4 arguments and returns the property attribute</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getx</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setx</span>(self, value):
+</span></span><span style="display:flex;"><span>    self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delx</span>(self): 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  x <span style="color:#f92672">=</span> property(getx, setx, delx, <span style="color:#e6db74">&#34;I&#39;m the &#39;x&#39; property.&#34;</span>)
+</span></span></code></pre></div><p>The property class take 4 arguments and returns the property attribute</p>
 <p><code>property(fget=None, fset=None, fdel=None , doc=None) -&gt; property attribute</code></p>
 <p><code>fget</code> is a function to be used for getting an attribute value, and likewise</p>
 <p><code>fset</code> is a function for setting</p>
 <p>and <code>fdel</code> a function for deleting,
 an attribute.</p>
 <p>The decorator alternative makes it simpler</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
-
-<span style="color:#a6e22e">@property</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
-  <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
-  <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
-
-<span style="color:#a6e22e">@x.setter</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
-  self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value
-
-<span style="color:#a6e22e">@x.deleter</span> 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
-  <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
-
-</code></pre></div><p>This where just template examples. Lets now write our temperature class that I took from <a href="https://www.programiz.com/python-programming/property">programviz</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#75715e"># Using @property decorator</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Celsius</span>:
-    <span style="color:#66d9ef">def</span> __init__(self, temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
-        self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">=</span> temperature
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_fahrenheit</span>(self):
-        <span style="color:#66d9ef">return</span> (self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.8</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">32</span>
-
-    <span style="color:#a6e22e">@property</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self):
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Getting value...&#34;</span>)
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_temperature
-
-    <span style="color:#a6e22e">@temperature.setter</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self, value):
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Setting value...&#34;</span>)
-        <span style="color:#66d9ef">if</span> value <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">273.15</span>:
-            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Temperature below -273 is not possible&#34;</span>)
-        self<span style="color:#f92672">.</span>_temperature <span style="color:#f92672">=</span> value
-
-
-<span style="color:#75715e"># create an object</span>
-human <span style="color:#f92672">=</span> Celsius(<span style="color:#ae81ff">37</span>)
-
-<span style="color:#66d9ef">print</span>(human<span style="color:#f92672">.</span>temperature) 
-
-<span style="color:#66d9ef">print</span>(human<span style="color:#f92672">.</span>to_fahrenheit())
-
-coldest_thing <span style="color:#f92672">=</span> Celsius(<span style="color:#f92672">-</span><span style="color:#ae81ff">300</span>) <span style="color:#75715e"># this is going to raise an exception as it is below 273.15</span>
-
-<span style="color:#75715e"># output of the program (commented out)</span>
-
-<span style="color:#f92672">&gt;</span> Setting value<span style="color:#f92672">...</span>
-<span style="color:#f92672">&gt;</span> Getting value<span style="color:#f92672">...</span>
-<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">37</span>
-<span style="color:#f92672">&gt;</span> Getting value<span style="color:#f92672">...</span>
-<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">98.60000000000001</span>
-<span style="color:#f92672">&gt;</span> Setting value<span style="color:#f92672">...</span>
-
-
-Traceback (most recent call last):
-  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">28</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
-    coldest_thing <span style="color:#f92672">=</span> Celsius(<span style="color:#f92672">-</span><span style="color:#ae81ff">300</span>)
-  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">3</span>, <span style="color:#f92672">in</span> __init__
-    self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">=</span> temperature
-  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">17</span>, <span style="color:#f92672">in</span> temperature
-    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Temperature below -273 is not possible&#34;</span>)
-<span style="color:#a6e22e">ValueError</span>: Temperature below <span style="color:#f92672">-</span><span style="color:#ae81ff">273</span> <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> possible
-
-</code></pre></div><p>Note that when an instance of class initialize it firsts sets the value then it gets.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@property</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
+</span></span><span style="display:flex;"><span>  self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>deleter 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+</span></span></code></pre></div><p>This where just template examples. Lets now write our temperature class that I took from <a href="https://www.programiz.com/python-programming/property">programviz</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Using @property decorator</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Celsius</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">=</span> temperature
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_fahrenheit</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.8</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">32</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Getting value...&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_temperature
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@temperature</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self, value):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Setting value...&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> value <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">273.15</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Temperature below -273 is not possible&#34;</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_temperature <span style="color:#f92672">=</span> value
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># create an object</span>
+</span></span><span style="display:flex;"><span>human <span style="color:#f92672">=</span> Celsius(<span style="color:#ae81ff">37</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(human<span style="color:#f92672">.</span>temperature) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(human<span style="color:#f92672">.</span>to_fahrenheit())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>coldest_thing <span style="color:#f92672">=</span> Celsius(<span style="color:#f92672">-</span><span style="color:#ae81ff">300</span>) <span style="color:#75715e"># this is going to raise an exception as it is below 273.15</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># output of the program (commented out)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> Setting value<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> Getting value<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">37</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> Getting value<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">98.60000000000001</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> Setting value<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">28</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    coldest_thing <span style="color:#f92672">=</span> Celsius(<span style="color:#f92672">-</span><span style="color:#ae81ff">300</span>)
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">3</span>, <span style="color:#f92672">in</span> __init__
+</span></span><span style="display:flex;"><span>    self<span style="color:#f92672">.</span>temperature <span style="color:#f92672">=</span> temperature
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;temperature_.py&#34;</span>, line <span style="color:#ae81ff">17</span>, <span style="color:#f92672">in</span> temperature
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Temperature below -273 is not possible&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ValueError</span>: Temperature below <span style="color:#f92672">-</span><span style="color:#ae81ff">273</span> <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> possible
+</span></span></code></pre></div><p>Note that when an instance of class initialize it firsts sets the value then it gets.</p>
 <p>I got confused with this as sometimes I used the property to set an immutable property but on the example it made it mutable with the <code>@temperature.setter</code> decorator.</p>
 <p>If you pay attention to the example on the documentation it does not initiate with a default value and the <code>x</code>. So let&rsquo;s implement it as in the help example</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
-
-    <span style="color:#a6e22e">@property</span> 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
-        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
-
-    <span style="color:#a6e22e">@x.setter</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
-        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
-
-    <span style="color:#a6e22e">@x.deleter</span> 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
-        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
-
-c <span style="color:#f92672">=</span> C(<span style="color:#ae81ff">3</span>)
-
-<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
-
-<span style="color:#75715e"># output</span>
-
-Traceback (most recent call last):
-  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">19</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
-    <span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
-  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">6</span>, <span style="color:#f92672">in</span> x
-    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
-<span style="color:#a6e22e">AttributeError</span>: <span style="color:#e6db74">&#39;C&#39;</span> object has no attribute <span style="color:#e6db74">&#39;_x&#39;</span>
-</code></pre></div><p>So if we add the <code>__init__</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self, x<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
-        self<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> x
-
-    <span style="color:#a6e22e">@property</span> 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
-        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
-
-    <span style="color:#a6e22e">@x.setter</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
-        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
-
-    <span style="color:#a6e22e">@x.deleter</span> 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
-        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
-
-
-c <span style="color:#f92672">=</span> C(<span style="color:#ae81ff">3</span>)
-
-<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
-
-c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
-
-<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
-
-<span style="color:#75715e"># output</span>
-
-<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>
-<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">23</span>
-</code></pre></div><p>Actually what happened is that when it <code>__init__</code> the instance it set the value to the default value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>deleter 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> C(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(c<span style="color:#f92672">.</span>x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># output</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">19</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    print(c<span style="color:#f92672">.</span>x)
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">6</span>, <span style="color:#f92672">in</span> x
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">AttributeError</span>: <span style="color:#e6db74">&#39;C&#39;</span> object has no attribute <span style="color:#e6db74">&#39;_x&#39;</span>
+</span></span></code></pre></div><p>So if we add the <code>__init__</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, x<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>deleter 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> C(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(c<span style="color:#f92672">.</span>x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(c<span style="color:#f92672">.</span>x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># output</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">23</span>
+</span></span></code></pre></div><p>Actually what happened is that when it <code>__init__</code> the instance it set the value to the default value.</p>
 <p>If you want to make it immutable like having a value that does not change just only implement set method.</p>
 <p>Let&rsquo;s demonstrate it</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
-
-    <span style="color:#66d9ef">def</span> __init__(self):
-        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
-
-    <span style="color:#a6e22e">@property</span> 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
-        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
-
-c <span style="color:#f92672">=</span> C()
-
-<span style="color:#66d9ef">print</span>(c<span style="color:#f92672">.</span>x)
-
-c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
-
-<span style="color:#75715e"># output</span>
-
-<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">42</span>
-
-Traceback (most recent call last):
-  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">24</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
-    c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
-<span style="color:#a6e22e">AttributeError</span>: can<span style="color:#e6db74">&#39;t set attribute</span>
-</code></pre></div><p>Note that this time on the <code>__init__</code> I set the value <code>42</code> to the <code>_x</code> underscore version to set it to a value at initialization and never allow it to change.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>(object):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):  
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> C()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(c<span style="color:#f92672">.</span>x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># output</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;c.py&#34;</span>, line <span style="color:#ae81ff">24</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    c<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">AttributeError</span>: can<span style="color:#e6db74">&#39;t set attribute</span>
+</span></span></code></pre></div><p>Note that this time on the <code>__init__</code> I set the value <code>42</code> to the <code>_x</code> underscore version to set it to a value at initialization and never allow it to change.</p>
 <p>I think this is it for property.</p>
 <p>If you inspect source code in GitHub you will see it a lot and now you know what is going on when you see it.</p>
 ]]></content>
@@ -520,37 +512,37 @@ As Python is a dynamic type language a method didn’t using an interface does n
 <p>This I got from the book <code>The Python - Apprentice</code>. This actually an excellent series of 3 books where you can get it <a href="https://leanpub.com/b/python-craftsman">here</a></p>
 <p>Lets say you have a <code>Flight</code> <code>class</code> which records data of a flight and one of the methods is to print the boarding pass of the passengers</p>
 <p>So a decoupled implementation of the <code>make_board_pass</code> method would be:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Flight</span>:
-
-<span style="color:#75715e"># ...</span>
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_boarding_cards</span>(self, card_printer):
-    <span style="color:#66d9ef">for</span> passenger, seat <span style="color:#f92672">in</span> sorted(self<span style="color:#f92672">.</span>_passenger_seats()):
-      card_printer(passenger, seat, self<span style="color:#f92672">.</span>number(), self<span style="color:#f92672">.</span>aircraft_model())
-</code></pre></div><p>Given the duck typing of Python we can write a <code>card_printer</code> function that would work &ldquo;inside&rdquo; the <code>make_boarding_cards</code> method and it does not need to know the type of the <code>card_printer</code> object as long it looks like a card_printer interface it will be treated as one.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">console_card_printer</span>(passenger, seat, flight_number, aircraft):
-  output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;| Name: {0}&#34;</span> \
-      <span style="color:#e6db74">&#34; Flight: {1}&#34;</span> \
-      <span style="color:#e6db74">&#34; Seat:{2}&#34;</span> \
-      <span style="color:#e6db74">&#34; Aircraft: {3}&#34;</span> \
-      <span style="color:#e6db74">&#34; |&#34;</span><span style="color:#f92672">.</span>format(passenger, flight_number, seat, aircraft)
-  banner <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">*</span> (len(output) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;+&#39;</span> border <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;|&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">*</span> (len(output) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;|&#39;</span> lines <span style="color:#f92672">=</span> [banner, border,   output, border, banner] card <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join(lines)
-  <span style="color:#66d9ef">print</span>(card) 
-  <span style="color:#66d9ef">print</span>()
-</code></pre></div><p>So then we can inject the <code>console_card_printer</code> in the <code>make_boarding_cards</code> method</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> airline <span style="color:#f92672">import</span> Flight, console_card_printer
-
-f <span style="color:#f92672">=</span> Flight(<span style="color:#e6db74">&#34;BA758&#34;</span>, Aircraft(<span style="color:#e6db74">&#34;G-EUPT&#34;</span>, <span style="color:#e6db74">&#34;Airbus A319&#34;</span>,
-num_rows<span style="color:#f92672">=</span><span style="color:#ae81ff">22</span>, num_seats_per_row<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>)) 
-
-f<span style="color:#f92672">.</span>allocate_seat(<span style="color:#e6db74">&#39;12A&#39;</span>, <span style="color:#e6db74">&#39;Guido van Rossum&#39;</span>)
-
-f<span style="color:#f92672">.</span>make_boarding_cards(console_card_printer)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">+-------------------------------------------------------------------------+ 
-|                                                                         | 
-| Name: Guido van Rossum Flight: BA758 Seat: 12A Aircraft: Airbus A319    |
-|                                                                         |
-+-------------------------------------------------------------------------+
-</code></pre></div><p>The advantage of duck typing is that we can design a more loosely coupled program.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Flight</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_boarding_cards</span>(self, card_printer):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> passenger, seat <span style="color:#f92672">in</span> sorted(self<span style="color:#f92672">.</span>_passenger_seats()):
+</span></span><span style="display:flex;"><span>      card_printer(passenger, seat, self<span style="color:#f92672">.</span>number(), self<span style="color:#f92672">.</span>aircraft_model())
+</span></span></code></pre></div><p>Given the duck typing of Python we can write a <code>card_printer</code> function that would work &ldquo;inside&rdquo; the <code>make_boarding_cards</code> method and it does not need to know the type of the <code>card_printer</code> object as long it looks like a card_printer interface it will be treated as one.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">console_card_printer</span>(passenger, seat, flight_number, aircraft):
+</span></span><span style="display:flex;"><span>  output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;| Name: </span><span style="color:#e6db74">{0}</span><span style="color:#e6db74">&#34;</span> \
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34; Flight: </span><span style="color:#e6db74">{1}</span><span style="color:#e6db74">&#34;</span> \
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34; Seat:</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">&#34;</span> \
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34; Aircraft: </span><span style="color:#e6db74">{3}</span><span style="color:#e6db74">&#34;</span> \
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34; |&#34;</span><span style="color:#f92672">.</span>format(passenger, flight_number, seat, aircraft)
+</span></span><span style="display:flex;"><span>  banner <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">*</span> (len(output) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;+&#39;</span> border <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;|&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">*</span> (len(output) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;|&#39;</span> lines <span style="color:#f92672">=</span> [banner, border,   output, border, banner] card <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join(lines)
+</span></span><span style="display:flex;"><span>  print(card) 
+</span></span><span style="display:flex;"><span>  print()
+</span></span></code></pre></div><p>So then we can inject the <code>console_card_printer</code> in the <code>make_boarding_cards</code> method</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> airline <span style="color:#f92672">import</span> Flight, console_card_printer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f <span style="color:#f92672">=</span> Flight(<span style="color:#e6db74">&#34;BA758&#34;</span>, Aircraft(<span style="color:#e6db74">&#34;G-EUPT&#34;</span>, <span style="color:#e6db74">&#34;Airbus A319&#34;</span>,
+</span></span><span style="display:flex;"><span>num_rows<span style="color:#f92672">=</span><span style="color:#ae81ff">22</span>, num_seats_per_row<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>)) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f<span style="color:#f92672">.</span>allocate_seat(<span style="color:#e6db74">&#39;12A&#39;</span>, <span style="color:#e6db74">&#39;Guido van Rossum&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f<span style="color:#f92672">.</span>make_boarding_cards(console_card_printer)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>+-------------------------------------------------------------------------+ 
+</span></span><span style="display:flex;"><span>|                                                                         | 
+</span></span><span style="display:flex;"><span>| Name: Guido van Rossum Flight: BA758 Seat: 12A Aircraft: Airbus A319    |
+</span></span><span style="display:flex;"><span>|                                                                         |
+</span></span><span style="display:flex;"><span>+-------------------------------------------------------------------------+
+</span></span></code></pre></div><p>The advantage of duck typing is that we can design a more loosely coupled program.</p>
 <p>For example if later needed one can write N different card_priters that will produce a different output, say a printer that output a html format or a markdown instead of a console output, and still work without the necessity to change the make_boarding_cards method.</p>
 ]]></content>
         </item>
@@ -576,68 +568,67 @@ pattern = &amp;#39;a&amp;#39; test_string = &amp;#39;a cat&amp;#39; result = re.
 <p>This is the only part that I usually remember :)</p>
 <p>Regex are patters represented by symbols</p>
 <p>for example</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span>
-
-test_string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a cat&#39;</span>
-
-result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(pattern, test_string)
-<span style="color:#75715e"># Output: &lt;re.Match object; span=(0, 1), match=&#39;a&#39;&gt;</span>
-</code></pre></div><p>Usually the method match is not very useful but there is a better one <code>re.findall</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#75715e"># Program to extract numbers from a string</span>
-
-<span style="color:#f92672">import</span> re
-
-string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;hello 12 hi 89. Howdy 34&#39;</span>
-pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\d+&#39;</span>
-
-result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>findall(pattern, string) 
-<span style="color:#66d9ef">print</span>(result)
-
-<span style="color:#75715e"># Output: [&#39;12&#39;, &#39;89&#39;, &#39;34&#39;]</span>
-
-</code></pre></div><p>it returns a list with all matches of the pattern</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test_string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a cat&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(pattern, test_string)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: &lt;re.Match object; span=(0, 1), match=&#39;a&#39;&gt;</span>
+</span></span></code></pre></div><p>Usually the method match is not very useful but there is a better one <code>re.findall</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Program to extract numbers from a string</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> re
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;hello 12 hi 89. Howdy 34&#39;</span>
+</span></span><span style="display:flex;"><span>pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\d+&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>findall(pattern, string) 
+</span></span><span style="display:flex;"><span>print(result)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: [&#39;12&#39;, &#39;89&#39;, &#39;34&#39;]</span>
+</span></span></code></pre></div><p>it returns a list with all matches of the pattern</p>
 <p>Another useful one is <code>re.sub</code> to substitute</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#75715e"># Program to remove all whitespaces</span>
-<span style="color:#f92672">import</span> re
-
-<span style="color:#75715e"># multiline string</span>
-string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;abc 12</span><span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span><span style="color:#e6db74">de 23 </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> f45 6&#39;</span>
-
-<span style="color:#75715e"># matches all whitespace characters</span>
-pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\s+&#39;</span>
-
-<span style="color:#75715e"># empty string</span>
-replace <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
-
-new_string <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>sub(pattern, replace, string) 
-<span style="color:#66d9ef">print</span>(new_string)
-
-<span style="color:#75715e"># Output: abc12de23f456</span>
-</code></pre></div><p>Different from match that match exactly the search lookup if there is a pattern in the string</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Program to remove all whitespaces</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> re
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># multiline string</span>
+</span></span><span style="display:flex;"><span>string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;abc 12</span><span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span><span style="color:#e6db74">de 23 </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> f45 6&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># matches all whitespace characters</span>
+</span></span><span style="display:flex;"><span>pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\s+&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># empty string</span>
+</span></span><span style="display:flex;"><span>replace <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>new_string <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>sub(pattern, replace, string) 
+</span></span><span style="display:flex;"><span>print(new_string)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: abc12de23f456</span>
+</span></span></code></pre></div><p>Different from match that match exactly the search lookup if there is a pattern in the string</p>
 <p><code>re.search</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
-
-string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Python is fun&#34;</span>
-
-<span style="color:#75715e"># check if &#39;Python&#39; is at the beginning</span>
-match <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;\APython&#39;</span>, string)
-
-<span style="color:#66d9ef">if</span> match:
-  <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;pattern found inside the string&#34;</span>)
-<span style="color:#66d9ef">else</span>:
-  <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;pattern not found&#34;</span>)  
-
-<span style="color:#75715e"># Output: pattern found inside the string</span>
-</code></pre></div><p>No finalise, and this is a matter os preference, is the compile object</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> re
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Python is fun&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># check if &#39;Python&#39; is at the beginning</span>
+</span></span><span style="display:flex;"><span>match <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;\APython&#39;</span>, string)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> match:
+</span></span><span style="display:flex;"><span>  print(<span style="color:#e6db74">&#34;pattern found inside the string&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>  print(<span style="color:#e6db74">&#34;pattern not found&#34;</span>)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: pattern found inside the string</span>
+</span></span></code></pre></div><p>No finalise, and this is a matter os preference, is the compile object</p>
 <p>in the example above you could have done the re.search by</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">&#39;\APython&#39;</span>)
-p<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#34;Python is fun&#34;</span>)
-
-<span style="color:#75715e"># Output: &lt;re.Match object; span=(0, 6), match=&#39;Python&#39;&gt;</span>
-</code></pre></div><p>I got almost if not all examples from programviz which is a great resource and the best on the internet I could find on regex documentation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>p <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">&#39;\APython&#39;</span>)
+</span></span><span style="display:flex;"><span>p<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#34;Python is fun&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: &lt;re.Match object; span=(0, 6), match=&#39;Python&#39;&gt;</span>
+</span></span></code></pre></div><p>I got almost if not all examples from programviz which is a great resource and the best on the internet I could find on regex documentation.</p>
 <p>For example of patterns it can be consulted <a href="https://www.programiz.com/python-programming/regex">here</a></p>
 <p>also there is a very good regex in &ldquo;general&rdquo; site where you can test your patterns and there is also a cheat sheet</p>
 <p><a href="https://regexr.com/">https://regexr.com/</a></p>
@@ -666,24 +657,24 @@ The  <a href="https://en.wikipedia.org/wiki/API">API</a>, which stands for Appli
 <ol>
 <li>Import the packages</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
-<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
-<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
-
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
-</code></pre></div><ol start="2">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
+</span></span></code></pre></div><ol start="2">
 <li>Get your secrets from environment variables</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
-client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
-</code></pre></div><p>To make API calls to Strava you need to have a registered application. This can be easily done on your <a href="https://developers.strava.com/docs/getting-started/#account">Strava account</a>. Here is the instructions to get your CLIENT_ID and CLIENT_SECRET. Please keep this with you.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
+</span></span><span style="display:flex;"><span>client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
+</span></span></code></pre></div><p>To make API calls to Strava you need to have a registered application. This can be easily done on your <a href="https://developers.strava.com/docs/getting-started/#account">Strava account</a>. Here is the instructions to get your CLIENT_ID and CLIENT_SECRET. Please keep this with you.</p>
 <ol start="3">
 <li>Generate a token by Authenticating with Strava oauth2</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
-access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
-</code></pre></div><p>This was a part that it took me a while to get my head around. Strava improved the documentation a lot since the first time I read. They even drew a chart flow for <a href="https://developers.strava.com/docs/getting-started/#oauth">absolute dummies</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
+</span></span><span style="display:flex;"><span>access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
+</span></span></code></pre></div><p>This was a part that it took me a while to get my head around. Strava improved the documentation a lot since the first time I read. They even drew a chart flow for <a href="https://developers.strava.com/docs/getting-started/#oauth">absolute dummies</a>.</p>
 <p>What it actually does is a 2 way authentication.</p>
 <p>First you make a request to have access to a athlete data then the athlete log to his account by giving you permission you asked for on the request then it return you a JSON with a temporary access token and a refresh token where you then can make calls to the API and get data.
 The permission given to you is based on the context you asked (e.g. only read or read and write)
@@ -691,53 +682,53 @@ In this example you would be doing it with your own account and I am sure you wi
 <ol start="4">
 <li>Create a client object and call get_logged_in_athlete_activities methods</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
-date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
-activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
-</code></pre></div><p>Now that you have the token you can create a client object from the StravaIO class which handles the session and you can then call the method that fetch the athlete activity. For more details about the class here is the <a href="https://github.com/sladkovm/stravaio/blob/master/stravaio.py">source code</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
+</span></span><span style="display:flex;"><span>date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
+</span></span><span style="display:flex;"><span>activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
+</span></span></code></pre></div><p>Now that you have the token you can create a client object from the StravaIO class which handles the session and you can then call the method that fetch the athlete activity. For more details about the class here is the <a href="https://github.com/sladkovm/stravaio/blob/master/stravaio.py">source code</a></p>
 <ol start="5">
 <li>Finally transform into a pandas DataFrame and export to csv or other format you like.</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df_data <span style="color:#f92672">=</span> defaultdict(list)
-
-<span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
-    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
-        df_data[k]<span style="color:#f92672">.</span>append(v)
-
-df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
-
-df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
-</code></pre></div><p>The <code>activity</code> variable is a <code>Stravaio</code> object which has a method <code>to_dict()</code> that makes life much easier.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_data <span style="color:#f92672">=</span> defaultdict(list)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>        df_data[k]<span style="color:#f92672">.</span>append(v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span></code></pre></div><p>The <code>activity</code> variable is a <code>Stravaio</code> object which has a method <code>to_dict()</code> that makes life much easier.
 It returns a list of dictionaries. This is perfect scenario to use defaultdict as a list so it can be easily ingested by pandas</p>
 <p>Here is the full script</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
-<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
-<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
-
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
-
-
-client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
-client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
-
-token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
-access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
-
-client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
-date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
-activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
-
-df_data <span style="color:#f92672">=</span> defaultdict(list)
-
-<span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
-    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
-        df_data[k]<span style="color:#f92672">.</span>append(v)
-
-df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
-
-df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span>False)
-</code></pre></div><p>Even though the above script is relatively simple it is not for the common citizen that does not code and is not enthusiast about Python like you and me</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> stravaio <span style="color:#f92672">import</span> StravaIO, strava_oauth2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client_id <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_ID&#39;</span>)
+</span></span><span style="display:flex;"><span>client_secret <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;STRAVA_CLIENT_SECRET&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>token <span style="color:#f92672">=</span> strava_oauth2(client_id,client_secret)
+</span></span><span style="display:flex;"><span>access_token <span style="color:#f92672">=</span> token[<span style="color:#e6db74">&#39;access_token&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> StravaIO(access_token<span style="color:#f92672">=</span>access_token)
+</span></span><span style="display:flex;"><span>date_from <span style="color:#f92672">=</span> int(datetime(<span style="color:#ae81ff">2020</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>timestamp())
+</span></span><span style="display:flex;"><span>activities <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_logged_in_athlete_activities(after<span style="color:#f92672">=</span>date_from)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df_data <span style="color:#f92672">=</span> defaultdict(list)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> activities:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>to_dict()<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>        df_data[k]<span style="color:#f92672">.</span>append(v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(df_data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my_activities.csv&#34;</span>,index<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span></code></pre></div><p>Even though the above script is relatively simple it is not for the common citizen that does not code and is not enthusiast about Python like you and me</p>
 <p>For this I am currently developing a Web app that downloads your data into a csv file in 3 simple clicks.</p>
 <p>You can access it <a href="http://www.download-data.com/">here</a>.</p>
 ]]></content>
@@ -750,65 +741,65 @@ df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#34;my
             
             <guid>https://pedrojunqueira.github.io/blog/posts/kubernetes_secrets/</guid>
             <description>Creating secret imperatively
-kubectl create secret generic \  &amp;lt;secret name&amp;gt; --from-literal=&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt; kubectl explain pods --recursive | less 
-kubectl explain pods --recursive | grep -A8 envFrom
+kubectl create secret generic \ &amp;lt;secret name&amp;gt; --from-literal=&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt; kubectl explain pods --recursive | less kubectl explain pods --recursive | grep -A8 envFrom
 create secrete base64
-$ echo -n &amp;quot;secret&amp;quot; | base64 c2VjcmV0 decode
-$ echo -n &amp;quot;c2VjcmV0&amp;quot; | base64 --decode secret Secret definition file
-apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod</description>
+$ echo -n &amp;#34;secret&amp;#34; | base64 c2VjcmV0 decode
+$ echo -n &amp;#34;c2VjcmV0&amp;#34; | base64 --decode secret Secret definition file
+apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod
+apiVersion: v1 kind: Pod metadata: name: secret-test-pod spec: containers: - name: test-container image: nginx volumeMounts: # name must match the volume name below - name: secret-volume mountPath: /etc/secret-volume # The secret data is exposed to Containers in the Pod through a Volume.</description>
             <content type="html"><![CDATA[<p>Creating secret imperatively</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    &lt;secret name&gt; --from-literal<span style="color:#f92672">=</span>&lt;key&gt;<span style="color:#f92672">=</span>&lt;value&gt;
-</code></pre></div><p><code>kubectl explain pods --recursive | less </code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl create secret generic <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    &lt;secret name&gt; --from-literal<span style="color:#f92672">=</span>&lt;key&gt;<span style="color:#f92672">=</span>&lt;value&gt;
+</span></span></code></pre></div><p><code>kubectl explain pods --recursive | less </code></p>
 <p><code>kubectl explain pods --recursive | grep -A8 envFrom</code></p>
 <p>create secrete base64</p>
-<pre><code>$ echo -n &quot;secret&quot; | base64
+<pre tabindex="0"><code>$ echo -n &#34;secret&#34; | base64
 c2VjcmV0
 </code></pre><p>decode</p>
-<pre><code>$ echo -n &quot;c2VjcmV0&quot; | base64 --decode
+<pre tabindex="0"><code>$ echo -n &#34;c2VjcmV0&#34; | base64 --decode
 secret
 </code></pre><p>Secret definition file</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: Secret
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: mysecret
-<span style="color:#66d9ef">type</span>: Opaque
-<span style="color:#66d9ef">data</span>:
-  <span style="color:#66d9ef">username</span>: YWRtaW4=
-  <span style="color:#66d9ef">password</span>: MWYyZDFlMmU2N2Rm
-  
-</code></pre></div><p>injecting in through a volume in a pod</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: Pod
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: secret-test-pod
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">containers</span>:
-    - <span style="color:#66d9ef">name</span>: test-container
-      <span style="color:#66d9ef">image</span>: nginx
-      <span style="color:#66d9ef">volumeMounts</span>:
-        <span style="color:#75715e"># name must match the volume name below</span>
-        - <span style="color:#66d9ef">name</span>: secret-volume
-          <span style="color:#66d9ef">mountPath</span>: /etc/secret-volume
-  <span style="color:#75715e"># The secret data is exposed to Containers in the Pod through a Volume.</span>
-  <span style="color:#66d9ef">volumes</span>:
-    - <span style="color:#66d9ef">name</span>: secret-volume
-      <span style="color:#66d9ef">secret</span>:
-        <span style="color:#66d9ef">secretName</span>: mysecret        
-</code></pre></div><p>Injecing as environment variable</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">
-<span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: Pod
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: envfrom-secret
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">containers</span>:
-  - <span style="color:#66d9ef">name</span>: envars-test-container
-    <span style="color:#66d9ef">image</span>: nginx
-    <span style="color:#66d9ef">envFrom</span>:
-    - <span style="color:#66d9ef">secretRef</span>:
-        <span style="color:#66d9ef">name</span>: test-secret
-</code></pre></div>]]></content>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysecret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">Opaque</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">username</span>: <span style="color:#ae81ff">YWRtaW4=</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">password</span>: <span style="color:#ae81ff">MWYyZDFlMmU2N2Rm</span>
+</span></span><span style="display:flex;"><span>  
+</span></span></code></pre></div><p>injecting in through a volume in a pod</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">secret-test-pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">test-container</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumeMounts</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># name must match the volume name below</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">secret-volume</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/etc/secret-volume</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># The secret data is exposed to Containers in the Pod through a Volume.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">secret-volume</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">secret</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">secretName</span>: <span style="color:#ae81ff">mysecret        </span>
+</span></span></code></pre></div><p>Injecing as environment variable</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">envfrom-secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">envars-test-container</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">envFrom</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">secretRef</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">test-secret</span>
+</span></span></code></pre></div>]]></content>
         </item>
         
         <item>
@@ -836,11 +827,11 @@ It is not the intent of this post explain OpenShift but in summary is a RedHat p
 <li>Configure <a href="https://docs.okd.io/3.11/minishift/using/docker-daemon.html">Minishift Docker Daemon</a></li>
 </ol>
 <p><code>minishift docker-env</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export DOCKER_TLS_VERIFY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>
-export DOCKER_HOST<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tcp://192.168.99.101:2376&#34;</span>
-export DOCKER_CERT_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/Users/john/.minishift/certs&#34;</span>
-export DOCKER_API_VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.24&#34;</span>
-</code></pre></div><p>Run this command to configure your shell:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export DOCKER_TLS_VERIFY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>export DOCKER_HOST<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tcp://192.168.99.101:2376&#34;</span>
+</span></span><span style="display:flex;"><span>export DOCKER_CERT_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/Users/john/.minishift/certs&#34;</span>
+</span></span><span style="display:flex;"><span>export DOCKER_API_VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.24&#34;</span>
+</span></span></code></pre></div><p>Run this command to configure your shell:</p>
 <p><code>eval $(minishift docker-env)</code></p>
 <p>to test check processes</p>
 <p><code>docker ps</code></p>
@@ -953,9 +944,9 @@ Create/Reconfigure a pod based on a manifest file</description>
 <p><code>kubectl get pods --all-namespaces</code></p>
 <h2 id="secrets">Secrets</h2>
 <p>Create a secret</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    &lt;secret name&gt; --from-literal<span style="color:#f92672">=</span>&lt;key&gt;<span style="color:#f92672">=</span>&lt;value&gt;
-</code></pre></div>]]></content>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl create secret generic <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    &lt;secret name&gt; --from-literal<span style="color:#f92672">=</span>&lt;key&gt;<span style="color:#f92672">=</span>&lt;value&gt;
+</span></span></code></pre></div>]]></content>
         </item>
         
         <item>
@@ -1078,7 +1069,7 @@ You can read it here or just watch this very good video from NetworkChuck then y
 <p>I will create 3 containers with a Postgresql image running in different ports in the development machine, however all those 3 containers you share the same volume i.e., the same data. The example is just for illustration of how volumes work.</p>
 <p>You do <strong>not</strong> need to have a Postgresql instance installed on your host/development system and all that you need is Docker installed.</p>
 <p>Just check if you have Docker already:</p>
-<pre><code>$docker -v
+<pre tabindex="0"><code>$docker -v
 Docker version 19.03.8, build afacb8b
 </code></pre><p>If not it is easy to install <a href="https://docs.docker.com/get-docker/">Docker</a>.</p>
 <p>For this lets create a folder to test those concepts</p>
@@ -1088,15 +1079,15 @@ then cd into it
 <p>create a shell script file so it will save some typing</p>
 <p><code>touch commands.sh</code></p>
 <p>Then write on the .sh file</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span>
-docker run --name psql1 -p 5435:5432 -d <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    postgres
-</code></pre></div><p>What the command this sequence of command do is</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>docker run --name psql1 -p 5435:5432 -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    postgres
+</span></span></code></pre></div><p>What the command this sequence of command do is</p>
 <p><code>run</code> to run a countainer
 <code>--name</code> flag to name the container psql1
 <code>-p</code> determines the port where &lt;host_port&gt;:&lt;container_port&gt;
@@ -1108,44 +1099,44 @@ docker run --name psql1 -p 5435:5432 -d <span style="color:#ae81ff">\
 <p>then <code>$ ./commands.sh</code></p>
 <p>If you do not have a postgres in your cache it is going to automatically download from Docker Hub and build the image then run the container</p>
 <p>Run the following command to check it container is running</p>
-<pre><code>$ docker ps
+<pre tabindex="0"><code>$ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-c2081d77d376        postgres            &quot;docker-entrypoint.s…&quot;   24 seconds ago      Up 23 seconds       0.0.0.0:5435-&gt;5432/tcp   psql1
+c2081d77d376        postgres            &#34;docker-entrypoint.s…&#34;   24 seconds ago      Up 23 seconds       0.0.0.0:5435-&gt;5432/tcp   psql1
 </code></pre><p>you will see something like the above</p>
 <p>Then check if the volume was created</p>
-<pre><code>$ docker volume ls
+<pre tabindex="0"><code>$ docker volume ls
 DRIVER              VOLUME NAME
 local               pgdata
 </code></pre><p>You can use any client to check it and lets do it now.</p>
 <p>First from inside the container</p>
 <p><code>$ docker exec -it psql1 psql -p 5432  -h 0.0.0.0 -U postgres</code></p>
-<pre><code>$ docker exec -it psql1 psql -h 0.0.0.0 -U postgres
+<pre tabindex="0"><code>$ docker exec -it psql1 psql -h 0.0.0.0 -U postgres
 psql (12.2 (Debian 12.2-2.pgdg100+1))
-Type &quot;help&quot; for help.
+Type &#34;help&#34; for help.
 
 postgres=#
 </code></pre><p>Now you are inside the container using the psql client</p>
 <p>write the command <code>\l</code> to list the database then connect to the exampledb by</p>
-<pre><code>postgres-# \c exampledb;
-You are now connected to database &quot;exampledb&quot; as user &quot;postgres&quot;.
+<pre tabindex="0"><code>postgres-# \c exampledb;
+You are now connected to database &#34;exampledb&#34; as user &#34;postgres&#34;.
 </code></pre><p>create a table</p>
-<pre><code>CREATE TABLE account(
+<pre tabindex="0"><code>CREATE TABLE account(
 	user_id serial PRIMARY KEY,
 	username VARCHAR (50) UNIQUE NOT NULL,
 	email VARCHAR (355) UNIQUE NOT NULL
 );
 </code></pre><p><code>dt</code> to list tables</p>
-<pre><code>exampledb=# \dt
+<pre tabindex="0"><code>exampledb=# \dt
           List of relations
  Schema |  Name   | Type  |  Owner   
 --------+---------+-------+----------
  public | account | table | postgres
 (1 row)
 </code></pre><p>lets add some data</p>
-<pre><code>INSERT INTO account (username, email) 
-values ('John', 'john@email.com');
+<pre tabindex="0"><code>INSERT INTO account (username, email) 
+values (&#39;John&#39;, &#39;john@email.com&#39;);
 </code></pre><p>then check the data by <code>SELECT</code> statement</p>
-<pre><code>exampledb=# select * from account;
+<pre tabindex="0"><code>exampledb=# select * from account;
  user_id | username |     email      
 ---------+----------+----------------
        1 | John     | john@email.com
@@ -1153,74 +1144,72 @@ values ('John', 'john@email.com');
 </code></pre><p>ok now quit <code>\q</code></p>
 <p>Now that the fun starts</p>
 <p>change the .sh scrip to add more containers</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --name psql2 -p 5437:5432 -d <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    postgres
-
-</code></pre></div><p>everything is the same but the name of the container and the port</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --name psql2 -p 5437:5432 -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    postgres
+</span></span></code></pre></div><p>everything is the same but the name of the container and the port</p>
 <p>note that both container are sharing the SAME volume</p>
 <p>run the bash script again</p>
 <p><code>./commands.sh</code></p>
 <p>note that there are 2 containers running</p>
-<pre><code>$ docker ps
+<pre tabindex="0"><code>$ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-e504b08a8d2a        postgres            &quot;docker-entrypoint.s…&quot;   3 seconds ago       Up 3 seconds        0.0.0.0:5437-&gt;5432/tcp   psql2
-c2081d77d376        postgres            &quot;docker-entrypoint.s…&quot;   18 minutes ago      Up 18 minutes       0.0.0.0:5435-&gt;5432/tcp   psql1
+e504b08a8d2a        postgres            &#34;docker-entrypoint.s…&#34;   3 seconds ago       Up 3 seconds        0.0.0.0:5437-&gt;5432/tcp   psql2
+c2081d77d376        postgres            &#34;docker-entrypoint.s…&#34;   18 minutes ago      Up 18 minutes       0.0.0.0:5435-&gt;5432/tcp   psql1
 </code></pre><p>and only one volume</p>
-<pre><code>$ docker volume ls
+<pre tabindex="0"><code>$ docker volume ls
 DRIVER              VOLUME NAME
 local               pgdata
 </code></pre><p>Now lets get inside the container psql2 and connect to the database</p>
 <p><code>docker exec -it psql2 psql -p 5432  -h 0.0.0.0 -U postgres</code></p>
 <p>connect to the database <code>\c exampledb;</code></p>
 <p>query the account table</p>
-<pre><code>exampledb=# select * from account;
+<pre tabindex="0"><code>exampledb=# select * from account;
  user_id | username |     email      
 ---------+----------+----------------
        1 | John     | john@email.com
 (1 row)
 </code></pre><p>now lets create another record</p>
-<pre><code>INSERT INTO account (username, email) 
-values ('Jane', 'jane@email.com');
+<pre tabindex="0"><code>INSERT INTO account (username, email) 
+values (&#39;Jane&#39;, &#39;jane@email.com&#39;);
 </code></pre><p>quit <code>\q</code></p>
 <p>Now lets stop the containers and remove them</p>
-<pre><code>$ docker stop psql1
+<pre tabindex="0"><code>$ docker stop psql1
 $ docker stop psql2
 $ docker rm psql1
 $ docker rm psql2
 </code></pre><p>check if they where removed</p>
-<pre><code>$ docker ps
+<pre tabindex="0"><code>$ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 </code></pre><p>We did not removed the volume</p>
-<pre><code>$ docker volume ls
+<pre tabindex="0"><code>$ docker volume ls
 DRIVER              VOLUME NAME
 local               pgdata
 </code></pre><p>We are now creating another container called psql3 and &ldquo;connected&rdquo; to the same volume</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span>
-docker run --name psql3 -p 5439:5432 -d <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    postgres
-</code></pre></div><p>Now instead of connecting inside the container we are connecting it from command line from the host machine.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>docker run --name psql3 -p 5439:5432 -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_USER<span style="color:#f92672">=</span>postgres <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e POSTGRES_DB<span style="color:#f92672">=</span>exampledb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -v pgdata:/var/lib/postgresql/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    postgres
+</span></span></code></pre></div><p>Now instead of connecting inside the container we are connecting it from command line from the host machine.
 In this case you need to have either the psql cli installed in your system or use any other postgersql client tool.
 I now need to use the port <code>-p 5439</code> because it is the port in the host system that is bound to the default postgres port 5432.</p>
-<pre><code>$ psql -p 5439  -h localhost -U postgres
+<pre tabindex="0"><code>$ psql -p 5439  -h localhost -U postgres
 Password for user postgres: 
 psql (12.1, server 12.2 (Debian 12.2-2.pgdg100+1))
-Type &quot;help&quot; for help.
+Type &#34;help&#34; for help.
 
 postgres=# 
-
 </code></pre><p>now it is the hour of reckoning and lets check if we can access the data</p>
-<pre><code>postgres=# \c exampledb;
+<pre tabindex="0"><code>postgres=# \c exampledb;
 psql (12.1, server 12.2 (Debian 12.2-2.pgdg100+1))
-You are now connected to database &quot;exampledb&quot; as user &quot;postgres&quot;.
+You are now connected to database &#34;exampledb&#34; as user &#34;postgres&#34;.
 exampledb=# \dt
           List of relations
  Schema |  Name   | Type  |  Owner   
@@ -1240,7 +1229,7 @@ exampledb=# select * from account;
 <p>to clean up your system we can</p>
 <p><code>\q</code> get out of the psql cli tool.</p>
 <p>Stop and remove the containers and volume.</p>
-<pre><code>$ docker stop psql3
+<pre tabindex="0"><code>$ docker stop psql3
 $ docker rm psql3
 $ docker volume rm pgdata
 $ docker volume ls
@@ -1283,12 +1272,12 @@ I grew up in the 80s and my first interactions with computer was always through 
 <ul>
 <li>list your buckets</li>
 </ul>
-<pre><code>$ aws s3 ls
+<pre tabindex="0"><code>$ aws s3 ls
 2013-04-22 20:47:26 veladelivery
 </code></pre><ul>
 <li>list the directory tree of a specific bucket</li>
 </ul>
-<pre><code>$ aws s3 ls s3://veladelivery
+<pre tabindex="0"><code>$ aws s3 ls s3://veladelivery
                            PRE FSWM/
                            PRE GCDBT72635G/
                            PRE GCDBT8547S/
@@ -1296,14 +1285,14 @@ I grew up in the 80s and my first interactions with computer was always through 
                            PRE backtest/
                            PRE freereport/
 </code></pre><ul>
-<li>if you have spaces in file path name then you need to use &quot;&rdquo; quotes</li>
+<li>if you have spaces in file path name then you need to use &quot;&quot; quotes</li>
 </ul>
-<pre><code>$ aws s3 ls &quot;s3://veladelivery/FSWM&quot;
+<pre tabindex="0"><code>$ aws s3 ls &#34;s3://veladelivery/FSWM&#34;
                            PRE FSWM/
 </code></pre><ul>
 <li>important that a forward slash <code>/</code> is needed at the end of the command to list the files in the directory</li>
 </ul>
-<pre><code>$ aws s3 ls &quot;s3://veladelivery/FSWM/&quot;
+<pre tabindex="0"><code>$ aws s3 ls &#34;s3://veladelivery/FSWM/&#34;
 2016-05-19 06:21:24          0 
 2016-08-18 14:51:39   10298199 15.mp4
 2016-08-18 14:52:27   13516259 17.mp4
@@ -1320,7 +1309,7 @@ I grew up in the 80s and my first interactions with computer was always through 
 </code></pre><h2 id="2-cp">2. cp</h2>
 <p>Usually you want to copy a file from a S3 bucket to your local machine or vice versa then will give example for copy to and one for copy from</p>
 <p><strong>copying from S3 to your local machine</strong></p>
-<pre><code>$ aws s3 cp &quot;s3://veladelivery/FSWM/Achieve Financial Freedom_V2.pdf&quot; /Users/pedrojunqueira/Desktop
+<pre tabindex="0"><code>$ aws s3 cp &#34;s3://veladelivery/FSWM/Achieve Financial Freedom_V2.pdf&#34; /Users/pedrojunqueira/Desktop
 download: s3://veladelivery/FSWM/Achieve Financial Freedom_V2.pdf to ../Achieve Financial Freedom_V2.pdf
 </code></pre><p>Note that the to path does not necessarily need to have the file name</p>
 <p>alternatively this command would have worked the same</p>
@@ -1331,7 +1320,7 @@ download: s3://veladelivery/FSWM/Achieve Financial Freedom_V2.pdf to ../Achieve 
 <p>the pattern is</p>
 <p><code>aws s3 sync &lt;origin path&gt; &lt;destination path&gt;</code></p>
 <p>here is an example</p>
-<pre><code>$ aws s3 sync s3://veladelivery/backtest /Users/pedrojunqueira/Desktop/mys3bucket
+<pre tabindex="0"><code>$ aws s3 sync s3://veladelivery/backtest /Users/pedrojunqueira/Desktop/mys3bucket
 download: s3://veladelivery/backtest/GCDBT.zip to mys3bucket/GCDBT.zip
 </code></pre><p>in the example above even if I did not have a path /mys3bucket aws would have created one and synced all the content down from the origin path /backtest to that folder. I used different names but a good convention would be to use the same name, but you can name it whatever you want.</p>
 <p>This is just a quick example of what you may need but basically it follows the linux commands for more information look at the <a href="https://docs.aws.amazon.com/cli/latest/reference/s3/">documentation</a>.</p>
@@ -1382,8 +1371,8 @@ Besides the debugging, you need to set up your development environment that can 
 <p>Someone other than Jupyter did and here is the <a href="https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html">docs</a></p>
 <p>Then with just one line I got my notebook running on spark so I could cruise through the content of the course.</p>
 <p>Given you already have Docker installed on your local machine the magic command is</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run --rm -p 8888:8888 -v <span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">&#34;</span>:/home/jovyan/work jupyter/pyspark-notebook
-</code></pre></div><p>BANG ! You have it auto magically running on your machine on <code>http://&lt;hostname&gt;:8888/?token=&lt;token&gt;</code> and you have access to all files inside the directory you ran the above bash command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker run --rm -p 8888:8888 -v <span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">&#34;</span>:/home/jovyan/work jupyter/pyspark-notebook
+</span></span></code></pre></div><p>BANG ! You have it auto magically running on your machine on <code>http://&lt;hostname&gt;:8888/?token=&lt;token&gt;</code> and you have access to all files inside the directory you ran the above bash command.</p>
 <p>Need a R notebook?</p>
 <p>No problem just change <code>jupyter/pyspark-notebook</code> by <code>jupyter/r-notebook</code></p>
 <p>The data science Jupyter stack also have <code>jupyter/tensorflow-notebook</code> and more.</p>
