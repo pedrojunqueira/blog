@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="author" content="">
-<meta name="description" content="Creating secret imperatively
+        <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+<meta
+  name="author"
+  content=""
+/>
+<meta
+  name="description"
+  content="Creating secret imperatively
 kubectl create secret generic \ &amp;lt;secret name&amp;gt; --from-literal=&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt; kubectl explain pods --recursive | less kubectl explain pods --recursive | grep -A8 envFrom
 create secrete base64
 $ echo -n &amp;#34;secret&amp;#34; | base64 c2VjcmV0 decode
 $ echo -n &amp;#34;c2VjcmV0&amp;#34; | base64 --decode secret Secret definition file
 apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod
-apiVersion: v1 kind: Pod metadata: name: secret-test-pod spec: containers: - name: test-container image: nginx volumeMounts: # name must match the volume name below - name: secret-volume mountPath: /etc/secret-volume # The secret data is exposed to Containers in the Pod through a Volume." />
-<meta name="keywords" content=", kubernetes" />
+apiVersion: v1 kind: Pod metadata: name: secret-test-pod spec: containers: - name: test-container image: nginx volumeMounts: # name must match the volume name below - name: secret-volume mountPath: /etc/secret-volume # The secret data is exposed to Containers in the Pod through a Volume."
+/>
+<meta
+  name="keywords"
+  content=", kubernetes"
+/>
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://pedrojunqueira.github.io/blog/posts/kubernetes_secrets/" />
 
 
-    <title>
-        
-            How to create a Kubernetes Secret :: Pedro Junqueira  — Data Engineer
-        
-    </title>
+<title>
+   How to create a Kubernetes Secret :: Pedro Junqueira  — Data Engineer 
+</title>
 
 
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
-    type="text/css">
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
 
-
-
-<link rel="stylesheet" href="/blog/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+ 
+<link rel="stylesheet" href="/blog/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css" />
 
 
 
@@ -42,9 +54,7 @@ apiVersion: v1 kind: Pod metadata: name: secret-test-pod spec: containers: - nam
     <link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="">
     <link rel="shortcut icon" href="/blog/favicon.ico">
     <meta name="msapplication-TileColor" content="">
-
-
-<meta itemprop="name" content="How to create a Kubernetes Secret">
+ <meta itemprop="name" content="How to create a Kubernetes Secret">
 <meta itemprop="description" content="Creating secret imperatively
 kubectl create secret generic \ &lt;secret name&gt; --from-literal=&lt;key&gt;=&lt;value&gt; kubectl explain pods --recursive | less kubectl explain pods --recursive | grep -A8 envFrom
 create secrete base64
@@ -54,8 +64,7 @@ apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username
 apiVersion: v1 kind: Pod metadata: name: secret-test-pod spec: containers: - name: test-container image: nginx volumeMounts: # name must match the volume name below - name: secret-volume mountPath: /etc/secret-volume # The secret data is exposed to Containers in the Pod through a Volume."><meta itemprop="datePublished" content="2020-08-26T06:38:52+09:30" />
 <meta itemprop="dateModified" content="2020-08-26T06:38:52+09:30" />
 <meta itemprop="wordCount" content="141"><meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
-<meta itemprop="keywords" content="kubernetes," />
-<meta name="twitter:card" content="summary_large_image"/>
+<meta itemprop="keywords" content="kubernetes," /> <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://pedrojunqueira.github.io/blog"/>
 
 <meta name="twitter:title" content="How to create a Kubernetes Secret"/>
@@ -66,11 +75,7 @@ $ echo -n &#34;secret&#34; | base64 c2VjcmV0 decode
 $ echo -n &#34;c2VjcmV0&#34; | base64 --decode secret Secret definition file
 apiVersion: v1 kind: Secret metadata: name: mysecret type: Opaque data: username: YWRtaW4= password: MWYyZDFlMmU2N2Rm injecting in through a volume in a pod
 apiVersion: v1 kind: Pod metadata: name: secret-test-pod spec: containers: - name: test-container image: nginx volumeMounts: # name must match the volume name below - name: secret-volume mountPath: /etc/secret-volume # The secret data is exposed to Containers in the Pod through a Volume."/>
-
-
-
-
-    <meta property="og:title" content="How to create a Kubernetes Secret" />
+   <meta property="og:title" content="How to create a Kubernetes Secret" />
 <meta property="og:description" content="Creating secret imperatively
 kubectl create secret generic \ &lt;secret name&gt; --from-literal=&lt;key&gt;=&lt;value&gt; kubectl explain pods --recursive | less kubectl explain pods --recursive | grep -A8 envFrom
 create secrete base64
@@ -83,13 +88,8 @@ apiVersion: v1 kind: Pod metadata: name: secret-test-pod spec: containers: - nam
 <meta property="article:published_time" content="2020-08-26T06:38:52+09:30" />
 <meta property="article:modified_time" content="2020-08-26T06:38:52+09:30" /><meta property="og:site_name" content="Pedro Junqueira" />
 
-
-
-
-
-
-
-    <meta property="article:published_time" content="2020-08-26 06:38:52 &#43;0930 ACST" />
+   
+<meta property="article:published_time" content="2020-08-26 06:38:52 &#43;0930 ACST" />
 
 
 
@@ -99,6 +99,9 @@ apiVersion: v1 kind: Pod metadata: name: secret-test-pod spec: containers: - nam
 
 
 
+
+
+ 
 
     </head>
 

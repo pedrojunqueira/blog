@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Fri, 10 Jun 2022 21:16:44 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Jun 2022 22:00:46 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Do not use Pandas to load data use Data Factory</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/do-not-use_pandas/</link>
+      <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/do-not-use_pandas/</guid>
+      <description>I recently wrote blog post about how to connect pandas to your SQL database and read file from SQL server.
+pandas is a fantastic tool to analyse and manipulate data. I use it all the time. It is very efficient if the &amp;ldquo;size&amp;rdquo; of the data is say up to 1 million records and can be done in your local machine or in a VM fairly quick calculations. No problems at all.</description>
+    </item>
+    
     <item>
       <title>Understand how objects behave in memory Python</title>
       <link>https://pedrojunqueira.github.io/blog/posts/object-pointer-python/</link>

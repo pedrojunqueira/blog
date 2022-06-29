@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>apache arrow on Pedro Junqueira</title>
+    <link>https://pedrojunqueira.github.io/blog/tags/apache-arrow/</link>
+    <description>Recent content in apache arrow on Pedro Junqueira</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>pedro junqueira</copyright>
+    <lastBuildDate>Sun, 26 Jun 2022 22:00:46 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/apache-arrow/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Do not use Pandas to load data use Data Factory</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/do-not-use_pandas/</link>
+      <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/do-not-use_pandas/</guid>
+      <description>I recently wrote blog post about how to connect pandas to your SQL database and read file from SQL server.
+pandas is a fantastic tool to analyse and manipulate data. I use it all the time. It is very efficient if the &amp;ldquo;size&amp;rdquo; of the data is say up to 1 million records and can be done in your local machine or in a VM fairly quick calculations. No problems at all.</description>
+    </item>
+    
+  </channel>
+</rss>

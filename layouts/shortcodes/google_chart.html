@@ -1,0 +1,46 @@
+<style>
+  #chart_div {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+<script type="text/javascript">
+  google.charts.load("current", { packages: ["corechart", "bar"] });
+  google.charts.setOnLoadCallback(drawBasic);
+
+  function drawBasic() {
+    var data = google.visualization.arrayToDataTable([
+      ["Method", "Times Faster", { role: "annotation" }],
+      ["pandas to sql (baseline)", 1, "1"],
+      ["pandas blob -> adf -> sql", 140, "140"],
+      ["pyarrow blob -> adf -> sql", 188, "188"],
+    ]);
+
+    var options = {
+      title: "Comparison speed ETL Pandas vs ADF",
+      // chartArea: { width: "50%" },
+      hAxis: {
+        title: "ratio slowest to self",
+        minValue: 0,
+      },
+      vAxis: {
+        title: "Method",
+      },
+      width: 600,
+      height: 400,
+      legend: { position: "none" },
+      backgroundColor: "#fff",
+      gridlines: {
+        color: "transparent",
+      },
+    };
+
+    var chart = new google.visualization.BarChart(
+      document.getElementById("chart_div")
+    );
+
+    chart.draw(data, options);
+  }
+</script>
+<div id="chart_div"></div>

@@ -7,7 +7,52 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Fri, 10 Jun 2022 21:16:44 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Jun 2022 22:00:46 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>apache arrow</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/apache-arrow/</link>
+      <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/apache-arrow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>azure</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/azure/</link>
+      <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/azure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data factory</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/data-factory/</link>
+      <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/data-factory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pandas</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/pandas/</link>
+      <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/pandas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sql</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/sql/</link>
+      <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/sql/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>python</title>
       <link>https://pedrojunqueira.github.io/blog/tags/python/</link>
@@ -18,29 +63,11 @@
     </item>
     
     <item>
-      <title>azure</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/azure/</link>
-      <pubDate>Sat, 21 May 2022 20:58:05 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/azure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>linux</title>
       <link>https://pedrojunqueira.github.io/blog/tags/linux/</link>
       <pubDate>Sat, 21 May 2022 20:58:05 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sql</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/sql/</link>
-      <pubDate>Sat, 21 May 2022 20:58:05 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/sql/</guid>
       <description></description>
     </item>
     
@@ -77,15 +104,6 @@
       <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/api/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pandas</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/pandas/</link>
-      <pubDate>Thu, 27 Aug 2020 12:01:22 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/pandas/</guid>
       <description></description>
     </item>
     
@@ -234,7 +252,7 @@
     </item>
     
     <item>
-      <title>Hugo</title>
+      <title>hugo</title>
       <link>https://pedrojunqueira.github.io/blog/tags/hugo/</link>
       <pubDate>Tue, 14 Apr 2020 07:10:33 +0930</pubDate>
       

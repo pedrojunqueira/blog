@@ -6,8 +6,221 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>pedro junqueira</copyright>
-        <lastBuildDate>Fri, 10 Jun 2022 21:16:44 +0930</lastBuildDate>
+        <lastBuildDate>Sun, 26 Jun 2022 22:00:46 +0930</lastBuildDate>
         <atom:link href="https://pedrojunqueira.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Do not use Pandas to load data use Data Factory</title>
+            <link>https://pedrojunqueira.github.io/blog/posts/do-not-use_pandas/</link>
+            <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/blog/posts/do-not-use_pandas/</guid>
+            <description>I recently wrote blog post about how to connect pandas to your SQL database and read file from SQL server.
+pandas is a fantastic tool to analyse and manipulate data. I use it all the time. It is very efficient if the &amp;ldquo;size&amp;rdquo; of the data is say up to 1 million records and can be done in your local machine or in a VM fairly quick calculations. No problems at all.</description>
+            <content type="html"><![CDATA[<p>I recently wrote blog <a href="https://pedrojunqueira.github.io/blog/posts/connect-python-azure-sqldb-pandas/">post</a> about how to connect <code>pandas</code> to your SQL database and read file from SQL server.</p>
+<p><code>pandas</code> is a fantastic tool to analyse and manipulate data. I use it all the time. It is very efficient if the &ldquo;size&rdquo; of the data is say up to 1 million records and can be done in your local machine or in a VM fairly quick calculations. No problems at all.</p>
+<p>With the data connection created with SQL Server it works both ways. The same way you can read data from SQL Server but also can write to it. This is where is the problem with <code>pandas</code>. Because you can it does not mean you SHOULD do it.</p>
+<p>Reason it is very slow compared to other options.</p>
+<p>How slow?</p>
+<p>Let&rsquo;s test and then compare to a proper ETL tool for data ingestion like <a href="https://azure.microsoft.com/en-au/services/data-factory/">Azure Data Factory</a></p>
+<p>To do this test I will user the NYC Taxi dataset with the 2016 data I got from <a href="https://www.kaggle.com/competitions/nyc-taxi-trip-duration/data">Kaggle</a></p>
+<p>So here is the script to upload from my local machine using a broadband connection straight from csv to pandas then to SQL.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime, timedelta
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> utils <span style="color:#f92672">import</span> timing
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SQL_SERVER <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_SERVER&#39;</span>)
+</span></span><span style="display:flex;"><span>SQL_DATABASE <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_DATABASE&#39;</span>)
+</span></span><span style="display:flex;"><span>SQL_USER_NAME <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_USERNAME&#39;</span>)
+</span></span><span style="display:flex;"><span>SQL_PASSWORD <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;SQL_AZURE_PASSWORD&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>driver<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{ODBC Driver 18 for SQL Server}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@timing</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_script</span>():
+</span></span><span style="display:flex;"><span>    odbc_params <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;DRIVER=</span><span style="color:#e6db74">{</span>driver<span style="color:#e6db74">}</span><span style="color:#e6db74">;SERVER=tcp:</span><span style="color:#e6db74">{</span>SQL_SERVER<span style="color:#e6db74">}</span><span style="color:#e6db74">;PORT=1433;DATABASE=</span><span style="color:#e6db74">{</span>SQL_DATABASE<span style="color:#e6db74">}</span><span style="color:#e6db74">;UID=</span><span style="color:#e6db74">{</span>SQL_USER_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74">;PWD=</span><span style="color:#e6db74">{</span>SQL_PASSWORD<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    connection_string <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;mssql+pyodbc:///?odbc_connect=</span><span style="color:#e6db74">{</span>odbc_params<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    engine <span style="color:#f92672">=</span> create_engine(connection_string)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    taxi <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;taxi.csv&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    taxi[:<span style="color:#ae81ff">1000</span>]<span style="color:#f92672">.</span>to_sql(<span style="color:#e6db74">&#34;taxi&#34;</span>,con<span style="color:#f92672">=</span>engine, if_exists<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;replace&#34;</span>, index<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    engine<span style="color:#f92672">.</span>dispose()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>run_script()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># func: run_script took: 39.0262 sec</span>
+</span></span></code></pre></div><p>Lets only upload 1000 rows and estimate the total time otherwise it is going to take a LOT of time and I don&rsquo;t have that much to waste.</p>
+<p>So I have a decorator to time the execution of the function and the run took.</p>
+<p>~39 seconds</p>
+<p>so to extrapolate to 1,458,644 rows that would take ~15.8 hours to load it all. So not acceptable.</p>
+<p>How long it would take it using ADF (Azure Data Factory)?</p>
+<p>So to make things easy lets use <code>python</code> to upload it to a data lake storage and then from there to SQL DB using ADF.</p>
+<p>Here is a script to upload to blob storage from local</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> configparser
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> io
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> azure.storage.blob <span style="color:#f92672">import</span> BlobServiceClient
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> utils <span style="color:#f92672">import</span> timing
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>config <span style="color:#f92672">=</span> configparser<span style="color:#f92672">.</span>ConfigParser()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>config<span style="color:#f92672">.</span>read(<span style="color:#e6db74">&#39;config.ini&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PEDRO_LAKE_STORAGE_KEY <span style="color:#f92672">=</span> config<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;STORAGE&#39;</span>, <span style="color:#e6db74">&#39;key&#39;</span>)
+</span></span><span style="display:flex;"><span>PEDRO_LAKE_STORAGE_STRING <span style="color:#f92672">=</span> config<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;STORAGE&#39;</span>,<span style="color:#e6db74">&#39;string&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>folder <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;landing/large-data&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">upload_to_blob</span>(df: pd<span style="color:#f92672">.</span>DataFrame, container:str, blob_name:str)<span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>    buffer <span style="color:#f92672">=</span> io<span style="color:#f92672">.</span>BytesIO()
+</span></span><span style="display:flex;"><span>    df<span style="color:#f92672">.</span>to_csv(buffer, index<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>    buffer<span style="color:#f92672">.</span>seek(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    blob_service_client <span style="color:#f92672">=</span> BlobServiceClient<span style="color:#f92672">.</span>from_connection_string(conn_str<span style="color:#f92672">=</span>PEDRO_LAKE_STORAGE_STRING)
+</span></span><span style="display:flex;"><span>    container_client <span style="color:#f92672">=</span> blob_service_client<span style="color:#f92672">.</span>get_container_client(container)
+</span></span><span style="display:flex;"><span>    container_client<span style="color:#f92672">.</span>upload_blob(name<span style="color:#f92672">=</span>blob_name, data<span style="color:#f92672">=</span>buffer, overwrite<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@timing</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_script</span>():
+</span></span><span style="display:flex;"><span>    taxi <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;taxi.csv&#39;</span>)
+</span></span><span style="display:flex;"><span>    upload_to_blob(taxi, folder, <span style="color:#e6db74">&#39;taxi.csv&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>run_script()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># func: run_script took: 104.326 sec</span>
+</span></span></code></pre></div><p>So now it was not too bad. It took only only 104 seconds to load all text data. Now I understand why ELT not ETL is so efficient.</p>
+<p>The data has no schema, but it was 550x faster.</p>
+<p>Now from ADF Blob to SQL.</p>
+<p>So it took 5 minutes.</p>
+<figure><img src="/static/img/ADF.png"/><figcaption>
+            <h4>ADF</h4>
+        </figcaption>
+</figure>
+
+<p>this is ~186x faster and the data is in a database with structure and schema. Added index this is very efficient do do queries. Specially if in servers like <a href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/overview-architecture#synapse-sql-architecture-components">MPP</a> (Massive parallel processing)</p>
+<figure><img src="/static/img/sql.png"/><figcaption>
+            <h4>SSMS</h4>
+        </figcaption>
+</figure>
+
+<p>So to try another thing I will load the same data as a parquet format which is compressed and then load to SQL and time it.</p>
+<p>For this I am using <code>pyarrow</code> which is a <code>python</code> wrapper for the <code>c++</code> library Apache Arrow. It is REALLY fast. It is worth another post for that one.</p>
+<p>here is a script to read the csv and load it to the blob storage.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> configparser
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> adlfs
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pyarrow <span style="color:#f92672">import</span> csv
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pyarrow.parquet <span style="color:#66d9ef">as</span> pq
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pyarrow.compute <span style="color:#66d9ef">as</span> pc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> utils <span style="color:#f92672">import</span> timing
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>config <span style="color:#f92672">=</span> configparser<span style="color:#f92672">.</span>ConfigParser()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>config<span style="color:#f92672">.</span>read(<span style="color:#e6db74">&#39;config.ini&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AZURE_STORAGE_ACCOUNT_KEY <span style="color:#f92672">=</span> config<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;STORAGE&#39;</span>, <span style="color:#e6db74">&#39;key&#39;</span>)
+</span></span><span style="display:flex;"><span>AZURE_STORAGE_ACCOUNT_STRING <span style="color:#f92672">=</span> config<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;STORAGE&#39;</span>,<span style="color:#e6db74">&#39;string&#39;</span>)
+</span></span><span style="display:flex;"><span>AZURE_STORAGE_ACCOUNT_NAME <span style="color:#f92672">=</span> config<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;STORAGE&#39;</span>,<span style="color:#e6db74">&#39;AZURE_STORAGE_ACCOUNT_NAME&#39;</span>)
+</span></span><span style="display:flex;"><span>AZURE_STORAGE_CONTAINER_NAME <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;landing/large-data&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@timing</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_script</span>():
+</span></span><span style="display:flex;"><span>    fs <span style="color:#f92672">=</span> adlfs<span style="color:#f92672">.</span>AzureBlobFileSystem(account_name<span style="color:#f92672">=</span>AZURE_STORAGE_ACCOUNT_NAME, account_key<span style="color:#f92672">=</span>AZURE_STORAGE_ACCOUNT_STRING,
+</span></span><span style="display:flex;"><span>                                    connection_string<span style="color:#f92672">=</span>AZURE_STORAGE_ACCOUNT_STRING)
+</span></span><span style="display:flex;"><span>    taxi <span style="color:#f92672">=</span> csv<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#34;taxi.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    pq<span style="color:#f92672">.</span>write_table(taxi, <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>AZURE_STORAGE_CONTAINER_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74">/taxi.parquet&#34;</span> , filesystem<span style="color:#f92672">=</span>fs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>run_script()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># func: run_script took: 14.893 sec</span>
+</span></span></code></pre></div><p>this one took 15 seconds.</p>
+<p>csv is 186 Mb
+parquet same data is 43 Mb (23% of csv size)</p>
+<p>So load csv, transform in parquet and load to blog it took only 14% of the time that <code>pandas</code> took to load the csv.</p>
+<p>Finally the LAST test.</p>
+<p>from parquet to (blob) to SQL server using ADF.</p>
+<p>it took slightly less than the csv. like 4.8 minutes. So this one I expected better. But it is what it is. I just did one run each.</p>
+<p>Here is a chart with the summary</p>
+<style>
+  #chart_div {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+<script type="text/javascript">
+  google.charts.load("current", { packages: ["corechart", "bar"] });
+  google.charts.setOnLoadCallback(drawBasic);
+
+  function drawBasic() {
+    var data = google.visualization.arrayToDataTable([
+      ["Method", "Times Faster", { role: "annotation" }],
+      ["pandas to sql (baseline)", 1, "1"],
+      ["pandas blob -> adf -> sql", 140, "140"],
+      ["pyarrow blob -> adf -> sql", 188, "188"],
+    ]);
+
+    var options = {
+      title: "Comparison speed ETL Pandas vs ADF",
+      
+      hAxis: {
+        title: "ratio slowest to self",
+        minValue: 0,
+      },
+      vAxis: {
+        title: "Method",
+      },
+      width: 600,
+      height: 400,
+      legend: { position: "none" },
+      backgroundColor: "#fff",
+      gridlines: {
+        color: "transparent",
+      },
+    };
+
+    var chart = new google.visualization.BarChart(
+      document.getElementById("chart_div")
+    );
+
+    chart.draw(data, options);
+  }
+</script>
+<div id="chart_div"></div>
+
+<p>Also here is the script for the decorator to time the function</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#utils.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> wraps
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">timing</span>(f):
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@wraps</span>(f)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wrap</span>(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kw):
+</span></span><span style="display:flex;"><span>        ts <span style="color:#f92672">=</span> time()
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> f(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kw)
+</span></span><span style="display:flex;"><span>        te <span style="color:#f92672">=</span> time()
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;func: </span><span style="color:#e6db74">{</span>f<span style="color:#f92672">.</span>__name__<span style="color:#e6db74">}</span><span style="color:#e6db74"> took: </span><span style="color:#e6db74">{</span>te<span style="color:#f92672">-</span>ts<span style="color:#e6db74">:</span><span style="color:#e6db74">2.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> sec&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> wrap
+</span></span></code></pre></div>]]></content>
+        </item>
         
         <item>
             <title>Understand how objects behave in memory Python</title>

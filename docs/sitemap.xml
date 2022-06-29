@@ -2,31 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/apache-arrow/</loc>
+    <lastmod>2022-06-26T22:00:46+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/azure/</loc>
+    <lastmod>2022-06-26T22:00:46+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/data-factory/</loc>
+    <lastmod>2022-06-26T22:00:46+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/do-not-use_pandas/</loc>
+    <lastmod>2022-06-26T22:00:46+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/pandas/</loc>
+    <lastmod>2022-06-26T22:00:46+09:30</lastmod>
+  </url><url>
     <loc>https://pedrojunqueira.github.io/blog/</loc>
-    <lastmod>2022-06-10T21:16:44+09:30</lastmod>
+    <lastmod>2022-06-26T22:00:46+09:30</lastmod>
   </url><url>
     <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
-    <lastmod>2022-06-10T21:16:44+09:30</lastmod>
+    <lastmod>2022-06-26T22:00:46+09:30</lastmod>
   </url><url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/python/</loc>
-    <lastmod>2022-06-10T21:16:44+09:30</lastmod>
+    <loc>https://pedrojunqueira.github.io/blog/tags/sql/</loc>
+    <lastmod>2022-06-26T22:00:46+09:30</lastmod>
   </url><url>
     <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
+    <lastmod>2022-06-26T22:00:46+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/python/</loc>
     <lastmod>2022-06-10T21:16:44+09:30</lastmod>
   </url><url>
     <loc>https://pedrojunqueira.github.io/blog/posts/object-pointer-python/</loc>
     <lastmod>2022-06-10T21:16:44+09:30</lastmod>
   </url><url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/azure/</loc>
-    <lastmod>2022-05-21T20:58:05+09:30</lastmod>
-  </url><url>
     <loc>https://pedrojunqueira.github.io/blog/posts/connect-python-azure-sqldb-pandas/</loc>
     <lastmod>2022-05-21T20:58:05+09:30</lastmod>
   </url><url>
     <loc>https://pedrojunqueira.github.io/blog/tags/linux/</loc>
-    <lastmod>2022-05-21T20:58:05+09:30</lastmod>
-  </url><url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/sql/</loc>
     <lastmod>2022-05-21T20:58:05+09:30</lastmod>
   </url><url>
     <loc>https://pedrojunqueira.github.io/blog/tags/ai/</loc>
@@ -54,9 +66,6 @@
     <lastmod>2020-08-27T12:01:22+09:30</lastmod>
   </url><url>
     <loc>https://pedrojunqueira.github.io/blog/posts/how_to_download_data_strava/</loc>
-    <lastmod>2020-08-27T12:01:22+09:30</lastmod>
-  </url><url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/pandas/</loc>
     <lastmod>2020-08-27T12:01:22+09:30</lastmod>
   </url><url>
     <loc>https://pedrojunqueira.github.io/blog/tags/requests/</loc>

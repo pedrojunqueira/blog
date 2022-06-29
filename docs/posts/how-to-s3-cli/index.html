@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="author" content="">
-<meta name="description" content="Using the command line interface (CLI) can be very intimidating and make one completely lost if you always dealt with graphical drag and drop, click and point interface.
-I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then cls for clear the screen and dir to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then." />
-<meta name="keywords" content=", s3, aws, cli, bash, cloud" />
+        <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+<meta
+  name="author"
+  content=""
+/>
+<meta
+  name="description"
+  content="Using the command line interface (CLI) can be very intimidating and make one completely lost if you always dealt with graphical drag and drop, click and point interface.
+I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then cls for clear the screen and dir to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then."
+/>
+<meta
+  name="keywords"
+  content=", s3, aws, cli, bash, cloud"
+/>
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://pedrojunqueira.github.io/blog/posts/how-to-s3-cli/" />
 
 
-    <title>
-        
-            How: to navigate on AWS S3 bucket using CLI :: Pedro Junqueira  — Data Engineer
-        
-    </title>
+<title>
+   How: to navigate on AWS S3 bucket using CLI :: Pedro Junqueira  — Data Engineer 
+</title>
 
 
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
-    type="text/css">
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
 
-
-
-<link rel="stylesheet" href="/blog/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+ 
+<link rel="stylesheet" href="/blog/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css" />
 
 
 
@@ -37,25 +49,18 @@ I grew up in the 80s and my first interactions with computer was always through 
     <link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="">
     <link rel="shortcut icon" href="/blog/favicon.ico">
     <meta name="msapplication-TileColor" content="">
-
-
-<meta itemprop="name" content="How: to navigate on AWS S3 bucket using CLI">
+ <meta itemprop="name" content="How: to navigate on AWS S3 bucket using CLI">
 <meta itemprop="description" content="Using the command line interface (CLI) can be very intimidating and make one completely lost if you always dealt with graphical drag and drop, click and point interface.
 I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then cls for clear the screen and dir to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then."><meta itemprop="datePublished" content="2020-04-16T05:50:27+09:30" />
 <meta itemprop="dateModified" content="2020-04-16T05:50:27+09:30" />
 <meta itemprop="wordCount" content="711"><meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
-<meta itemprop="keywords" content="s3,aws,cli,bash,cloud," />
-<meta name="twitter:card" content="summary_large_image"/>
+<meta itemprop="keywords" content="s3,aws,cli,bash,cloud," /> <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://pedrojunqueira.github.io/blog"/>
 
 <meta name="twitter:title" content="How: to navigate on AWS S3 bucket using CLI"/>
 <meta name="twitter:description" content="Using the command line interface (CLI) can be very intimidating and make one completely lost if you always dealt with graphical drag and drop, click and point interface.
 I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then cls for clear the screen and dir to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then."/>
-
-
-
-
-    <meta property="og:title" content="How: to navigate on AWS S3 bucket using CLI" />
+   <meta property="og:title" content="How: to navigate on AWS S3 bucket using CLI" />
 <meta property="og:description" content="Using the command line interface (CLI) can be very intimidating and make one completely lost if you always dealt with graphical drag and drop, click and point interface.
 I grew up in the 80s and my first interactions with computer was always through CLI and remember that the 2 first commands I learned were then cls for clear the screen and dir to list the files in the current directory. Even applications like word for MS-DOS was all text and there was no mouse then." />
 <meta property="og:type" content="article" />
@@ -63,13 +68,8 @@ I grew up in the 80s and my first interactions with computer was always through 
 <meta property="article:published_time" content="2020-04-16T05:50:27+09:30" />
 <meta property="article:modified_time" content="2020-04-16T05:50:27+09:30" /><meta property="og:site_name" content="Pedro Junqueira" />
 
-
-
-
-
-
-
-    <meta property="article:published_time" content="2020-04-16 05:50:27 &#43;0930 ACST" />
+   
+<meta property="article:published_time" content="2020-04-16 05:50:27 &#43;0930 ACST" />
 
 
 
@@ -79,6 +79,9 @@ I grew up in the 80s and my first interactions with computer was always through 
 
 
 
+
+
+ 
 
     </head>
 

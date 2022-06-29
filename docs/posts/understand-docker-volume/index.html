@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="author" content="">
-<meta name="description" content="Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
+        <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+<meta
+  name="author"
+  content=""
+/>
+<meta
+  name="description"
+  content="Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
 This post is not a What is Docker one or an introduction.
-You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for." />
-<meta name="keywords" content=", docker, postgresql, sql" />
+You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for."
+/>
+<meta
+  name="keywords"
+  content=", docker, postgresql, sql"
+/>
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://pedrojunqueira.github.io/blog/posts/understand-docker-volume/" />
 
 
-    <title>
-        
-            Understanding Docker volumes with a practical example :: Pedro Junqueira  — Data Engineer
-        
-    </title>
+<title>
+   Understanding Docker volumes with a practical example :: Pedro Junqueira  — Data Engineer 
+</title>
 
 
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
-    type="text/css">
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
 
-
-
-<link rel="stylesheet" href="/blog/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+ 
+<link rel="stylesheet" href="/blog/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css" />
 
 
 
@@ -38,27 +50,20 @@ You can read it here or just watch this very good video from NetworkChuck then y
     <link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="">
     <link rel="shortcut icon" href="/blog/favicon.ico">
     <meta name="msapplication-TileColor" content="">
-
-
-<meta itemprop="name" content="Understanding Docker volumes with a practical example">
+ <meta itemprop="name" content="Understanding Docker volumes with a practical example">
 <meta itemprop="description" content="Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
 This post is not a What is Docker one or an introduction.
 You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for."><meta itemprop="datePublished" content="2020-04-17T06:55:35+09:30" />
 <meta itemprop="dateModified" content="2020-04-17T06:55:35+09:30" />
 <meta itemprop="wordCount" content="1521"><meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
-<meta itemprop="keywords" content="docker,postgresql,sql," />
-<meta name="twitter:card" content="summary_large_image"/>
+<meta itemprop="keywords" content="docker,postgresql,sql," /> <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://pedrojunqueira.github.io/blog"/>
 
 <meta name="twitter:title" content="Understanding Docker volumes with a practical example"/>
 <meta name="twitter:description" content="Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
 This post is not a What is Docker one or an introduction.
 You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for."/>
-
-
-
-
-    <meta property="og:title" content="Understanding Docker volumes with a practical example" />
+   <meta property="og:title" content="Understanding Docker volumes with a practical example" />
 <meta property="og:description" content="Docker is here to stay and I see it more and more part of the work of any developer and I am impressed to how Docker can make your life so easy.
 This post is not a What is Docker one or an introduction.
 You can read it here or just watch this very good video from NetworkChuck then you will have a good grasp of its core concepts and what this is for." />
@@ -67,13 +72,8 @@ You can read it here or just watch this very good video from NetworkChuck then y
 <meta property="article:published_time" content="2020-04-17T06:55:35+09:30" />
 <meta property="article:modified_time" content="2020-04-17T06:55:35+09:30" /><meta property="og:site_name" content="Pedro Junqueira" />
 
-
-
-
-
-
-
-    <meta property="article:published_time" content="2020-04-17 06:55:35 &#43;0930 ACST" />
+   
+<meta property="article:published_time" content="2020-04-17 06:55:35 &#43;0930 ACST" />
 
 
 
@@ -83,6 +83,9 @@ You can read it here or just watch this very good video from NetworkChuck then y
 
 
 
+
+
+ 
 
     </head>
 

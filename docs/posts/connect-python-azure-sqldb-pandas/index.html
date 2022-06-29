@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="author" content="">
-<meta name="description" content="The other day I wanted to connect pandas to Azure SQL DB and boy took me longer than I wanted. In the end I solved my problem. Although, connecting to DBs always involves more complex things like DB drives and OS dependencies the part I struggled the most was with the connection string 😅. Microsoft, in its documentation, which by the way is good, gives good example and steps on setting up the environnement and how to connect through pyodbc." />
-<meta name="keywords" content=", sql, azure, python, linux" />
+        <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+<meta
+  name="author"
+  content=""
+/>
+<meta
+  name="description"
+  content="The other day I wanted to connect pandas to Azure SQL DB and boy took me longer than I wanted. In the end I solved my problem. Although, connecting to DBs always involves more complex things like DB drives and OS dependencies the part I struggled the most was with the connection string 😅. Microsoft, in its documentation, which by the way is good, gives good example and steps on setting up the environnement and how to connect through pyodbc."
+/>
+<meta
+  name="keywords"
+  content=", sql, azure, python, linux"
+/>
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://pedrojunqueira.github.io/blog/posts/connect-python-azure-sqldb-pandas/" />
 
 
-    <title>
-        
-            Connect Python Azure SQL DB using Pandas :: Pedro Junqueira  — Data Engineer
-        
-    </title>
+<title>
+   Connect Python Azure SQL DB using Pandas :: Pedro Junqueira  — Data Engineer 
+</title>
 
 
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
-    type="text/css">
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
 
-
-
-<link rel="stylesheet" href="/blog/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+ 
+<link rel="stylesheet" href="/blog/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css" />
 
 
 
@@ -36,36 +48,24 @@
     <link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="">
     <link rel="shortcut icon" href="/blog/favicon.ico">
     <meta name="msapplication-TileColor" content="">
-
-
-<meta itemprop="name" content="Connect Python Azure SQL DB using Pandas">
+ <meta itemprop="name" content="Connect Python Azure SQL DB using Pandas">
 <meta itemprop="description" content="The other day I wanted to connect pandas to Azure SQL DB and boy took me longer than I wanted. In the end I solved my problem. Although, connecting to DBs always involves more complex things like DB drives and OS dependencies the part I struggled the most was with the connection string 😅. Microsoft, in its documentation, which by the way is good, gives good example and steps on setting up the environnement and how to connect through pyodbc."><meta itemprop="datePublished" content="2022-05-21T20:58:05+09:30" />
 <meta itemprop="dateModified" content="2022-05-21T20:58:05+09:30" />
 <meta itemprop="wordCount" content="527"><meta itemprop="image" content="https://pedrojunqueira.github.io/blog"/>
-<meta itemprop="keywords" content="sql,azure,python,linux," />
-<meta name="twitter:card" content="summary_large_image"/>
+<meta itemprop="keywords" content="sql,azure,python,linux," /> <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://pedrojunqueira.github.io/blog"/>
 
 <meta name="twitter:title" content="Connect Python Azure SQL DB using Pandas"/>
 <meta name="twitter:description" content="The other day I wanted to connect pandas to Azure SQL DB and boy took me longer than I wanted. In the end I solved my problem. Although, connecting to DBs always involves more complex things like DB drives and OS dependencies the part I struggled the most was with the connection string 😅. Microsoft, in its documentation, which by the way is good, gives good example and steps on setting up the environnement and how to connect through pyodbc."/>
-
-
-
-
-    <meta property="og:title" content="Connect Python Azure SQL DB using Pandas" />
+   <meta property="og:title" content="Connect Python Azure SQL DB using Pandas" />
 <meta property="og:description" content="The other day I wanted to connect pandas to Azure SQL DB and boy took me longer than I wanted. In the end I solved my problem. Although, connecting to DBs always involves more complex things like DB drives and OS dependencies the part I struggled the most was with the connection string 😅. Microsoft, in its documentation, which by the way is good, gives good example and steps on setting up the environnement and how to connect through pyodbc." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://pedrojunqueira.github.io/blog/posts/connect-python-azure-sqldb-pandas/" /><meta property="og:image" content="https://pedrojunqueira.github.io/blog"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-05-21T20:58:05+09:30" />
 <meta property="article:modified_time" content="2022-05-21T20:58:05+09:30" /><meta property="og:site_name" content="Pedro Junqueira" />
 
-
-
-
-
-
-
-    <meta property="article:published_time" content="2022-05-21 20:58:05 &#43;0930 ACST" />
+   
+<meta property="article:published_time" content="2022-05-21 20:58:05 &#43;0930 ACST" />
 
 
 
@@ -75,6 +75,9 @@
 
 
 
+
+
+ 
 
     </head>
 

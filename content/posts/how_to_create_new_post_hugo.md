@@ -5,7 +5,7 @@ draft: false
 toc: false
 images:
 tags:
-  - Hugo
+  - hugo
 ---
 
 Because I am not very consistent in my blog I always forget the command on how to create a new post.
