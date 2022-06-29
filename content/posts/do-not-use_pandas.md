@@ -127,11 +127,11 @@ Now from ADF Blob to SQL.
 
 So it took 5 minutes.
 
-{{< figure src="/static/img/ADF.png" title="ADF" >}}
+{{< figure src="/blog/img/ADF.png" title="ADF" >}}
 
 this is ~186x faster and the data is in a database with structure and schema. Added index this is very efficient do do queries. Specially if in servers like [MPP](https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/overview-architecture#synapse-sql-architecture-components) (Massive parallel processing)
 
-{{< figure src="/static/img/sql.png" title="SSMS" >}}
+{{< figure src="/blog/img/sql.png" title="SSMS" >}}
 
 So to try another thing I will load the same data as a parquet format which is compressed and then load to SQL and time it.
 

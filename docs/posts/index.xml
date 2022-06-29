@@ -104,13 +104,13 @@ pandas is a fantastic tool to analyse and manipulate data. I use it all the time
 <p>The data has no schema, but it was 550x faster.</p>
 <p>Now from ADF Blob to SQL.</p>
 <p>So it took 5 minutes.</p>
-<figure><img src="/static/img/ADF.png"/><figcaption>
+<figure><img src="/blog/img/ADF.png"/><figcaption>
             <h4>ADF</h4>
         </figcaption>
 </figure>
 
 <p>this is ~186x faster and the data is in a database with structure and schema. Added index this is very efficient do do queries. Specially if in servers like <a href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/overview-architecture#synapse-sql-architecture-components">MPP</a> (Massive parallel processing)</p>
-<figure><img src="/static/img/sql.png"/><figcaption>
+<figure><img src="/blog/img/sql.png"/><figcaption>
             <h4>SSMS</h4>
         </figcaption>
 </figure>
