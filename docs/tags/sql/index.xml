@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Sun, 26 Jun 2022 22:00:46 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Jun 2022 22:17:57 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Do not use pandas use with pyodbc</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/pyodbc_vs_adf/</link>
+      <pubDate>Thu, 30 Jun 2022 22:17:57 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/pyodbc_vs_adf/</guid>
+      <description>Yesterday I published a post on and shared on LinkedIn and had a quite big reaction as an popular PBI influencer commented on my post.
+One of the comments by Jesus Jayaro called my attention saying that if pyodbc is used with execute many it is faster than data factory.
+So I did a quick research and in reality it is fast I am impressed.
+On my quick research I could put together a working script.</description>
+    </item>
+    
     <item>
       <title>Do not use Pandas to load data use Data Factory</title>
       <link>https://pedrojunqueira.github.io/blog/posts/do-not-use_pandas/</link>

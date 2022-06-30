@@ -7,7 +7,43 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Sun, 26 Jun 2022 22:00:46 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Jun 2022 22:17:57 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>data factory</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/data-factory/</link>
+      <pubDate>Thu, 30 Jun 2022 22:17:57 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/data-factory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pandas</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/pandas/</link>
+      <pubDate>Thu, 30 Jun 2022 22:17:57 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/pandas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pyodbc</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/pyodbc/</link>
+      <pubDate>Thu, 30 Jun 2022 22:17:57 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/pyodbc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sql</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/sql/</link>
+      <pubDate>Thu, 30 Jun 2022 22:17:57 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/sql/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>apache arrow</title>
       <link>https://pedrojunqueira.github.io/blog/tags/apache-arrow/</link>
@@ -23,33 +59,6 @@
       <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/azure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>data factory</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/data-factory/</link>
-      <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/data-factory/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pandas</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/pandas/</link>
-      <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/pandas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sql</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/sql/</link>
-      <pubDate>Sun, 26 Jun 2022 22:00:46 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/sql/</guid>
       <description></description>
     </item>
     
