@@ -6,8 +6,83 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>pedro junqueira</copyright>
-        <lastBuildDate>Thu, 30 Jun 2022 22:17:57 +0930</lastBuildDate>
+        <lastBuildDate>Mon, 04 Jul 2022 08:30:23 +0930</lastBuildDate>
         <atom:link href="https://pedrojunqueira.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>SqlServer in docker in less than 5 minutes</title>
+            <link>https://pedrojunqueira.github.io/blog/posts/sqlserver_in_docker/</link>
+            <pubDate>Mon, 04 Jul 2022 08:30:23 +0930</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/blog/posts/sqlserver_in_docker/</guid>
+            <description>Who does not want to spin up an instance of SQL Server Development version?
+If you don&amp;rsquo;t want to go through the pain of downloading and following the installation wizard in windows you can have an instance of SQL server 2022 running on your system in less than 5 min in docker.
+I am assuming 2 things you already have installed in your computer.
+Docker Desktop WSL SQL server management studio This version runs on a linux container.</description>
+            <content type="html"><![CDATA[<p>Who does not want to spin up an instance of SQL Server Development version?</p>
+<p>If you don&rsquo;t want to go through the pain of downloading and following the installation wizard in windows you can have an instance of SQL server 2022 running on your system in less than 5 min in docker.</p>
+<p>I am assuming 2 things you already have installed in your computer.</p>
+<ul>
+<li><a href="https://docs.docker.com/desktop/windows/wsl/">Docker Desktop</a></li>
+<li><a href="https://docs.microsoft.com/en-us/windows/wsl/install">WSL</a></li>
+<li>SQL server <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16">management studio</a></li>
+</ul>
+<p>This version runs on a linux container.</p>
+<p>with all that then follow these steps.</p>
+<p>All credit to this article.</p>
+<p>article <a href="https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver16&amp;pivots=cs1-bash">link</a></p>
+<p>make sure the password meet SQL server requirements</p>
+<p>at least 10 characters long
+1 number
+1 capital/lower
+1 special character</p>
+<p>open your bash prompt on your WSL.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo docker run -e <span style="color:#e6db74">&#34;ACCEPT_EULA=Y&#34;</span> -e <span style="color:#e6db74">&#34;SA_PASSWORD=StrongP@ssword42&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>   -p 1433:1433 --name sql1 --hostname sql1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>   -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>   mcr.microsoft.com/mssql/server:2022-latest
+</span></span></code></pre></div><p>Ger inside the container</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo docker exec -it sql1 <span style="color:#e6db74">&#34;bash&#34;</span>
+</span></span></code></pre></div><p>inside the container</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P <span style="color:#e6db74">&#34;StrongP@ssword42&#34;</span>
+</span></span></code></pre></div><p>create a DB, Table and insert some data</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> TestDB;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GO</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>USE TestDB;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> Inventory (id INT, name NVARCHAR(<span style="color:#ae81ff">50</span>), quantity INT);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> Inventory <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;banana&#39;</span>, <span style="color:#ae81ff">150</span>); <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> Inventory <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;orange&#39;</span>, <span style="color:#ae81ff">154</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GO</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> Inventory
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GO</span>
+</span></span></code></pre></div><p>To connect via SQL Server Management Studio from your local machine.</p>
+<p>server name : <code>127.0.0.1,1433</code></p>
+<p>user name : <code>sa</code></p>
+<p>password: <code>StrongP@ssword42</code></p>
+<figure><img src="/blog/img/connection.png"/><figcaption>
+            <h4>connection</h4>
+        </figcaption>
+</figure>
+
+<p>before pressing connect make sure you mark trust server certificate</p>
+<figure><img src="/blog/img/trust_certificate.png"/><figcaption>
+            <h4>trust certificate</h4>
+        </figcaption>
+</figure>
+
+<p>then your server is ready to go</p>
+<figure><img src="/blog/img/connected.png"/><figcaption>
+            <h4>connected</h4>
+        </figcaption>
+</figure>
+
+<p>have fun ! 😀</p>
+]]></content>
+        </item>
         
         <item>
             <title>Do not use pandas use with pyodbc</title>

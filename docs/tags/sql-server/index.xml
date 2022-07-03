@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sql server on Pedro Junqueira</title>
+    <link>https://pedrojunqueira.github.io/blog/tags/sql-server/</link>
+    <description>Recent content in sql server on Pedro Junqueira</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>pedro junqueira</copyright>
+    <lastBuildDate>Mon, 04 Jul 2022 08:30:23 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/sql-server/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SqlServer in docker in less than 5 minutes</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/sqlserver_in_docker/</link>
+      <pubDate>Mon, 04 Jul 2022 08:30:23 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/sqlserver_in_docker/</guid>
+      <description>Who does not want to spin up an instance of SQL Server Development version?
+If you don&amp;rsquo;t want to go through the pain of downloading and following the installation wizard in windows you can have an instance of SQL server 2022 running on your system in less than 5 min in docker.
+I am assuming 2 things you already have installed in your computer.
+Docker Desktop WSL SQL server management studio This version runs on a linux container.</description>
+    </item>
+    
+  </channel>
+</rss>

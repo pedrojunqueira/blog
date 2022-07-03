@@ -7,7 +7,43 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Thu, 30 Jun 2022 22:17:57 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Jul 2022 08:30:23 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/docker/</link>
+      <pubDate>Mon, 04 Jul 2022 08:30:23 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sql</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/sql/</link>
+      <pubDate>Mon, 04 Jul 2022 08:30:23 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/sql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sql server</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/sql-server/</link>
+      <pubDate>Mon, 04 Jul 2022 08:30:23 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/sql-server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssms</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/ssms/</link>
+      <pubDate>Mon, 04 Jul 2022 08:30:23 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/ssms/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>data factory</title>
       <link>https://pedrojunqueira.github.io/blog/tags/data-factory/</link>
@@ -32,15 +68,6 @@
       <pubDate>Thu, 30 Jun 2022 22:17:57 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/pyodbc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sql</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/sql/</link>
-      <pubDate>Thu, 30 Jun 2022 22:17:57 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/sql/</guid>
       <description></description>
     </item>
     
@@ -149,15 +176,6 @@
       <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/docker/</link>
-      <pubDate>Sun, 09 Aug 2020 07:52:24 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/docker/</guid>
       <description></description>
     </item>
     

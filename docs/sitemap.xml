@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/docker/</loc>
+    <lastmod>2022-07-04T08:30:23+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/</loc>
+    <lastmod>2022-07-04T08:30:23+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
+    <lastmod>2022-07-04T08:30:23+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/sql/</loc>
+    <lastmod>2022-07-04T08:30:23+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/sql-server/</loc>
+    <lastmod>2022-07-04T08:30:23+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/posts/sqlserver_in_docker/</loc>
+    <lastmod>2022-07-04T08:30:23+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/ssms/</loc>
+    <lastmod>2022-07-04T08:30:23+09:30</lastmod>
+  </url><url>
+    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
+    <lastmod>2022-07-04T08:30:23+09:30</lastmod>
+  </url><url>
     <loc>https://pedrojunqueira.github.io/blog/tags/data-factory/</loc>
     <lastmod>2022-06-30T22:17:57+09:30</lastmod>
   </url><url>
@@ -11,19 +35,7 @@
     <loc>https://pedrojunqueira.github.io/blog/tags/pandas/</loc>
     <lastmod>2022-06-30T22:17:57+09:30</lastmod>
   </url><url>
-    <loc>https://pedrojunqueira.github.io/blog/</loc>
-    <lastmod>2022-06-30T22:17:57+09:30</lastmod>
-  </url><url>
-    <loc>https://pedrojunqueira.github.io/blog/posts/</loc>
-    <lastmod>2022-06-30T22:17:57+09:30</lastmod>
-  </url><url>
     <loc>https://pedrojunqueira.github.io/blog/tags/pyodbc/</loc>
-    <lastmod>2022-06-30T22:17:57+09:30</lastmod>
-  </url><url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/sql/</loc>
-    <lastmod>2022-06-30T22:17:57+09:30</lastmod>
-  </url><url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/</loc>
     <lastmod>2022-06-30T22:17:57+09:30</lastmod>
   </url><url>
     <loc>https://pedrojunqueira.github.io/blog/tags/apache-arrow/</loc>
@@ -87,9 +99,6 @@
     <lastmod>2020-08-26T06:38:52+09:30</lastmod>
   </url><url>
     <loc>https://pedrojunqueira.github.io/blog/tags/devops/</loc>
-    <lastmod>2020-08-09T07:52:24+09:30</lastmod>
-  </url><url>
-    <loc>https://pedrojunqueira.github.io/blog/tags/docker/</loc>
     <lastmod>2020-08-09T07:52:24+09:30</lastmod>
   </url><url>
     <loc>https://pedrojunqueira.github.io/blog/tags/openshift/</loc>
