@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Mon, 04 Jul 2022 08:30:23 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Aug 2022 08:12:14 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Managing Burnout</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/managing-burnout/</link>
+      <pubDate>Thu, 25 Aug 2022 08:12:14 +0930</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/managing-burnout/</guid>
+      <description>No one would just plan to have a burn out.
+However, there are 2 things you can manage that can reduce drastically the probability of a burnout.
+From my own experience and observation burnout happens due to imbalance in two aspects from carrying out job duties.
+Doing work that it is at a high level of complexity beyond your level of knowledge and experience. Have an increased volume of work that 8 hours a days is not sufficient to keep up with it.</description>
+    </item>
+    
     <item>
       <title>SqlServer in docker in less than 5 minutes</title>
       <link>https://pedrojunqueira.github.io/blog/posts/sqlserver_in_docker/</link>
