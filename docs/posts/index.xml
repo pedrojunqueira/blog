@@ -6,8 +6,83 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>pedro junqueira</copyright>
-        <lastBuildDate>Thu, 25 Aug 2022 08:12:14 +0930</lastBuildDate>
+        <lastBuildDate>Thu, 16 Feb 2023 17:16:10 +1030</lastBuildDate>
         <atom:link href="https://pedrojunqueira.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Why I stopped using Stack Overflow</title>
+            <link>https://pedrojunqueira.github.io/blog/posts/chatgpt/</link>
+            <pubDate>Thu, 16 Feb 2023 17:16:10 +1030</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/blog/posts/chatgpt/</guid>
+            <description>Stack Overflow is great and it saved me many times. I only use it to read and usually do not ask questions and do not contribute. Despite been great for me I had a bad experience dealing with a person. I once asked a question and all that I got was a down vote, which is bad to your &amp;ldquo;points&amp;rdquo; in the community.
+The reason is that the question was answered already somewhere in different words and because of this trauma I never asked a question again and any question I ever asked after that has already been answered somehow somewhere in the internet and Google was my best friend for this.</description>
+            <content type="html"><![CDATA[<p>Stack Overflow is great and it saved me many times. I only use it to read and usually do not ask questions and do not contribute. Despite been great for me I had a bad experience dealing with a person. I once asked a question and all that I got was a down vote, which is bad to your &ldquo;points&rdquo; in the community.</p>
+<p>The reason is that the question was answered already somewhere in different words and because of this trauma I never asked a question again and any question I ever asked after that has already been answered somehow somewhere in the internet and Google was my best friend for this.</p>
+<p>Then came the ChatGTP. I will be honest with you. I was impressed but meh&hellip; not that much. I thought the hype was a bit overrated. My first impression is that it was very good for producing texts and code snippets and that was it. However, I never actually used for work. Then today I gave it a go and boy that was good to increase my productivity.</p>
+<p>I needed to write a simple function in Python to generate a list of floats in a particular pattern. It would take me somewhere between 10 to 20 minutes to test research about it and refactor roughly.</p>
+<p>Then I though. Why not give chatGPT a go?</p>
+<p>I tried to describe what I wanted and in my first attempt was</p>
+<p><code>writhe in Python 3.9 a function that returns a list of floats with the following parameters size  of the list to be returned and the chunks of data will have length of n size with gaps in between</code></p>
+<p>note that I even had some spelling errors 🙈</p>
+<p>it returned almost what I wanted</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_floats</span>(size, n):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Initialize an empty list to store the floats</span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Generate chunks of floats with length n</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> len(result) <span style="color:#f92672">&lt;</span> size:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Generate a chunk of floats of length n</span>
+</span></span><span style="display:flex;"><span>        chunk <span style="color:#f92672">=</span> [random<span style="color:#f92672">.</span>uniform(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(n)]
+</span></span><span style="display:flex;"><span>        result<span style="color:#f92672">.</span>extend(chunk)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If the total length of the result list is larger than the size parameter, break the loop</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(result) <span style="color:#f92672">&gt;=</span> size:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Insert a gap between the chunks</span>
+</span></span><span style="display:flex;"><span>        gap <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0.0</span>] <span style="color:#f92672">*</span> (n <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        result<span style="color:#f92672">.</span>extend(gap)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Trim the result list to the correct size</span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> result[:size]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result
+</span></span></code></pre></div><p>The only missing thing was also to have the size of the gap as a parameter then I asked.</p>
+<p><code>Can you generate again but in a way I also control the size of the gap between the random chuncks?</code></p>
+<p>then 🤯 OMG !</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_floats</span>(size, n, gap_size):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Initialize an empty list to store the floats</span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Generate chunks of floats with length n</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> len(result) <span style="color:#f92672">&lt;</span> size:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Generate a chunk of floats of length n</span>
+</span></span><span style="display:flex;"><span>        chunk <span style="color:#f92672">=</span> [random<span style="color:#f92672">.</span>uniform(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(n)]
+</span></span><span style="display:flex;"><span>        result<span style="color:#f92672">.</span>extend(chunk)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If the total length of the result list is larger than the size parameter, break the loop</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(result) <span style="color:#f92672">&gt;=</span> size:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Insert a gap between the chunks</span>
+</span></span><span style="display:flex;"><span>        gap <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0.0</span>] <span style="color:#f92672">*</span> gap_size
+</span></span><span style="display:flex;"><span>        result<span style="color:#f92672">.</span>extend(gap)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Trim the result list to the correct size</span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> result[:size]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result
+</span></span></code></pre></div><p>That was exactly what I needed just refactored a bit and changed to add the range of the floats.</p>
+<p>Conclusion is that Stack Overflow is over for me from now onwards.</p>
+<p>With chatGPT my productivity in this case increase by a factor of 10-20x.</p>
+<p>Also thinking to sign up for Co-Pilot in Github which uses chatGTP under the hood. I never tested but will explore soon.</p>
+]]></content>
+        </item>
         
         <item>
             <title>Managing Burnout</title>
