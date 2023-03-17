@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Thu, 16 Feb 2023 17:16:10 +1030</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Mar 2023 17:47:09 +1030</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>strategy</title>
+      <link>https://pedrojunqueira.github.io/blog/tags/strategy/</link>
+      <pubDate>Wed, 15 Mar 2023 17:47:09 +1030</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/tags/strategy/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>ai</title>
       <link>https://pedrojunqueira.github.io/blog/tags/ai/</link>
@@ -221,15 +230,6 @@
       <pubDate>Thu, 02 Jul 2020 20:56:05 +0930</pubDate>
       
       <guid>https://pedrojunqueira.github.io/blog/tags/minishift/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>strategy</title>
-      <link>https://pedrojunqueira.github.io/blog/tags/strategy/</link>
-      <pubDate>Fri, 12 Jun 2020 05:56:21 +0930</pubDate>
-      
-      <guid>https://pedrojunqueira.github.io/blog/tags/strategy/</guid>
       <description></description>
     </item>
     

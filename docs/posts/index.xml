@@ -6,8 +6,25 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>pedro junqueira</copyright>
-        <lastBuildDate>Thu, 16 Feb 2023 17:16:10 +1030</lastBuildDate>
+        <lastBuildDate>Wed, 15 Mar 2023 17:47:09 +1030</lastBuildDate>
         <atom:link href="https://pedrojunqueira.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>My Take on Data Governance</title>
+            <link>https://pedrojunqueira.github.io/blog/posts/my-take-on-data-governance/</link>
+            <pubDate>Wed, 15 Mar 2023 17:47:09 +1030</pubDate>
+            
+            <guid>https://pedrojunqueira.github.io/blog/posts/my-take-on-data-governance/</guid>
+            <description>Data Governance is an essential topic for enterprises. Although leadership talks about and wants to implement it, attempts to do so have often failed. In this post, I will discuss why this is and what needs to change to make Data Governance work.
+Data collection in any enterprise typically begins with the Financial System (ERP), where all transactions are recorded. As the company grows, new systems are required, and complexity increases.</description>
+            <content type="html"><![CDATA[<p>Data Governance is an essential topic for enterprises. Although leadership talks about and wants to implement it, attempts to do so have often failed. In this post, I will discuss why this is and what needs to change to make Data Governance work.</p>
+<p>Data collection in any enterprise typically begins with the Financial System (ERP), where all transactions are recorded. As the company grows, new systems are required, and complexity increases. The IT department is usually responsible for the application maintenance, and the company starts doing some sort of operational reporting and BI using various tools. It is at this point that the company thinks about starting a Business Intelligence/Data Team and implementing a Data Governance program.</p>
+<p>Data Governance aims to manage data quality, access, security, privacy, discovery, and regulatory compliance. It provides a framework that offers clarity on the data the company has, which system the data is in, how master files are managed, how common data flows are integrated between systems, and who owns each piece of data. It also specifies who has access, what is personal and confidential, and which systems hold them. The aim is to ensure that data is safe, of good quality, and in compliance with regulations.</p>
+<p>There are two aspects to implementing a Data Governance program: cultural/process and systems. While systems can help, the cultural aspect is more critical. People need to run, update, manage, iterate, clean, and follow through on processes. A good framework defines roles for Data Owners, SMEs/Data Stewards, Data Engineers, and Data Analysts, and specifies what each role does. When a data problem arises, decisions must be made on how to fix it, whether it is an upstream problem, a process problem, or a system problem that the vendor or programmers need to fix.</p>
+<p>The process of implementing Data Governance requires extra work and effort from people, which is why it often fails. To make it work, people need to be willing to put in the effort to achieve the desired future state. From the IT/Data Team, it is essential to have a good understanding of the company&rsquo;s business, processes, and systems to better support managing data quality together with the business. Data quality issues are often source problems that need to be solved in the source system, requiring SMEs/Data Stewards to be in the loop and work together with the IT/Data Team.</p>
+<p>In summary, Data Governance is a critical aspect of any enterprise, but it requires both cultural and system changes to be successful. Companies must be willing to put in the extra effort required to achieve the desired future state. The IT/Data Team must have a good understanding of the company&rsquo;s business, processes, and systems to manage data quality effectively. Finally, SMEs/Data Stewards must work together with the IT/Data Team to ensure that data quality issues are addressed in the source system.</p>
+]]></content>
+        </item>
         
         <item>
             <title>Why I stopped using Stack Overflow</title>
@@ -821,11 +838,11 @@ an attribute.</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@x.setter</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
 </span></span><span style="display:flex;"><span>  self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>deleter 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@x.deleter</span> 
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
 </span></span></code></pre></div><p>This where just template examples. Lets now write our temperature class that I took from <a href="https://www.programiz.com/python-programming/property">programviz</a></p>
@@ -843,7 +860,7 @@ an attribute.</p>
 </span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Getting value...&#34;</span>)
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_temperature
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@temperature</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@temperature.setter</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">temperature</span>(self, value):
 </span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Setting value...&#34;</span>)
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> value <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">273.15</span>:
@@ -889,11 +906,11 @@ an attribute.</p>
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x.setter</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>deleter 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x.deleter</span> 
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
 </span></span><span style="display:flex;"><span>
@@ -920,11 +937,11 @@ an attribute.</p>
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;I am the &#39;x&#39; property.&#34;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_x 
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>setter
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x.setter</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self, value):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_x <span style="color:#f92672">=</span> value 
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x</span><span style="color:#f92672">.</span>deleter 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@x.deleter</span> 
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">x</span>(self):
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>_x
 </span></span><span style="display:flex;"><span>

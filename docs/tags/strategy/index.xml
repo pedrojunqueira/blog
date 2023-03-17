@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>pedro junqueira</copyright>
-    <lastBuildDate>Fri, 12 Jun 2020 05:56:21 +0930</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/strategy/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Mar 2023 17:47:09 +1030</lastBuildDate><atom:link href="https://pedrojunqueira.github.io/blog/tags/strategy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My Take on Data Governance</title>
+      <link>https://pedrojunqueira.github.io/blog/posts/my-take-on-data-governance/</link>
+      <pubDate>Wed, 15 Mar 2023 17:47:09 +1030</pubDate>
+      
+      <guid>https://pedrojunqueira.github.io/blog/posts/my-take-on-data-governance/</guid>
+      <description>Data Governance is an essential topic for enterprises. Although leadership talks about and wants to implement it, attempts to do so have often failed. In this post, I will discuss why this is and what needs to change to make Data Governance work.
+Data collection in any enterprise typically begins with the Financial System (ERP), where all transactions are recorded. As the company grows, new systems are required, and complexity increases.</description>
+    </item>
+    
     <item>
       <title>Data driven business vs. Business model driven by data</title>
       <link>https://pedrojunqueira.github.io/blog/posts/data-driven-vs-model-driven/</link>
