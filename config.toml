@@ -2,6 +2,7 @@ baseURL = "https://pedrojunqueira.github.io/blog"
 languageCode = "en-us"
 title = "Pedro Junqueira's Blog"
 publishDir  = 'docs'
+googleAnalytics="G-F5NFLN8766"
 
 theme = "hello-friend-ng"
 paginate     = 10
